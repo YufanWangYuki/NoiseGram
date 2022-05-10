@@ -14,6 +14,8 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import warnings
 warnings.filterwarnings("ignore")
 
+import pdb
+
 
 class Seq2seq(nn.Module):
 
@@ -49,7 +51,7 @@ class Seq2seq(nn.Module):
 
 		"""
 
-		# import pdb; pdb.set_trace()
+		pdb.set_trace()
 
 		outputs = self.model(
 			input_ids=src_ids,
