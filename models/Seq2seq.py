@@ -68,7 +68,7 @@ class Seq2seq(nn.Module):
 		new_embeds = inputs_embeds * noise
 		pdb.set_trace()
 		outputs = self.model(
-			input_ids=src_ids,
+			# input_ids=src_ids,
 			attention_mask=src_att_mask,
 			labels=tgt_ids,
 			inputs_embeds=new_embeds
