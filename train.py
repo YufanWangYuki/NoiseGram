@@ -152,6 +152,8 @@ def main():
 	t.logger.info('device: {}'.format(device))
 	seq2seq = seq2seq.to(device=device)
 
+	t.logger.info('noise: %s weight: %s mean: %s word_keep: %s noise_way: %s '.format(config['ntype'],config['weight'],config['mean'],config['word_keep'],config['nway']))
+
 	# run training
 	seq2seq = t.train(train_set, seq2seq, num_epochs=config['num_epochs'],
 		dev_set=dev_set, grab_memory=config['grab_memory'])
