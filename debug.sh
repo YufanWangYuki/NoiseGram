@@ -3,7 +3,6 @@
 
 echo $HOSTNAME
 unset LD_PRELOAD
-# export PATH=/home/alta/BLTSpeaking/exp-ytl28/env/anaconda3/bin/:$PATH
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
 
@@ -13,8 +12,8 @@ echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
 # pytorch 1.5
-source activate /home/alta/BLTSpeaking/exp-ytl28/env/anaconda3/envs/py38-pt15-cuda10
-export PYTHONBIN=/home/alta/BLTSpeaking/exp-ytl28/env/anaconda3/envs/py38-pt15-cuda10/bin/python3
+source activate /home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37
+export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/python3
 
 # ===================================================================================
 # ------------------------ DIR --------------------------
@@ -60,18 +59,19 @@ savedir=models/v001/
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
-# train_path_src=./lib/gec-train-bpe-written/prep/dev.src
-# train_path_tgt=./lib/gec-train-bpe-written/prep/dev.tgt
-# dev_path_src=./lib/gec-train-bpe-written/prep/toy.src
-# dev_path_tgt=./lib/gec-train-bpe-written/prep/toy.tgt
-# num_epochs=50
-# minibatch_split=1
-# batch_size=2
-# checkpoint_every=10
-# print_every=2
+orig_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written
+train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
+dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
+num_epochs=5
+minibatch_split=1
+batch_size=2
+checkpoint_every=10
+print_every=2
 
 # ===================================================================================
-$PYTHONBIN /home/alta/BLTSpeaking/exp-ytl28/local-ytl/pretrained-t5-gec/train.py \
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--train_path_src $train_path_src \
 	--train_path_tgt $train_path_tgt \
 	--dev_path_src $dev_path_src \
