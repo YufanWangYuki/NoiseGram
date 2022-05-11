@@ -3,17 +3,18 @@
 
 echo $HOSTNAME
 unset LD_PRELOAD
+PATH=/opt/intel/composer_xe_2013_sp1.2.144/bin/intel64:/opt/intel/composer_xe_2013_sp1.2.144/mpirt/bin/intel64:/opt/intel/composer_xe_2013_sp1.2.144/debugger/gdb/intel64_mic/py27/bin:/opt/intel/composer_xe_2013_sp1.2.144/debugger/gdb/intel64/py27/bin:/opt/intel/composer_xe_2013_sp1.2.144/bin/intel64:/opt/intel/composer_xe_2013_sp1.2.144/bin/intel64_mic:/opt/intel/composer_xe_2013_sp1.2.144/debugger/gui/intel64:/home/mifs/yw575/bin:/home/mifs/yw575/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games: No such file or directory
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
-
 
 # export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
 export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
-# pytorch 1.5
 source activate /home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37
 export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/python3
+
+# /home/alta/BLTSpeaking/exp-ytl28/env/anaconda3/bin/:/opt/intel/composer_xe_2013_sp1.2.144/bin/intel64:/opt/intel/composer_xe_2013_sp1.2.144/mpirt/bin/intel64:/opt/intel/composer_xe_2013_sp1.2.144/debugger/gdb/intel64_mic/py27/bin:/opt/intel/composer_xe_2013_sp1.2.144/debugger/gdb/intel64/py27/bin:/opt/intel/composer_xe_2013_sp1.2.144/bin/intel64:/opt/intel/composer_xe_2013_sp1.2.144/bin/intel64_mic:/opt/intel/composer_xe_2013_sp1.2.144/debugger/gui/intel64:/home/mifs/yw575/bin:/home/mifs/yw575/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games: No such file or directory
 
 # ===================================================================================
 # ------------------------ DIR --------------------------

@@ -36,7 +36,12 @@ class Trainer(object):
 		max_count_no_improve=2,
 		max_count_num_rollback=2,
 		keep_num=1,
-		minibatch_split=1
+		minibatch_split=1,
+		noise_type='Gaussian',
+		weight=0.0,
+		mean=1.0,
+		word_keep=1.0,
+		replace_map=None
 		):
 
 		self.use_gpu = use_gpu
@@ -73,6 +78,14 @@ class Trainer(object):
 		self.minibatch_split = minibatch_split
 		self.batch_size = batch_size
 		self.minibatch_size = int(self.batch_size / self.minibatch_split) # to be changed if OOM
+
+		self.noise_configs = {
+			'noise_type':noise_type,
+			'weight':weight,
+			'mean':mean,
+			'word_keep':word_keep,
+			'replace_map':replace_map
+		}
 
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
@@ -164,7 +177,7 @@ class Trainer(object):
 		return metrics
 
 
-	def _train_batch(self, model, batch_items):
+	def _train_batch(self, model, batch_items,noise_configs):
 
 		"""
 			Args:
@@ -202,7 +215,7 @@ class Trainer(object):
 			tgt_ids = batch_tgt_ids[i_start:i_end]
 
 			# Forward propagation
-			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids)
+			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs)
 			loss = outputs.loss
 
 			# Backward propagation: accumulate gradient
@@ -282,7 +295,7 @@ class Trainer(object):
 						peak_lr=self.lr_peak, warmup_steps=self.lr_warmup_steps)
 
 				# Get loss
-				loss = self._train_batch(model, batch_items)
+				loss = self._train_batch(model, batch_items, self.noise_configs)
 				print_loss_total += loss
 
 				if step % self.print_every == 0 and step_elapsed > self.print_every:
