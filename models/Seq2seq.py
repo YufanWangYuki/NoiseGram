@@ -66,7 +66,7 @@ class Seq2seq(nn.Module):
 					replace_map=noise_config['replace_map']).astype(np.float32)
 		noise = torch.tensor(noise).to(device=device)
 		new_embeds = inputs_embeds * noise
-		pdb.set_trace()
+		
 		outputs = self.model(
 			# input_ids=src_ids,
 			attention_mask=src_att_mask,
