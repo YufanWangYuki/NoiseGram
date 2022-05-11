@@ -71,7 +71,7 @@ checkpoint_every=10
 print_every=2
 
 # ----------------------- [noise] ---------------------------
-ntype=Gaussian
+ntype=Bernoulli
 nway=add
 mean=1.0
 weight=0.1
