@@ -1,6 +1,8 @@
 import random
 import os
 import numpy as np
+import sys
+sys.path.append(r"/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/")
 
 import torch
 import torch.nn as nn
