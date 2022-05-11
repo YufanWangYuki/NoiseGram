@@ -215,7 +215,7 @@ class Trainer(object):
 			tgt_ids = batch_tgt_ids[i_start:i_end]
 
 			# Forward propagation
-			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs)
+			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.device)
 			loss = outputs.loss
 
 			# Backward propagation: accumulate gradient

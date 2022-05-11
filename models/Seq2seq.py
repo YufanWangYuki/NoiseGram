@@ -8,6 +8,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
+from utils.misc import set_global_seeds, save_config, validate_config, check_device
 
 # huggingface api
 from transformers import T5Tokenizer, T5ForConditionalGeneration
@@ -56,13 +57,14 @@ class Seq2seq(nn.Module):
 		
 		inputs_embeds = self.model.encoder.embed_tokens(src_ids)
 		embedding_dim = inputs_embeds.shape[2]
+		device = inputs_embeds.device
 		sess=None
 		grad_noise=None
 		noise = data_helpers.add_noise(sess, self.model, grad_noise,
                     src_ids, tgt_ids, embedding_dim, random_type=noise_config['noise_type'], 
                     word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
 					replace_map=noise_config['replace_map'])
-		pdb.set_trace()
+		noise = torch.tensor(noise).to(device=device)
 		new_embeds = inputs_embeds * noise
 		pdb.set_trace()
 		outputs = self.model(
