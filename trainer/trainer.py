@@ -41,7 +41,8 @@ class Trainer(object):
 		weight=0.0,
 		mean=1.0,
 		word_keep=1.0,
-		replace_map=None
+		replace_map=None,
+		noise_way='mul'
 		):
 
 		self.use_gpu = use_gpu
@@ -84,7 +85,8 @@ class Trainer(object):
 			'weight':weight,
 			'mean':mean,
 			'word_keep':word_keep,
-			'replace_map':replace_map
+			'replace_map':replace_map,
+			'noise_way':noise_way
 		}
 
 

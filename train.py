@@ -54,6 +54,18 @@ def load_arguments(parser):
 	parser.add_argument('--keep_num', type=int, default=1,
 		help='number of models to keep')
 
+	# noise
+	parser.add_argument('--ntype', type=str, default='Gaussian',
+		help='noise type')
+	parser.add_argument('--nway', type=str, default='mul',
+		help='noise add way: mul or add')
+	parser.add_argument('--mean', type=float, default=1.0,
+		help='noise mean')
+	parser.add_argument('--weight', type=float, default=0.0,
+		help='noise weight')
+	parser.add_argument('--word_keep', type=float, default=1.0,
+		help='word keep')
+
 	return parser
 
 
@@ -99,7 +111,12 @@ def main():
 					max_count_no_improve=config['max_count_no_improve'],
 					max_count_num_rollback=config['max_count_num_rollback'],
 					keep_num=config['keep_num'],
-					minibatch_split=config['minibatch_split']
+					minibatch_split=config['minibatch_split'],
+					noise_type=config['ntype'],
+					weight=config['weight'],
+					mean=config['mean'],
+					word_keep=config['word_keep'],
+					noise_way=config['nway']
 					)
 
 	# load train set

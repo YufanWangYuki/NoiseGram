@@ -70,6 +70,11 @@ batch_size=2
 checkpoint_every=10
 print_every=2
 
+# ----------------------- [noise] ---------------------------
+ntype=Gaussian
+nway=mul
+mean=1.0
+weight=0.1
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--train_path_src $train_path_src \
@@ -101,6 +106,10 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--grab_memory $grab_memory \
 	--use_gpu True \
 	--gpu_id $CUDA_VISIBLE_DEVICES \
+	--ntype $ntype \
+	--nway $nway \
+	--mean $mean \
+	--weight $weight \
 
 # Run below command to submit this script as an array job
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/train.txt -t 1-5 -l not_host="air113|air116" train.sh 1

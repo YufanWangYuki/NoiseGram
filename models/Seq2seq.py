@@ -65,8 +65,13 @@ class Seq2seq(nn.Module):
                     word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
 					replace_map=noise_config['replace_map']).astype(np.float32)
 		noise = torch.tensor(noise).to(device=device)
-		new_embeds = inputs_embeds * noise
 		
+		if noise_config['noise_way'] == 'mul':
+			new_embeds = inputs_embeds * noise
+		elif noise_config['noise_way'] == 'add':
+			new_embeds = inputs_embeds + noise
+
+		pdb.set_trace()
 		outputs = self.model(
 			# input_ids=src_ids,
 			attention_mask=src_att_mask,
