@@ -60,7 +60,7 @@ class Seq2seq(nn.Module):
 		grad_noise=None
 		noise = data_helpers.add_noise(sess, self.model, grad_noise,
                     src_ids, tgt_ids, embedding_dim, random_type=noise_config['noise_type'], 
-                    word_keep=noise_config['word_keep'], weight=noise_config['noise_weight'], mean=noise_config['mean'],
+                    word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
 					replace_map=noise_config['replace_map'])
 		new_embeds = inputs_embeds * noise
 		pdb.set_trace()
