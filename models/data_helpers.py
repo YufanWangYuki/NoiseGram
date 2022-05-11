@@ -55,7 +55,6 @@ def add_noise(sess, model, grad_noise, x, y, embedding_dim, random_type=None, wo
             noise[bi,:,:] = np.random.choice(2,size=(seq_length, embedding_dim), p=[1-word_keep, word_keep])
         if random_type == 'Gaussian':
             noise[bi,:,:] = np.random.normal(mean, weight, [seq_length, embedding_dim])
-            pdb.set_trace()
         if random_type == 'Adversarial':
             grad_noise_[bi] /= (np.linalg.norm(grad_noise_[bi]) + 1e-10)
             noise[bi,:,:] += weight * grad_noise_[bi]
