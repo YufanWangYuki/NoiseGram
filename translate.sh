@@ -43,7 +43,7 @@ mode='beam-1'
 
 
 # ----- [dir names] -----
-loaddir=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine/model-dict.pt 
+loaddir=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine
 echo 'MODE '$eval_mode
 if [[ $eval_mode -eq 1 ]]
     then
