@@ -1,4 +1,5 @@
 import torch
+torch.cuda.empty_cache()
 import random
 import time
 import os
@@ -38,9 +39,15 @@ def load_arguments(parser):
 	parser.add_argument('--use_gpu', type=str, default='False', help='whether or not using GPU')
 	parser.add_argument('--eval_mode', type=int, default=2, help='which evaluation mode to use')
 
+	# noise
+	parser.add_argument('--ntype', type=str, default='Gaussian',help='noise type')
+	parser.add_argument('--nway', type=str, default='mul',help='noise add way: mul or add')
+	parser.add_argument('--mean', type=float, default=1.0,help='noise mean')
+	parser.add_argument('--weight', type=float, default=0.0,help='noise weight')
+	parser.add_argument('--word_keep', type=float, default=1.0,help='word keep')
 	return parser
 
-def translate(test_set, model, test_path_out, max_tgt_len, mode, device):
+def translate(test_set, model, test_path_out, max_tgt_len, mode, device, noise_config):
 
 	"""
 		run inference, output be:
@@ -52,7 +59,7 @@ def translate(test_set, model, test_path_out, max_tgt_len, mode, device):
 		...
 	"""
 	# import pdb; pdb.set_trace()
-
+	pdb.set_trace()
 	# load test
 	test_set.construct_batches()
 	evaliter = iter(test_set.iter_loader)
@@ -72,7 +79,7 @@ def translate(test_set, model, test_path_out, max_tgt_len, mode, device):
 
 				time1 = time.time()
 				preds, scores = model.forward_translate(src_ids, src_att_mask,
-					max_length=max_tgt_len, mode=mode)
+					max_length=max_tgt_len, mode=mode, noise_config=noise_config)
 				time2 = time.time()
 				print('comp time: ', time2-time1)
 
@@ -603,6 +610,15 @@ def main():
 	use_gpu = config['use_gpu']
 	fold = config['fold']
 
+	noise_configs = {
+			'noise_type':config['noise_type'],
+			'weight':config['weight'],
+			'mean':config['mean'],
+			'word_keep':config['word_keep'],
+			'replace_map':config['replace_map'],
+			'noise_way':config['noise_way']
+		}
+
 	# set test mode
 	# 1: save comb ckpt
 	# 2: save to state dict - for loading model else where
@@ -642,7 +658,7 @@ def main():
 	if MODE == 3:
 		# run inference
 		pdb.set_trace()
-		translate(test_set, model, test_path_out, max_tgt_len, mode, device)
+		translate(test_set, model, test_path_out, max_tgt_len, mode, device, noise_configs)
 
 	elif MODE == 4:
 		# run inference - with id + score

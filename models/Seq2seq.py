@@ -107,7 +107,7 @@ class Seq2seq(nn.Module):
 		return outseqs
 
 
-	def forward_translate(self, src_ids, src_att_mask, max_length=100, mode='beam-1'):
+	def forward_translate(self, src_ids, src_att_mask, max_length=100, mode='beam-1', noise_config=None):
 
 		"""
 			for inference
@@ -121,10 +121,30 @@ class Seq2seq(nn.Module):
 
 		gen_mode = mode.split('-')[0] # beam-N, sample-N, beamdiv-N
 		num = int(mode.split('-')[-1])
+		pdb.set_trace()
+
+		inputs_embeds = self.model.encoder.embed_tokens(src_ids)
+		embedding_dim = inputs_embeds.shape[2]
+		device = inputs_embeds.device
+		sess=None
+		grad_noise=None
+		new_embeds = inputs_embeds
+		
+		if noise_config is not None:
+			noise = data_helpers.add_noise(sess, self.model, grad_noise,
+						src_ids, None, embedding_dim, random_type=noise_config['noise_type'], 
+						word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
+						replace_map=noise_config['replace_map']).astype(np.float32)
+			noise = torch.tensor(noise).to(device=device)
+			
+			if noise_config['noise_way'] == 'mul':
+				new_embeds = inputs_embeds * noise
+			elif noise_config['noise_way'] == 'add':
+				new_embeds = inputs_embeds + noise
 
 		if gen_mode == 'beam':
 			outputs = self.model.generate(
-				input_ids=src_ids,
+				# input_ids=src_ids,
 				attention_mask=src_att_mask,
 				max_length=max_length,
 				num_beams=num,
@@ -134,7 +154,8 @@ class Seq2seq(nn.Module):
 				early_stopping=True,
 				use_cache=True,
 				return_dict_in_generate=True, # output scores as well as predictions
-				output_scores=True
+				output_scores=True,
+				inputs_embeds=new_embeds
 			)
 
 		elif gen_mode == 'beamdiv':
