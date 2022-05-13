@@ -79,9 +79,9 @@ def add_noise(sess, model, grad_noise, x, y, embedding_dim, random_type=None, wo
                     count_change += 1
             noise[bi,:,:] = np.reshape(noise_flat, [seq_length, embedding_dim])
         if random_type == 'Bernoulli-word':
-            x = list(x)
-            x[bi] = x[bi] * np.random.choice(2, size=seq_length, p=[1-word_keep, word_keep])#change x by shallow copy
-            #noise[bi,:,:] *= np.random.choice(2, size=(seq_length, 1), p=[1-word_keep, word_keep])
+            # x = list(x)
+            # x[bi] = x[bi] * np.random.choice(2, size=seq_length, p=[1-word_keep, word_keep])#change x by shallow copy
+            noise[bi,:,:] *= np.random.choice(2, size=(seq_length, 1), p=[1-word_keep, word_keep])
         if random_type == 'Bernoulli-semantic':
             noise[bi,:,:] *= np.random.choice(2, size=(embedding_dim), p=[1-word_keep, word_keep])
         if random_type == 'Bernoulli-idf':

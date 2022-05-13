@@ -17,11 +17,10 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 
 # ===================================================================================
 # ------------------------ DIR --------------------------
-orig_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written
-train_path_src=$orig_path/lib/gec-train-bpe-written/prep/train.src
-train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/train.tgt
-dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
-dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+train_path_src= /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.inc
+train_path_tgt= /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.corr
+dev_path_src=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/ffce-public.dev16.inc
+dev_path_tgt=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/ffce-public.dev16.corr
 
 max_src_len=64
 max_tgt_len=64
@@ -54,25 +53,25 @@ checkpoint_every=5000 # ~10k if 2M, batch - 256
 print_every=1000
 
 grab_memory='False'
-loaddir='None'
+loaddir=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine/
 savedir=models/v001/
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
-orig_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written
-train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
-train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
-dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
-dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
-num_epochs=5
-minibatch_split=1
-batch_size=2
-checkpoint_every=10
-print_every=2
+# orig_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written
+# train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+# train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+# dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
+# dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
+# num_epochs=5
+# minibatch_split=1
+# batch_size=2
+# checkpoint_every=10
+# print_every=2
 
 # ----------------------- [noise] ---------------------------
 ntype=Bernoulli
-nway=add
+nway=mul
 mean=1.0
 weight=0.1
 # ===================================================================================

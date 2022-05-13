@@ -71,7 +71,7 @@ class Trainer(object):
 		self.load_dir = load_dir
 		self.load_mode = load_mode
 		if type(self.load_dir) != type(None) and load_mode == 'null':
-			self.load_dir = 'resume' # default to resume
+			self.load_mode = 'resume' # default to resume
 
 		self.logger = logging.getLogger(__name__)
 		self.writer = torch.utils.tensorboard.writer.SummaryWriter(log_dir=self.expt_dir)

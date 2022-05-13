@@ -17,7 +17,7 @@ from modules.checkpoint import Checkpoint
 from models.Seq2seq import Seq2seq
 
 logging.basicConfig(level=logging.INFO)
-
+import pdb
 
 def load_arguments(parser):
 
@@ -641,6 +641,7 @@ def main():
 	# run eval
 	if MODE == 3:
 		# run inference
+		pdb.set_tracce()
 		translate(test_set, model, test_path_out, max_tgt_len, mode, device)
 
 	elif MODE == 4:
