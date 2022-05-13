@@ -43,11 +43,11 @@ mode='beam-1'
 
 
 # ----------------------- [noise] ---------------------------
+noise=1
 ntype=Gaussian
 nway=mul
 mean=1.0
 weight=0.1
-
 # ----- [dir names] -----
 loaddir=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine
 echo 'MODE '$eval_mode
@@ -82,6 +82,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
     --use_gpu $use_gpu \
     --eval_mode $eval_mode \
     --combine_path $combine_path \
+    --noise $noise \
     --ntype $ntype \
 	--nway $nway \
 	--mean $mean \

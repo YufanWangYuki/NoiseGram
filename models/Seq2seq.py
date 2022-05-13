@@ -72,7 +72,7 @@ class Seq2seq(nn.Module):
 			new_embeds = inputs_embeds + noise
 
 		pdb.set_trace()
-
+		
 		outputs = self.model(
 			# input_ids=src_ids,
 			attention_mask=src_att_mask,
@@ -122,15 +122,14 @@ class Seq2seq(nn.Module):
 		gen_mode = mode.split('-')[0] # beam-N, sample-N, beamdiv-N
 		num = int(mode.split('-')[-1])
 		
-
-		inputs_embeds = self.model.encoder.embed_tokens(src_ids)
-		embedding_dim = inputs_embeds.shape[2]
-		device = inputs_embeds.device
-		sess=None
-		grad_noise=None
-		new_embeds = inputs_embeds
-		pdb.set_trace()
 		if noise_config is not None:
+			inputs_embeds = self.model.encoder.embed_tokens(src_ids)
+			embedding_dim = inputs_embeds.shape[2]
+			device = inputs_embeds.device
+			sess=None
+			grad_noise=None
+			new_embeds = inputs_embeds
+
 			noise = data_helpers.add_noise(sess, self.model, grad_noise,
 						src_ids, None, embedding_dim, random_type=noise_config['noise_type'], 
 						word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
@@ -141,77 +140,146 @@ class Seq2seq(nn.Module):
 				new_embeds = inputs_embeds * noise
 			elif noise_config['noise_way'] == 'add':
 				new_embeds = inputs_embeds + noise
-		pdb.set_trace()
-		if gen_mode == 'beam':
-			outputs = self.model.generate(
-				# input_ids=src_ids,
-				attention_mask=src_att_mask,
-				max_length=max_length,
-				num_beams=num,
-				num_return_sequences=num,
-				do_sample=False,
-				length_penalty=1.0,
-				early_stopping=True,
-				use_cache=True,
-				return_dict_in_generate=True, # output scores as well as predictions
-				output_scores=True,
-				inputs_embeds=new_embeds
-			)
+		
+			pdb.set_trace()
+			encoder_outputs = self.model.encoder(attention_mask=src_att_mask,inputs_embeds=new_embeds)
+			if gen_mode == 'beam':
+				outputs = self.model.generate(
+					# input_ids=src_ids,
+					attention_mask=src_att_mask,
+					max_length=max_length,
+					num_beams=num,
+					num_return_sequences=num,
+					do_sample=False,
+					length_penalty=1.0,
+					early_stopping=True,
+					use_cache=True,
+					return_dict_in_generate=True, # output scores as well as predictions
+					output_scores=True,
+					inputs_embeds=new_embeds
+				)
 
-		elif gen_mode == 'beamdiv':
-			# beam search with diversity penalty
-			outputs = self.model.generate(
-				input_ids=src_ids,
-				attention_mask=src_att_mask,
-				max_length=max_length,
-				num_beams=num,
-				num_return_sequences=num,
-				do_sample=False,
-				num_beam_groups=5,
-				diversity_penalty=0.5,
-				length_penalty=1.0,
-				early_stopping=True,
-				use_cache=True,
-				return_dict_in_generate=True, # output scores as well as predictions
-				output_scores=True
-			)
+			elif gen_mode == 'beamdiv':
+				# beam search with diversity penalty
+				outputs = self.model.generate(
+					input_ids=src_ids,
+					attention_mask=src_att_mask,
+					max_length=max_length,
+					num_beams=num,
+					num_return_sequences=num,
+					do_sample=False,
+					num_beam_groups=5,
+					diversity_penalty=0.5,
+					length_penalty=1.0,
+					early_stopping=True,
+					use_cache=True,
+					return_dict_in_generate=True, # output scores as well as predictions
+					output_scores=True
+				)
 
-		elif gen_mode == 'sample':
-			# not very diverse if doing sampling
-			outputs = self.model.generate(
-				input_ids=src_ids,
-				attention_mask=src_att_mask,
-				max_length=max_length,
-				do_sample=True,
-				num_return_sequences=num,
-				length_penalty=1.0,
-				early_stopping=True,
-				use_cache=True,
-				return_dict_in_generate=True
-				# output_scores=True
-			)
+			elif gen_mode == 'sample':
+				# not very diverse if doing sampling
+				outputs = self.model.generate(
+					input_ids=src_ids,
+					attention_mask=src_att_mask,
+					max_length=max_length,
+					do_sample=True,
+					num_return_sequences=num,
+					length_penalty=1.0,
+					early_stopping=True,
+					use_cache=True,
+					return_dict_in_generate=True
+					# output_scores=True
+				)
 
-		outseqs = self.tokenizer.batch_decode(outputs.sequences,
-			skip_special_tokens=True, clean_up_tokenization_spaces=True)
+			outseqs = self.tokenizer.batch_decode(outputs.sequences,
+				skip_special_tokens=True, clean_up_tokenization_spaces=True)
 
-		# import pdb; pdb.set_trace()
-		if gen_mode == 'beam' or gen_mode == 'beamdiv':
-			if num == 1:
-				# obtain seq score from per word scores
-				prep_scores = torch.stack(outputs.scores, dim=1).softmax(-1) # B*N x len x #vocab
-				prep_seqs = outputs.sequences[:,1:] # B*N x len
-				# word logp -> seq logp
-				select = torch.gather(prep_scores, 2, prep_seqs.unsqueeze(-1)).squeeze(-1)
-				# length norm
-				mask = (prep_seqs != 0)
-				scores = 1. * torch.sum(torch.log(select) * mask, dim=1) / torch.sum(mask, dim=1)
-			else:
-				scores = outputs.sequences_scores
+			# import pdb; pdb.set_trace()
+			if gen_mode == 'beam' or gen_mode == 'beamdiv':
+				if num == 1:
+					# obtain seq score from per word scores
+					prep_scores = torch.stack(outputs.scores, dim=1).softmax(-1) # B*N x len x #vocab
+					prep_seqs = outputs.sequences[:,1:] # B*N x len
+					# word logp -> seq logp
+					select = torch.gather(prep_scores, 2, prep_seqs.unsqueeze(-1)).squeeze(-1)
+					# length norm
+					mask = (prep_seqs != 0)
+					scores = 1. * torch.sum(torch.log(select) * mask, dim=1) / torch.sum(mask, dim=1)
+				else:
+					scores = outputs.sequences_scores
 
-		elif gen_mode == 'sample':
-			scores = [0] * len(outseqs)
+			elif gen_mode == 'sample':
+				scores = [0] * len(outseqs)
 
+		else:
+			if gen_mode == 'beam':
+				outputs = self.model.generate(
+					input_ids=src_ids,
+					attention_mask=src_att_mask,
+					max_length=max_length,
+					num_beams=num,
+					num_return_sequences=num,
+					do_sample=False,
+					length_penalty=1.0,
+					early_stopping=True,
+					use_cache=True,
+					return_dict_in_generate=True, # output scores as well as predictions
+					output_scores=True
+				)
 
+			elif gen_mode == 'beamdiv':
+				# beam search with diversity penalty
+				outputs = self.model.generate(
+					input_ids=src_ids,
+					attention_mask=src_att_mask,
+					max_length=max_length,
+					num_beams=num,
+					num_return_sequences=num,
+					do_sample=False,
+					num_beam_groups=5,
+					diversity_penalty=0.5,
+					length_penalty=1.0,
+					early_stopping=True,
+					use_cache=True,
+					return_dict_in_generate=True, # output scores as well as predictions
+					output_scores=True
+				)
+
+			elif gen_mode == 'sample':
+				# not very diverse if doing sampling
+				outputs = self.model.generate(
+					input_ids=src_ids,
+					attention_mask=src_att_mask,
+					max_length=max_length,
+					do_sample=True,
+					num_return_sequences=num,
+					length_penalty=1.0,
+					early_stopping=True,
+					use_cache=True,
+					return_dict_in_generate=True
+					# output_scores=True
+				)
+
+			outseqs = self.tokenizer.batch_decode(outputs.sequences,
+				skip_special_tokens=True, clean_up_tokenization_spaces=True)
+
+			# import pdb; pdb.set_trace()
+			if gen_mode == 'beam' or gen_mode == 'beamdiv':
+				if num == 1:
+					# obtain seq score from per word scores
+					prep_scores = torch.stack(outputs.scores, dim=1).softmax(-1) # B*N x len x #vocab
+					prep_seqs = outputs.sequences[:,1:] # B*N x len
+					# word logp -> seq logp
+					select = torch.gather(prep_scores, 2, prep_seqs.unsqueeze(-1)).squeeze(-1)
+					# length norm
+					mask = (prep_seqs != 0)
+					scores = 1. * torch.sum(torch.log(select) * mask, dim=1) / torch.sum(mask, dim=1)
+				else:
+					scores = outputs.sequences_scores
+
+			elif gen_mode == 'sample':
+				scores = [0] * len(outseqs)
 		return outseqs, scores
 
 

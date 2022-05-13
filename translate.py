@@ -40,6 +40,8 @@ def load_arguments(parser):
 	parser.add_argument('--eval_mode', type=int, default=2, help='which evaluation mode to use')
 
 	# noise
+	parser.add_argument('--noise', type=int, default=1,
+		help='1 for without noise 2 for using noise')
 	parser.add_argument('--ntype', type=str, default='Gaussian',help='noise type')
 	parser.add_argument('--nway', type=str, default='mul',help='noise add way: mul or add')
 	parser.add_argument('--mean', type=float, default=1.0,help='noise mean')
@@ -621,7 +623,8 @@ def main():
 			'replace_map':config['replace_map'],
 			'noise_way':config['nway']
 		}
-
+	if config['noise'] == 1:
+		noise_configs=None
 	
 	# set test mode
 	# 1: save comb ckpt
