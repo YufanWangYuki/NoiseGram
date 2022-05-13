@@ -45,6 +45,8 @@ def load_arguments(parser):
 	parser.add_argument('--mean', type=float, default=1.0,help='noise mean')
 	parser.add_argument('--weight', type=float, default=0.0,help='noise weight')
 	parser.add_argument('--word_keep', type=float, default=1.0,help='word keep')
+	parser.add_argument('--replace_map', type=list, default=None,
+		help='replace map')
 	return parser
 
 def translate(test_set, model, test_path_out, max_tgt_len, mode, device, noise_config):
@@ -64,7 +66,7 @@ def translate(test_set, model, test_path_out, max_tgt_len, mode, device, noise_c
 	test_set.construct_batches()
 	evaliter = iter(test_set.iter_loader)
 	print('num batches: {}'.format(len(evaliter)))
-
+	
 	with open(os.path.join(test_path_out, 'translate.txt'), 'w', encoding="utf8") as f:
 		model.eval()
 		with torch.no_grad():
@@ -611,14 +613,15 @@ def main():
 	fold = config['fold']
 
 	noise_configs = {
-			'noise_type':config['noise_type'],
+			'noise_type':config['ntype'],
 			'weight':config['weight'],
 			'mean':config['mean'],
 			'word_keep':config['word_keep'],
 			'replace_map':config['replace_map'],
-			'noise_way':config['noise_way']
+			'noise_way':config['nway']
 		}
 
+	
 	# set test mode
 	# 1: save comb ckpt
 	# 2: save to state dict - for loading model else where

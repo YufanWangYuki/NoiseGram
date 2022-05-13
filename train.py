@@ -65,6 +65,8 @@ def load_arguments(parser):
 		help='noise weight')
 	parser.add_argument('--word_keep', type=float, default=1.0,
 		help='word keep')
+	parser.add_argument('--replace_map', type=list, default=None,
+		help='replace map')
 
 	return parser
 
