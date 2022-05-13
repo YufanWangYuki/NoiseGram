@@ -121,7 +121,7 @@ class Seq2seq(nn.Module):
 
 		gen_mode = mode.split('-')[0] # beam-N, sample-N, beamdiv-N
 		num = int(mode.split('-')[-1])
-		pdb.set_trace()
+		
 
 		inputs_embeds = self.model.encoder.embed_tokens(src_ids)
 		embedding_dim = inputs_embeds.shape[2]
@@ -129,7 +129,7 @@ class Seq2seq(nn.Module):
 		sess=None
 		grad_noise=None
 		new_embeds = inputs_embeds
-		
+		pdb.set_trace()
 		if noise_config is not None:
 			noise = data_helpers.add_noise(sess, self.model, grad_noise,
 						src_ids, None, embedding_dim, random_type=noise_config['noise_type'], 
@@ -141,7 +141,7 @@ class Seq2seq(nn.Module):
 				new_embeds = inputs_embeds * noise
 			elif noise_config['noise_way'] == 'add':
 				new_embeds = inputs_embeds + noise
-
+		pdb.set_trace()
 		if gen_mode == 'beam':
 			outputs = self.model.generate(
 				# input_ids=src_ids,
