@@ -641,7 +641,7 @@ def main():
 	# run eval
 	if MODE == 3:
 		# run inference
-		pdb.set_tracce()
+		pdb.set_trace()
 		translate(test_set, model, test_path_out, max_tgt_len, mode, device)
 
 	elif MODE == 4:
