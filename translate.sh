@@ -36,7 +36,7 @@ max_tgt_len=100
 eval_mode=3
 use_gpu='True'
 
-batch_size=50
+batch_size=1
 mode='beam-1'
 # batch_size=1
 # mode='beam-50'
