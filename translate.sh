@@ -53,8 +53,7 @@ weight=0.1
 # ----- [dir names] -----
 loaddir=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine
 echo 'MODE '$eval_mode
-for weight in $(seq 0 0.01 0.2)
-do
+
 if [[ $eval_mode -eq 1 ]]
     then
     
@@ -74,6 +73,10 @@ else
     echo 'LOAD: '$loaddir
     echo 'OUT: '$outdir
 fi
+
+for weight in $(seq 0 0.01 0.2)
+do
+outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
     --test_path_src $ftst \
     --load $loaddir \
