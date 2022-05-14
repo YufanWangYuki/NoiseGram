@@ -616,6 +616,7 @@ def main():
 	fold = config['fold']
 
 	noise_configs = {
+			'noise':config['noise'],
 			'noise_type':config['ntype'],
 			'weight':config['weight'],
 			'mean':config['mean'],

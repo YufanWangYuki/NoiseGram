@@ -130,18 +130,18 @@ class Seq2seq(nn.Module):
 			grad_noise=None
 			new_embeds = inputs_embeds
 
-			# noise = data_helpers.add_noise(sess, self.model, grad_noise,
-			# 			src_ids, None, embedding_dim, random_type=noise_config['noise_type'], 
-			# 			word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
-			# 			replace_map=noise_config['replace_map']).astype(np.float32)
-			# noise = torch.tensor(noise).to(device=device)
-			
-			# if noise_config['noise_way'] == 'mul':
-			# 	new_embeds = inputs_embeds * noise
-			# elif noise_config['noise_way'] == 'add':
-			# 	new_embeds = inputs_embeds + noise
+			if noise_config['noise'] == 2:
+				noise = data_helpers.add_noise(sess, self.model, grad_noise,
+						src_ids, None, embedding_dim, random_type=noise_config['noise_type'], 
+						word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
+						replace_map=noise_config['replace_map']).astype(np.float32)
+				noise = torch.tensor(noise).to(device=device)
+				if noise_config['noise_way'] == 'mul':
+					new_embeds = inputs_embeds * noise
+				elif noise_config['noise_way'] == 'add':
+					new_embeds = inputs_embeds + noise
 		
-			pdb.set_trace()
+			# pdb.set_trace()
 			encoder_outputs = self.model.encoder(attention_mask=src_att_mask,inputs_embeds=new_embeds)
 			if gen_mode == 'beam':
 				outputs = self.model.generate(
