@@ -92,5 +92,5 @@ do
         --ntype $ntype \
         --nway $nway \
         --mean $mean \
-        --weight $weight \
+        --weight $weight
 done
