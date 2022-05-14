@@ -43,7 +43,7 @@ mode='beam-1'
 
 
 # ----------------------- [noise] ---------------------------
-noise=2
+noise=1
 ntype=Gaussian
 nway=mul
 mean=1.0
@@ -64,7 +64,7 @@ else
     if [[ $ckpt == 'combine' ]] # [combined ckpt]
         then
         # outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
-        outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
+        outdir=$model/$fname-"$mode"/combine
         # loaddir=$model/checkpoints-combine/combine
     else # [single ckpt]
         outdir=$model/$fname-"$mode"/$ckpt/${noise}_${ntype}_${nway}_${mean}_${weight}
@@ -78,7 +78,6 @@ fi
 # for weight in $(seq 0 0.01 0.2)
 # do
 # outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
-outdir=$model/$fname-"$mode"/combine
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
     --test_path_src $ftst \
     --load $loaddir \
