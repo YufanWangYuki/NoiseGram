@@ -60,10 +60,10 @@ if [[ $eval_mode -eq 1 ]]
 else
     if [[ $ckpt == 'combine' ]] # [combined ckpt]
         then
-        outdir=$model/$fname-"$mode"/combine/
+        outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
         # loaddir=$model/checkpoints-combine/combine
     else # [single ckpt]
-        outdir=$model/$fname-"$mode"/$ckpt/
+        outdir=$model/$fname-"$mode"/$ckpt/${noise}_${ntype}_${nway}_${mean}_${weight}
         # loaddir=$model/checkpoints/$ckpt
     fi
     combine_path='None'
