@@ -214,7 +214,6 @@ class Seq2seq(nn.Module):
 				scores = [0] * len(outseqs)
 
 		else:
-			pdb.set_trace()
 			if gen_mode == 'beam':
 				outputs = self.model.generate(
 					input_ids=src_ids,
