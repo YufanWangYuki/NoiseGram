@@ -63,6 +63,7 @@ if [[ $eval_mode -eq 1 ]]
 else
     if [[ $ckpt == 'combine' ]] # [combined ckpt]
         then
+        # outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
         outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
         # loaddir=$model/checkpoints-combine/combine
     else # [single ckpt]
@@ -74,8 +75,8 @@ else
     echo 'OUT: '$outdir
 fi
 
-for weight in $(seq 0 0.01 0.2)
-do
+# for weight in $(seq 0 0.01 0.2)
+# do
 outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
     --test_path_src $ftst \
@@ -92,4 +93,4 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
 	--nway $nway \
 	--mean $mean \
 	--weight $weight \
-done
+# done
