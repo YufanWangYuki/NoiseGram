@@ -42,7 +42,9 @@ class Trainer(object):
 		mean=1.0,
 		word_keep=1.0,
 		replace_map=None,
-		noise_way='mul'
+		noise_way='mul',
+		seq_length=64,
+		embedding_dim=768
 		):
 
 		self.use_gpu = use_gpu
@@ -88,6 +90,15 @@ class Trainer(object):
 			'replace_map':replace_map,
 			'noise_way':noise_way
 		}
+
+		self.noise = np.ones([minibatch_split, seq_length, embedding_dim])
+
+		if noise_type == 'Adversarial':
+			self.noise = np.ones([batch_size, seq_length, embedding_dim])
+		elif noise_type == 'Gaussian-adversarial':
+			self.noise = np.random.normal(1, weight, [batch_size, seq_length, embedding_dim])
+		self.noise.requires_grad = True
+		self.weight = weight
 
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
@@ -217,9 +228,12 @@ class Trainer(object):
 			tgt_ids = batch_tgt_ids[i_start:i_end]
 
 			# Forward propagation
-			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs)
+			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 			loss = outputs.loss
-
+			grad = torch.autograd.grad(loss, self.noise)
+			for i in range(len(src_ids)):
+				grad[i] /= (np.linalg.norm(grad[i]) + 1e-10)
+			self.noise += self.weight * grad
 			# Backward propagation: accumulate gradient
 			loss /= n_minibatch
 			loss.backward()

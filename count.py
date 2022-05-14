@@ -62,6 +62,7 @@ def main():
     fp1 = open(config['base_path'], "r")
     fp2 = open(config['input_path'], "r")
     total_count = 0
+    total_avg_count = 0
     line = 0
 
     while True:
@@ -70,12 +71,19 @@ def main():
             x = next(fp1)
             y = next(fp2)
             # pdb.set_trace()
-            total_count += (count_edits(x, y)/len(x))
-            print(line)
-            if count_edits(x, y) > 0:
-                pdb.set_trace()
+            total_count += count_edits(x, y)
+            total_avg_count += (count_edits(x, y)/len(x))
+            break
+            # if count_edits(x, y) > 0:
+            #     pdb.set_trace()
         except StopIteration:
             break   
+    print(total_count)
+    print(total_avg_count)
+    file = 'result.txt'
+    with open(file, 'a+') as f:
+        f.write(config['input_path']+': ')
+        f.write(str(total_count) +' ' +str(total_avg_count) +'\n')   #加\n换行显示
 
 if __name__ == '__main__':
 	main()

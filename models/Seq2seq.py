@@ -33,7 +33,7 @@ class Seq2seq(nn.Module):
 		self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name) #T5ForConditionalGeneration
 
 
-	def forward_train(self, src_ids, src_att_mask, tgt_ids, noise_config):
+	def forward_train(self, src_ids, src_att_mask, tgt_ids, noise_config, grad_noise):
 
 		"""
 			for training
@@ -54,16 +54,12 @@ class Seq2seq(nn.Module):
 
 		"""
 
-		
 		inputs_embeds = self.model.encoder.embed_tokens(src_ids)
 		embedding_dim = inputs_embeds.shape[2]
 		device = inputs_embeds.device
-		sess=None
-		grad_noise=None
-		noise = data_helpers.add_noise(sess, self.model, grad_noise,
-                    src_ids, tgt_ids, embedding_dim, random_type=noise_config['noise_type'], 
+		noise = data_helpers.add_noise(src_ids, embedding_dim, random_type=noise_config['noise_type'], 
                     word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
-					replace_map=noise_config['replace_map']).astype(np.float32)
+					replace_map=noise_config['replace_map']).astype(np.float32, grad_noise)
 		noise = torch.tensor(noise).to(device=device)
 		
 		if noise_config['noise_way'] == 'mul':
