@@ -62,13 +62,16 @@ def main():
     fp1 = open(config['base_path'], "r")
     fp2 = open(config['input_path'], "r")
     total_count = 0
-    
+    line = 0
+
     while True:
         try:
+            line += 1
             x = next(fp1)
             y = next(fp2)
             # pdb.set_trace()
             total_count += (count_edits(x, y)/len(x))
+            print(line)
             if count_edits(x, y) > 0:
                 pdb.set_trace()
         except StopIteration:
