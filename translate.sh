@@ -43,7 +43,7 @@ mode='beam-1'
 
 
 # ----------------------- [noise] ---------------------------
-noise=1
+noise=2 #2 is for using the noise
 ntype=Gaussian
 nway=mul
 mean=1.0
@@ -72,12 +72,12 @@ else
     fi
     combine_path='None'
     echo 'LOAD: '$loaddir
-    echo 'OUT: '$outdir
 fi
 
 for weight in $(seq 0 0.01 0.2)
 do
     outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
+    echo 'OUT: '$outdir
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
         --test_path_src $ftst \
         --load $loaddir \

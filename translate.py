@@ -624,8 +624,8 @@ def main():
 			'replace_map':config['replace_map'],
 			'noise_way':config['nway']
 		}
-	if config['noise'] == 1:
-		noise_configs=None
+	# if config['noise'] == 1:
+	# 	noise_configs=None
 	
 	# set test mode
 	# 1: save comb ckpt
