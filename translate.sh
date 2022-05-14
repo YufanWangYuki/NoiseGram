@@ -75,22 +75,22 @@ else
     echo 'OUT: '$outdir
 fi
 
-# for weight in $(seq 0 0.01 0.2)
-# do
-# outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
-    --test_path_src $ftst \
-    --load $loaddir \
-    --test_path_out $outdir \
-    --max_tgt_len $max_tgt_len \
-    --batch_size $batch_size \
-    --mode $mode \
-    --use_gpu $use_gpu \
-    --eval_mode $eval_mode \
-    --combine_path $combine_path \
-    --noise $noise \
-    --ntype $ntype \
-	--nway $nway \
-	--mean $mean \
-	--weight $weight \
-# done
+for weight in $(seq 0 0.01 0.2)
+do
+    outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
+        --test_path_src $ftst \
+        --load $loaddir \
+        --test_path_out $outdir \
+        --max_tgt_len $max_tgt_len \
+        --batch_size $batch_size \
+        --mode $mode \
+        --use_gpu $use_gpu \
+        --eval_mode $eval_mode \
+        --combine_path $combine_path \
+        --noise $noise \
+        --ntype $ntype \
+        --nway $nway \
+        --mean $mean \
+        --weight $weight \
+done
