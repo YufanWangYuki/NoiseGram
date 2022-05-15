@@ -19,6 +19,7 @@ logging.basicConfig(level=logging.DEBUG)
 # logging.basicConfig(level=logging.INFO)
 
 import pdb
+from tqdm import tqdm
 
 class Trainer(object):
 
@@ -269,7 +270,7 @@ class Trainer(object):
 		ckpt = None
 
 		# loop over epochs
-		for epoch in range(start_epoch, n_epochs + 1):
+		for epoch in tqdm(range(start_epoch, n_epochs + 1)):
 
 			# update lr
 			if self.lr_warmup_steps != 0:
