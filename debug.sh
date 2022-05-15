@@ -63,9 +63,9 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 # train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
 # dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
 # dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
-# num_epochs=5
-# minibatch_split=1
-# batch_size=2
+num_epochs=5
+minibatch_split=1
+batch_size=2
 # checkpoint_every=10
 # print_every=2
 
