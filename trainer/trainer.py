@@ -240,7 +240,7 @@ class Trainer(object):
 			pdb.set_trace()
 			for i in range(len(src_ids)):
 				norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
-			self.noise += self.weight * grad
+			self.noise += self.weight * norm_grad
 			pdb.set_trace()
 			# Backward propagation: accumulate gradient
 			loss /= n_minibatch
