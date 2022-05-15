@@ -17,6 +17,7 @@ from models.Seq2seq import Seq2seq
 logging.basicConfig(level=logging.DEBUG)
 # logging.basicConfig(level=logging.INFO)
 
+import pdb
 
 class Trainer(object):
 
@@ -231,9 +232,11 @@ class Trainer(object):
 			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 			loss = outputs.loss
 			grad = torch.autograd.grad(loss, self.noise)
+			pdb.set_trace()
 			for i in range(len(src_ids)):
 				grad[i] /= (np.linalg.norm(grad[i]) + 1e-10)
 			self.noise += self.weight * grad
+			pdb.set_trace()
 			# Backward propagation: accumulate gradient
 			loss /= n_minibatch
 			loss.backward()
