@@ -19,8 +19,8 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 # ------------------------ DIR --------------------------
 train_path_src=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.inc
 train_path_tgt=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.corr
-dev_path_src=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/ffce-public.dev16.inc
-dev_path_tgt=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/ffce-public.dev16.corr
+dev_path_src=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.dev16.inc
+dev_path_tgt=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.dev16.corr
 
 max_src_len=64
 max_tgt_len=64
