@@ -63,6 +63,8 @@ class Seq2seq(nn.Module):
 		if not torch.is_tensor(noise):
 			noise = noise.astype(np.float32)
 			noise = torch.tensor(noise).to(device=device)
+		else:
+			noise = noise.float()
 		if noise_config['noise_way'] == 'mul':
 			new_embeds = inputs_embeds * noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
 		elif noise_config['noise_way'] == 'add':
