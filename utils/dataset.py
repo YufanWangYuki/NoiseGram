@@ -15,7 +15,7 @@ from transformers import AutoTokenizer
 
 # customised
 from utils.misc import check_device
-from utils.align_preds import align_data, get_sentences_dict
+from utils.align_preds import align_data_train, get_sentences_dict
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -131,7 +131,7 @@ class Dataset(object):
 		
 		inc_id2text = get_sentences_dict(self.path_src)
 		corr_id2text = get_sentences_dict(self.path_tgt)
-
+		inc_sens, corr_sens = align_data_train(inc_id2text, corr_id2text)
 		pdb.set_trace()
 		assert len(self.src_sentences) == len(self.tgt_sentences), \
 			'Mismatch src:tgt - {}:{}'.format(len(self.src_sentences),len(self.tgt_sentences))

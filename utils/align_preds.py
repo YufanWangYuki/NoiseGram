@@ -45,7 +45,7 @@ def get_sentences_dict(data_path, remove_punct=False):
         id2text[id] = text
     return id2text
 
-def align_data(inc_dict, pred_dict, corr_dict):
+def align_data_pred(inc_dict, pred_dict, corr_dict):
     inc_sens = []
     pred_sens = []
     corr_sens = []
@@ -59,6 +59,19 @@ def align_data(inc_dict, pred_dict, corr_dict):
             pass
     assert len(pred_sens) == len(inc_sens), "Mismatch in num items"
     return inc_sens, pred_sens, corr_sens
+
+def align_data_train(inc_dict, corr_dict):
+    inc_sens = []
+    corr_sens = []
+    for i, (id, text) in enumerate(corr_dict.items()):
+        try:
+            inc_sens.append(inc_dict[id]+'\n')
+            corr_sens.append(text+'\n')
+        except:
+            # print(f'{i}) {id} in corrected but not in predicted')
+            pass
+    assert len(pred_sens) == len(inc_sens), "Mismatch in num items"
+    return inc_sens, corr_sens
 
 if __name__ == "__main__":
 
