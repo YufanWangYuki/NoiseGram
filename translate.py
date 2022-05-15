@@ -661,11 +661,9 @@ def main():
 	print('Test dir: {}'.format(test_path_src))
 	print('Testset loaded')
 	sys.stdout.flush()
-	pdb.set_trace()
 	# run eval
 	if MODE == 3:
 		# run inference
-		pdb.set_trace()
 		translate(test_set, model, test_path_out, max_tgt_len, mode, device, noise_configs)
 
 	elif MODE == 4:
