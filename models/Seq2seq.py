@@ -69,8 +69,6 @@ class Seq2seq(nn.Module):
 			new_embeds = inputs_embeds * noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
 		elif noise_config['noise_way'] == 'add':
 			new_embeds = inputs_embeds + noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
-
-		pdb.set_trace()
 		
 		outputs = self.model(
 			# input_ids=src_ids,

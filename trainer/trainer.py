@@ -236,9 +236,10 @@ class Trainer(object):
 			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 			loss = outputs.loss
 			grad = torch.autograd.grad(loss, self.noise)[0]
+			norm_grad = grad.clone()
 			pdb.set_trace()
 			for i in range(len(src_ids)):
-				grad[i] /= (torch.norm(grad[i]) + 1e-10)
+				norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 			self.noise += self.weight * grad
 			pdb.set_trace()
 			# Backward propagation: accumulate gradient
