@@ -1,4 +1,5 @@
 import torch
+torch.cuda.empty_cache()
 import torch.utils.tensorboard
 import random
 import time
@@ -51,6 +52,7 @@ class Trainer(object):
 		self.use_gpu = use_gpu
 		self.gpu_id = gpu_id
 		self.device = check_device(self.use_gpu)
+		# self.device = torch.device("cuda:0")
 
 		self.optimizer = None
 		self.checkpoint_every = checkpoint_every
