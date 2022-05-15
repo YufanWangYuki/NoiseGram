@@ -131,8 +131,8 @@ class Dataset(object):
 		
 		inc_id2text = get_sentences_dict(self.path_src)
 		corr_id2text = get_sentences_dict(self.path_tgt)
-		inc_sens, corr_sens = align_data_train(inc_id2text, corr_id2text)
-		pdb.set_trace()
+		self.src_sentences, self.tgt_sentences = align_data_train(inc_id2text, corr_id2text)
+		# pdb.set_trace()
 		assert len(self.src_sentences) == len(self.tgt_sentences), \
 			'Mismatch src:tgt - {}:{}'.format(len(self.src_sentences),len(self.tgt_sentences))
 

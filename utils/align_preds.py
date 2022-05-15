@@ -68,7 +68,7 @@ def align_data_train(inc_dict, corr_dict):
             inc_sens.append(inc_dict[id]+'\n')
             corr_sens.append(text+'\n')
         except:
-            print(f'{i}) {id} in label but not in input')
+            # print(f'{i}) {id} in label but not in input')
             pass
     # assert len(pred_sens) == len(inc_sens), "Mismatch in num items"
     return inc_sens, corr_sens
