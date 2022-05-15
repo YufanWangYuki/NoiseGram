@@ -235,7 +235,7 @@ class Trainer(object):
 			# Forward propagation
 			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 			loss = outputs.loss
-			grad = torch.autograd.grad(loss, self.noise)[0]
+			grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 			norm_grad = grad.clone()
 			
 			for i in range(len(src_ids)):
