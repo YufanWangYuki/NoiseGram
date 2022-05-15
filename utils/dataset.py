@@ -19,6 +19,8 @@ from utils.misc import check_device
 import logging
 logging.basicConfig(level=logging.INFO)
 
+import pdb
+
 class IterDataset(torch.utils.data.Dataset):
 
 	"""
@@ -125,7 +127,7 @@ class Dataset(object):
 			self.src_sentences = f.readlines()
 		with codecs.open(self.path_tgt, encoding='UTF-8') as f:
 			self.tgt_sentences = f.readlines()
-
+		pdb.set_trace()
 		assert len(self.src_sentences) == len(self.tgt_sentences), \
 			'Mismatch src:tgt - {}:{}'.format(len(self.src_sentences),len(self.tgt_sentences))
 
