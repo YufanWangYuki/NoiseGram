@@ -24,7 +24,7 @@ def add_noise(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weigh
     
     if random_type in ['Adversarial','Gaussian-adversarial']:
         return grad_noise
-    
+    pdb.set_trace()
     for bi in range(batch_size):
         if random_type == 'Bernoulli':
             noise[bi,:,:] = np.random.choice(2,size=(seq_length, embedding_dim), p=[1-word_keep, word_keep])
