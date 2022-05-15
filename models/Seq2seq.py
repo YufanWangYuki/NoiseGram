@@ -57,11 +57,12 @@ class Seq2seq(nn.Module):
 		inputs_embeds = self.model.encoder.embed_tokens(src_ids)
 		embedding_dim = inputs_embeds.shape[2]
 		device = inputs_embeds.device
+		pdb.set_trace()
 		noise = data_helpers.add_noise(src_ids, embedding_dim, random_type=noise_config['noise_type'], 
                     word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
-					replace_map=noise_config['replace_map']).astype(np.float32, grad_noise)
+					replace_map=noise_config['replace_map'],grad_noise=grad_noise).astype(np.float32)
 		noise = torch.tensor(noise).to(device=device)
-		
+		pdb.set_trace()
 		if noise_config['noise_way'] == 'mul':
 			new_embeds = inputs_embeds * noise
 		elif noise_config['noise_way'] == 'add':
