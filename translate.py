@@ -263,7 +263,7 @@ def gen_att(test_set, model, test_path_out, mode, device):
 		nidx = elems[2]
 		assert nidx == '49'
 		scount = int(fid.split('.')[0].split('-')[1]) + 1 # 190053+1
-		import pdb; pdb.set_trace()
+		# import pdb; pdb.set_trace()
 		# if exist, then append
 		flog = open(flogpath, 'a')
 	else:
