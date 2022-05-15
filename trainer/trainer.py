@@ -235,7 +235,7 @@ class Trainer(object):
 			# Forward propagation
 			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 			loss = outputs.loss
-			grad = torch.autograd.grad(loss, self.noise)
+			grad = torch.autograd.grad(loss, self.noise)[0]
 			pdb.set_trace()
 			for i in range(len(src_ids)):
 				grad[i] /= (np.linalg.norm(grad[i]) + 1e-10)
