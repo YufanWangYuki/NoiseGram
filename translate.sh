@@ -74,7 +74,7 @@ else
     echo 'LOAD: '$loaddir
 fi
 
-for weight in $(seq 0 0.01 0.2)
+for weight in $(seq 0.2 0.05 1)
 do
     outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
     echo 'OUT: '$outdir
