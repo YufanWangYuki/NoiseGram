@@ -70,7 +70,7 @@ def align_data_train(inc_dict, corr_dict):
         except:
             # print(f'{i}) {id} in corrected but not in predicted')
             pass
-    assert len(pred_sens) == len(inc_sens), "Mismatch in num items"
+    # assert len(pred_sens) == len(inc_sens), "Mismatch in num items"
     return inc_sens, corr_sens
 
 if __name__ == "__main__":
