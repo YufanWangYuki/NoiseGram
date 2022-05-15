@@ -54,7 +54,6 @@ print_every=1000
 
 grab_memory='False'
 loaddir=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine/
-savedir=models/v001/
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
@@ -74,6 +73,7 @@ ntype=Adversarial
 nway=mul
 mean=1.0
 weight=0.1
+savedir=models/${ntype}_${nway}_${mean}_${weight}_001/
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--train_path_src $train_path_src \
