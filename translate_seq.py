@@ -703,9 +703,6 @@ def main():
 		modeldir = os.path.join(load_dir, 'model-dict.pt')
 		torch.save(model.state_dict(), modeldir)
 		print('saved to {} ...'.format(modeldir))
-	elif MODE == 9:
-		# run inference
-		translate(test_set, model, test_path_out, max_tgt_len, mode, device, noise_configs)
 
 
 if __name__ == '__main__':

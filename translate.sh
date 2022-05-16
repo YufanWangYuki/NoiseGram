@@ -74,9 +74,9 @@ else
     echo 'LOAD: '$loaddir
 fi
 
-for weight in $(seq 0.2 0.05 1)
+for weight in $(seq 0 0.2 2)
 do
-    outdir=$model/$fname-"$mode"/combine/${noise}_${ntype}_${nway}_${mean}_${weight}
+    outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
     echo 'OUT: '$outdir
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
         --test_path_src $ftst \

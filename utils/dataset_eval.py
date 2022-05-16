@@ -14,6 +14,7 @@ from transformers import T5Tokenizer
 
 # customised
 from utils.misc import check_device
+from utils.gec_tools import get_sentences
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -91,7 +92,8 @@ class Dataset_EVAL(object):
 		if type(self.logger) == type(None):
 			self.logger = logging.getLogger(__name__)
 
-		self.load_sentences()
+		# self.load_sentences()
+		self.load_seqences()
 
 
 	def load_sentences(self):
@@ -99,6 +101,12 @@ class Dataset_EVAL(object):
 		with codecs.open(self.path_src, encoding='UTF-8') as f:
 			self.src_sentences = f.readlines()
 
+		self.num_sentences = len(self.src_sentences)
+		self.src_seqs = [sentence.strip() for sentence in self.src_sentences]
+	
+	def load_seqences(self):
+		# Load input sentences
+		_, self.src_sentences = get_sentences(self.path_src)
 		self.num_sentences = len(self.src_sentences)
 		self.src_seqs = [sentence.strip() for sentence in self.src_sentences]
 
