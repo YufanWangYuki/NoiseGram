@@ -95,7 +95,7 @@ class Trainer(object):
 			'noise_way':noise_way
 		}
 
-		self.noise = np.ones([minibatch_split, seq_length, embedding_dim])
+		# self.noise = np.ones([minibatch_split, seq_length, embedding_dim])
 
 		if noise_type == 'Adversarial':
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
