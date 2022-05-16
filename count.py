@@ -49,6 +49,7 @@ def return_edits(input, prediction):
 def load_arguments(parser):
     parser.add_argument('--base_path', type=str, required=True, help='base path')
     parser.add_argument('--input_path', type=str, required=True, help='input path')
+    parser.add_argument('--output_file', type=str, required=True, help='output file name')
     return parser
 
 def main():
@@ -79,7 +80,7 @@ def main():
             break   
     print(total_count)
     print(total_avg_count)
-    file = 'result.txt'
+    file = config['output_file']
     with open(file, 'a+') as f:
         f.write(config['input_path']+': ')
         f.write(str(total_count) +' ' +str(total_avg_count) +'\n')   #加\n换行显示
