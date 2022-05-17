@@ -45,7 +45,7 @@ max_count_num_rollback=0 # 0:no roll back no lr reduce
 keep_num=5
 
 # --------------
-batch_size=256
+batch_size=128
 minibatch_split=2 #8 for million
 num_epochs=100
 
@@ -111,4 +111,4 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--weight $weight \
 
 # Run below command to submit this script as an array job
-# qsub -cwd -j yes -P esol -l qp=low -o LOGs/train.txt -t 1-5 -l not_host="air113|air116" train.sh 1
+# qsub -cwd -j yes -o 'LOGs/train_adv_v1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
