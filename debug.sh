@@ -63,8 +63,8 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 # dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
 # dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
 # num_epochs=5
-# minibatch_split=1
-# batch_size=2
+minibatch_split=1
+batch_size=2
 # checkpoint_every=10
 # print_every=2
 
@@ -73,7 +73,7 @@ ntype=Adversarial
 nway=mul
 mean=1.0
 weight=0.1
-savedir=models/${ntype}_${nway}_${mean}_${weight}_001/
+savedir=models/${ntype}_${nway}_${mean}_${weight}_${batch_size}_001/
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--train_path_src $train_path_src \
@@ -111,4 +111,4 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--weight $weight \
 
 # Run below command to submit this script as an array job
-# qsub -cwd -j yes -o 'LOGs/train_adv_v1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/train_adv_v1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='Volta' -l osrel='*' debug.sh 1 1
