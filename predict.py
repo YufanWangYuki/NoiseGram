@@ -36,9 +36,9 @@ if __name__ == "__main__":
 
     # Get command line arguments
     commandLineParser = argparse.ArgumentParser()
-    commandLineParser.add_argument('IN', type=str, help='Path to input data')
-    commandLineParser.add_argument('MODEL', type=str, help='Path to Gramformer model')
-    commandLineParser.add_argument('OUT_BASE', type=str, help='Path to corrected output data - pass only base name, e.g. beam1_N4 or no_attack')
+    commandLineParser.add_argument('--IN', type=str, help='Path to input data')
+    commandLineParser.add_argument('--MODEL', type=str, help='Path to Gramformer model')
+    commandLineParser.add_argument('--OUT_BASE', type=str, help='Path to corrected output data - pass only base name, e.g. beam1_N4 or no_attack')
     commandLineParser.add_argument('--use_attack', type=int, default=0, help='Attack or not, 0 for no, 1 for yes')
     commandLineParser.add_argument('--phrase', type=str, default='', help='Universal adversarial phrase')
     commandLineParser.add_argument('--seed', type=int, default=1, help='reproducibility')
