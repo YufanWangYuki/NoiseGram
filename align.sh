@@ -11,6 +11,7 @@ echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
 # pytorch 1.5
+source ~/.bashrc
 source activate /home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37
 export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/python3
 export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/"
