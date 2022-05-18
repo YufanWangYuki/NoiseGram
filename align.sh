@@ -30,7 +30,7 @@ for checkpoint in 2022_05_17_01_52_19
 do 
     pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
     output=$outdir/${exp}_${checkpoint}_seed_${seed}
-    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
         --INC $input \
         --PRED $pred \
         --CORR $corr \
@@ -41,7 +41,7 @@ done
 # for checkpoint in 2022_05_17_02_32_19 2022_05_17_03_12_32 2022_05_17_04_33_38
 # do 
 #     output=$outdir/${exp}_${checkpoint}_seed_${seed}
-#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py\
 #         --IN $input \
 #         --MODEL $model/$checkpoint \
 #         --OUT_BASE $output \
@@ -54,7 +54,7 @@ done
 # for checkpoint in 2022_05_18_04_56_12 2022_05_18_05_22_07 2022_05_18_07_55_14 2022_05_18_08_08_46 2022_05_18_08_34_54
 # do 
 #     output=$outdir/${exp}_${checkpoint}_seed_${seed}
-#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py\
 #         --IN $input \
 #         --MODEL $model/$checkpoint \
 #         --OUT_BASE $output \
@@ -67,7 +67,7 @@ done
 # for checkpoint in 2022_05_18_01_41_19  2022_05_18_01_58_04  2022_05_18_02_14_48  2022_05_18_02_31_56  2022_05_18_04_11_27
 # do 
 #     output=$outdir/${exp}_${checkpoint}_seed_${seed}
-#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py\
 #         --IN $input \
 #         --MODEL $model/$checkpoint \
 #         --OUT_BASE $output \
