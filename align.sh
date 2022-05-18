@@ -31,6 +31,7 @@ for checkpoint in 2022_05_17_01_52_19
 do 
     pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
     output=$outdir/${exp}_${checkpoint}_seed_${seed}
+    echo pred
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
         --INC $input \
         --PRED $pred \
@@ -39,39 +40,45 @@ do
         --seed $seed
 done
 
-# for checkpoint in 2022_05_17_02_32_19 2022_05_17_03_12_32 2022_05_17_04_33_38
-# do 
-#     output=$outdir/${exp}_${checkpoint}_seed_${seed}
-#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py\
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 0
-# done
+for checkpoint in 2022_05_17_02_32_19 2022_05_17_03_12_32 2022_05_17_04_33_38
+do 
+    pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
+    output=$outdir/${exp}_${checkpoint}_seed_${seed}
+    echo pred
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
+        --INC $input \
+        --PRED $pred \
+        --CORR $corr \
+        --BASE $output \
+        --seed $seed
+done
 
-# exp=Gaussian-adversarial_mul_1.0_0.1_2_001
-# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
-# for checkpoint in 2022_05_18_04_56_12 2022_05_18_05_22_07 2022_05_18_07_55_14 2022_05_18_08_08_46 2022_05_18_08_34_54
-# do 
-#     output=$outdir/${exp}_${checkpoint}_seed_${seed}
-#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py\
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 0
-# done
+exp=Gaussian-adversarial_mul_1.0_0.1_2_001
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
+for checkpoint in 2022_05_18_04_56_12 2022_05_18_05_22_07 2022_05_18_07_55_14 2022_05_18_08_08_46 2022_05_18_08_34_54
+do 
+    pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
+    output=$outdir/${exp}_${checkpoint}_seed_${seed}
+    echo pred
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
+        --INC $input \
+        --PRED $pred \
+        --CORR $corr \
+        --BASE $output \
+        --seed $seed
+done
 
-# exp=Gaussian_mul_1.0_1.8_2_001
-# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
-# for checkpoint in 2022_05_18_01_41_19  2022_05_18_01_58_04  2022_05_18_02_14_48  2022_05_18_02_31_56  2022_05_18_04_11_27
-# do 
-#     output=$outdir/${exp}_${checkpoint}_seed_${seed}
-#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py\
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 0
-# done
+exp=Gaussian_mul_1.0_1.8_2_001
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
+for checkpoint in 2022_05_18_01_41_19  2022_05_18_01_58_04  2022_05_18_02_14_48  2022_05_18_02_31_56  2022_05_18_04_11_27
+do 
+    pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
+    output=$outdir/${exp}_${checkpoint}_seed_${seed}
+    echo pred
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
+        --INC $input \
+        --PRED $pred \
+        --CORR $corr \
+        --BASE $output \
+        --seed $seed
+done
