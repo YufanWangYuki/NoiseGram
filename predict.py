@@ -30,7 +30,7 @@ from utils.gec_tools import get_sentences, correct
 from models.Seq2seq import Seq2seq
 from utils.eval_uni_attack import set_seeds
 from utils.uni_attack import concatenate
-
+import pdb
 
 if __name__ == "__main__":
 
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     model = Seq2seq()
     model.load_state_dict(torch.load(args.MODEL, map_location=torch.device('cpu')))
     model.eval()
-
+    pdb.set_trace()
     # Load input sentences
     identifiers, sentences = get_sentences(args.IN)
 
@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
     if args.use_attack == 1 and args.phrase != '':
         corrections_adv_removed = []
-
+    pdb.set_trace()
     for i, sent in enumerate(sentences):
         print(f'On {i}/{len(sentences)}')
         if args.use_attack == 1 and args.phrase != '':
