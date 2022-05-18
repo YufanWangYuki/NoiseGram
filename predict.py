@@ -63,7 +63,7 @@ if __name__ == "__main__":
     resume_checkpoint = Checkpoint.load(latest_checkpoint_path)
     model = resume_checkpoint.model.to(device)
     model.eval()
-    pdb.set_trace()
+
     # Load input sentences
     identifiers, sentences = get_sentences(args.IN)
 
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     if args.use_attack == 1 and args.phrase != '':
         corrections_adv_removed = []
-    pdb.set_trace()
+
     for i, sent in enumerate(sentences):
         print(f'On {i}/{len(sentences)}')
         if args.use_attack == 1 and args.phrase != '':
