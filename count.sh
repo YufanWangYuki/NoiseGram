@@ -19,7 +19,7 @@ output_file=count_ber.txt
 
 for word_keep in $(seq 0.1 0.1 1)
 do
-input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v2/2_Bernoulli_add_${word_keep}/translate.txt
+input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v2/2_Bernoulli_mul_${word_keep}/translate.txt
 echo $input_path
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/count.py \
     --base_path $base_path \
