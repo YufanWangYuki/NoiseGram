@@ -26,10 +26,10 @@ import sys
 import os
 import argparse
 import torch
-from gec_tools import get_sentences, correct
-from Seq2seq import Seq2seq
-from eval_uni_attack import set_seeds
-from uni_attack import concatenate
+from utils.gec_tools import get_sentences, correct
+from models.Seq2seq import Seq2seq
+from utils.eval_uni_attack import set_seeds
+from utils.uni_attack import concatenate
 
 
 if __name__ == "__main__":
