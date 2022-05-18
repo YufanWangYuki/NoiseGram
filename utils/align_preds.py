@@ -77,10 +77,10 @@ if __name__ == "__main__":
 
     # Get command line arguments
     commandLineParser = argparse.ArgumentParser()
-    commandLineParser.add_argument('INC', type=str, help='Path to incorrect test data')
-    commandLineParser.add_argument('PRED', type=str, help='Path to output predicted data')
-    commandLineParser.add_argument('CORR', type=str, help='Path to correct output test data')
-    commandLineParser.add_argument('BASE', type=str, help='Path base for output files')
+    commandLineParser.add_argument('--INC', type=str, help='Path to incorrect test data')
+    commandLineParser.add_argument('--PRED', type=str, help='Path to output predicted data')
+    commandLineParser.add_argument('--CORR', type=str, help='Path to correct output test data')
+    commandLineParser.add_argument('--BASE', type=str, help='Path base for output files')
     commandLineParser.add_argument('--remove_punct', type=str, default='no', help='remove punct or not')
     commandLineParser.add_argument('--seed', type=int, default=1, help='reproducibility')
     args = commandLineParser.parse_args()
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     inc_id2text = get_sentences_dict(args.INC, remove_punct=remove_punct)
     pred_id2text = get_sentences_dict(args.PRED, remove_punct=remove_punct)
     corr_id2text = get_sentences_dict(args.CORR, remove_punct=remove_punct)
-    inc_sens, pred_sens, corr_sens = align_data(inc_id2text, pred_id2text, corr_id2text)
+    inc_sens, pred_sens, corr_sens = align_data_pred(inc_id2text, pred_id2text, corr_id2text)
 
     # Save to output files
     filename = f'{args.BASE}.inc'
