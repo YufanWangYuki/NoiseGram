@@ -33,7 +33,7 @@ class Seq2seq(nn.Module):
 		self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name) #T5ForConditionalGeneration
 
 
-	def forward_train(self, src_ids, src_att_mask, tgt_ids, noise_config, grad_noise):
+	def forward_train(self, src_ids, src_att_mask, tgt_ids, noise_config, grad_noise=None):
 
 		"""
 			for training

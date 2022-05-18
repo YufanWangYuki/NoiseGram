@@ -95,7 +95,7 @@ class Trainer(object):
 			'noise_way':noise_way
 		}
 
-		# self.noise = np.ones([minibatch_split, seq_length, embedding_dim])
+		self.noise = np.ones([minibatch_split, seq_length, embedding_dim])
 
 		if noise_type == 'Adversarial':
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
@@ -236,13 +236,14 @@ class Trainer(object):
 			# Forward propagation
 			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 			loss = outputs.loss
-			grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
-			norm_grad = grad.clone()
-			
-			for i in range(len(src_ids)):
-				norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
-			with torch.no_grad():
-				self.noise += self.weight * norm_grad
+			if "Adversarial" in noise_configs['noise_type']:
+				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
+				norm_grad = grad.clone()
+				
+				for i in range(len(src_ids)):
+					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
+				with torch.no_grad():
+					self.noise += self.weight * norm_grad
 
 			# Backward propagation: accumulate gradient
 			loss /= n_minibatch

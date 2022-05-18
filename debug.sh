@@ -112,3 +112,5 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # Run below command to submit this script as an array job
 # qsub -cwd -j yes -o 'LOGs/train_adv_v1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='Volta' -l osrel='*' debug.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/train_adv_v2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/train_adv_v3.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
