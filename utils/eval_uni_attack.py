@@ -21,6 +21,10 @@ from statistics import mean, stdev
 # import matplotlib.pyplot as plt
 from collections import defaultdict
 
+def set_seeds(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+
 def update_edit_types(edits, edit_type_dict):
     '''
     Increment each type of edit that appears
