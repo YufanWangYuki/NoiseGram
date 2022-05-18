@@ -340,3 +340,24 @@ class Seq2seq(nn.Module):
 		tokens = [self.tokenizer.convert_ids_to_tokens(elem) for elem in ids]
 
 		return outseqs, tokens, probs, entropy
+	
+	def correct(self, input_sentence, max_candidates=1):
+		correction_prefix = "gec: "
+		input_sentence = correction_prefix + input_sentence
+		input_ids = self.tokenizer.encode(input_sentence, return_tensors='pt')
+		
+		preds = self.model.generate(
+            input_ids,
+            do_sample=True, 
+            max_length=128, 
+            top_k=50, 
+            top_p=0.95, 
+            early_stopping=True,
+            num_return_sequences=max_candidates)
+		
+		corrected = set()
+		for pred in preds:  
+			corrected.add(self.tokenizer.decode(pred, skip_special_tokens=True).strip())
+		
+		corrected = list(corrected)
+		return corrected
