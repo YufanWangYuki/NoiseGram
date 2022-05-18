@@ -26,10 +26,8 @@ def add_noise(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weigh
         return grad_noise
 
     for bi in range(batch_size):
-        pdb.set_trace()
         if random_type == 'Bernoulli':
             noise[bi,:,:] = np.random.choice(2,size=(seq_length, embedding_dim), p=[1-word_keep, word_keep])
-            pdb.set_trace()
         if random_type == 'Gaussian':
             noise[bi,:,:] = np.random.normal(mean, weight, [seq_length, embedding_dim])
         if random_type == 'Bernoulli-word':
