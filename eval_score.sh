@@ -30,11 +30,56 @@ do
     corr=$preddir/${exp}_${checkpoint}_seed_${seed}.corr
     errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
     errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
-done
-echo ${exp}_${checkpoint} >> results/Fscore.txt
-errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore.txt
 
-# errant_compare -hyp prediction_files/m2/Adversarial_mul_1.0_0.1_2_001_2022_05_17_01_52_19_edits-pred.m2 -ref prediction_files/m2/Adversarial_mul_1.0_0.1_2_001_2022_05_17_01_52_19_edits-corr.m2
+    echo ${exp}_${checkpoint} >> results/Fscore.txt
+    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore.txt
+    echo ${exp}_${checkpoint}
+done
+
+
+for checkpoint in 2022_05_17_02_32_19 2022_05_17_03_12_32 2022_05_17_04_33_38
+do 
+    input=$preddir/${exp}_${checkpoint}_seed_${seed}.inc
+    pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
+    corr=$preddir/${exp}_${checkpoint}_seed_${seed}.corr
+    errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
+    errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
+
+    echo ${exp}_${checkpoint} >> results/Fscore.txt
+    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore.txt
+    echo ${exp}_${checkpoint}
+done
+
+exp=Gaussian-adversarial_mul_1.0_0.1_2_001
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
+for checkpoint in 2022_05_18_04_56_12 2022_05_18_05_22_07 2022_05_18_07_55_14 2022_05_18_08_08_46 2022_05_18_08_34_54
+do 
+    input=$preddir/${exp}_${checkpoint}_seed_${seed}.inc
+    pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
+    corr=$preddir/${exp}_${checkpoint}_seed_${seed}.corr
+    errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
+    errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
+
+    echo ${exp}_${checkpoint} >> results/Fscore.txt
+    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore.txt
+    echo ${exp}_${checkpoint}
+done
+
+exp=Gaussian_mul_1.0_1.8_2_001
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
+for checkpoint in 2022_05_18_01_41_19  2022_05_18_01_58_04  2022_05_18_02_14_48  2022_05_18_02_31_56  2022_05_18_04_11_27
+do 
+    input=$preddir/${exp}_${checkpoint}_seed_${seed}.inc
+    pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
+    corr=$preddir/${exp}_${checkpoint}_seed_${seed}.corr
+    errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
+    errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
+
+    echo ${exp}_${checkpoint} >> results/Fscore.txt
+    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore.txt
+    echo ${exp}_${checkpoint}
+done
+
 
 
 
