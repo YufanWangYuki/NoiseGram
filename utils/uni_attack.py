@@ -8,7 +8,7 @@ import sys
 import os
 import argparse
 import torch
-from gec_tools import get_sentences, correct, count_edits
+from utils.gec_tools import get_sentences, correct, count_edits
 from happytransformer import HappyTextToText, TTSettings
 import json
 from datetime import date
