@@ -30,6 +30,7 @@ from utils.gec_tools import get_sentences, correct
 from models.Seq2seq import Seq2seq
 from utils.eval_uni_attack import set_seeds
 from utils.uni_attack import concatenate
+from modules.checkpoint import Checkpoint
 import pdb
 
 if __name__ == "__main__":
@@ -55,8 +56,12 @@ if __name__ == "__main__":
     set_seeds(args.seed)
 
     # Load Model
-    model = Seq2seq()
-    model.load_state_dict(torch.load(args.MODEL, map_location=torch.device('cpu')))
+    # model = Seq2seq()
+    # model.load_state_dict(torch.load(args.MODEL, map_location=torch.device('cpu')))
+    # model.eval()
+    latest_checkpoint_path = args.MODEL
+    resume_checkpoint = Checkpoint.load(latest_checkpoint_path)
+    model = resume_checkpoint.model.to(device)
     model.eval()
     pdb.set_trace()
     # Load input sentences

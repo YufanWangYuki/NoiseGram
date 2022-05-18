@@ -32,7 +32,7 @@ do
     output=$outdir/${exp}_${checkpoint}_seed_${seed}
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
-        --MODEL $model/$checkpoint/model.pt \
+        --MODEL $model/$checkpoint \
         --OUT_BASE $output \
         --seed $seed \
         --use_attack 0
