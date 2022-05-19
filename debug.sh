@@ -69,10 +69,10 @@ batch_size=2
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
-ntype=Adversarial #Gaussian, Bernoulli, Gaussian-adversarial
+ntype=Bernoulli #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
-weight=0.1
+weight=0.7
 savedir=models/${ntype}_${nway}_${mean}_${weight}_${batch_size}_001/
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
@@ -121,3 +121,6 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # Gasusian-adv 0.1 mul
 # qsub -cwd -j yes -o 'LOGs/train_adv_v4.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
+
+# Bernoulli 0.7 mul
+# qsub -cwd -j yes -o 'LOGs/train_adv_v5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
