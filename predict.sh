@@ -84,6 +84,7 @@ model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
 # done
 
 for checkpoint in 2022_05_19_04_59_18  2022_05_19_05_33_33  2022_05_19_07_14_27
+do
     output=$outdir/${exp}_${checkpoint}_seed_${seed}
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
