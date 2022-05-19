@@ -69,10 +69,10 @@ batch_size=2
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
-ntype=Bernoulli #Gaussian, Bernoulli, Gaussian-adversarial
+ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
-weight=0.7
+weight=0.0
 savedir=models/${ntype}_${nway}_${mean}_${weight}_${batch_size}_001/
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
