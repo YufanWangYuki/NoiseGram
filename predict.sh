@@ -58,9 +58,21 @@ model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
 #         --use_attack 0
 # done
 
-exp=Gaussian_mul_1.0_1.8_2_001
+# exp=Gaussian_mul_1.0_1.8_2_001
+# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
+# for checkpoint in 2022_05_18_01_41_19  2022_05_18_01_58_04  2022_05_18_02_14_48  2022_05_18_02_31_56  2022_05_18_04_11_27
+# do 
+#     output=$outdir/${exp}_${checkpoint}_seed_${seed}
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 0
+# done
+exp=Bernoulli_mul_1.0_0.7_2_001
 model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
-for checkpoint in 2022_05_18_01_41_19  2022_05_18_01_58_04  2022_05_18_02_14_48  2022_05_18_02_31_56  2022_05_18_04_11_27
+for checkpoint in 2022_05_19_02_14_40 2022_05_19_02_48_10
 do 
     output=$outdir/${exp}_${checkpoint}_seed_${seed}
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
