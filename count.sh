@@ -16,14 +16,15 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v2/2_Gaussian_mul_1.0_0.0/translate.txt
 base_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
-output_file=count_orig.txt
+output_file=count_trans.txt
 
-# for word_keep in $(seq 0.1 0.1 1)
-# do
-input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
+for weight in $(seq 0.1 0.1 2.5)
+do
+# input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
+input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/2_Gaussian_mul_1.0_${weight}/translate.txt
 echo $input_path
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/count.py \
     --base_path $base_path \
     --input_path $input_path \
     --output_file $output_file
-# done
+done
