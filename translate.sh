@@ -23,7 +23,8 @@ ckpt=combine
 # ------ [Generation for reranker eval set] ----------
 # FCE
 fname=eval-clc-test
-ftst=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.inc
+ftst=./lib/gec-train-bpe-written/prep/test.src
+# ftst=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.inc
 
 max_tgt_len=100
 
@@ -36,18 +37,18 @@ max_tgt_len=100
 eval_mode=3
 use_gpu='True'
 
-batch_size=1
+batch_size=50
 mode='beam-1'
 # batch_size=1
 # mode='beam-50'
 
 
 # ----------------------- [noise] ---------------------------
-noise=2 #2 is for using the noise
-ntype=Bernoulli
-nway=mul
-mean=1.0
-weight=0.1
+noise=1 #2 is for using the noise
+# ntype=Bernoulli
+# nway=mul
+# mean=1.0
+# weight=0.1
 
 
 # ----- [dir names] -----
@@ -77,7 +78,8 @@ fi
 for word_keep in $(seq 0.1 0.1 1)
 do
     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
-    outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${word_keep}
+    outdir=$model/$fname-"$mode"/combine_v3/orig
+    # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
     echo 'OUT: '$outdir
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
         --test_path_src $ftst \

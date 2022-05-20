@@ -73,8 +73,8 @@ def translate(test_set, model, test_path_out, max_tgt_len, mode, device, noise_c
 		model.eval()
 		with torch.no_grad():
 			for idx in range(len(evaliter)):
-				if idx >= 1000:
-					break
+				# if idx >= 1000:
+				# 	break
 				print(idx+1, len(evaliter))
 				batch_items = evaliter.next()
 

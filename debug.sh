@@ -124,3 +124,6 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # Bernoulli 0.7 mul
 # qsub -cwd -j yes -o 'LOGs/train_adv_v5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
+
+# Orig
+# qsub -cwd -j yes -o 'LOGs/train_orig.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1

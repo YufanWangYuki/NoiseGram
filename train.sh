@@ -56,7 +56,7 @@ print_every=1000
 
 grab_memory='False'
 loaddir='None'
-savedir=models/v001/
+savedir=models/v002/
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
