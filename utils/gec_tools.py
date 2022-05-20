@@ -1,6 +1,6 @@
 import random
 import errant
-
+import pdb
 random.seed(10)
 
 def get_sentences(data_path, num=-1):
@@ -10,6 +10,7 @@ def get_sentences(data_path, num=-1):
         print("Here Type ", type(num))
         random.shuffle(lines)
         lines = lines[:num]
+    pdb.set_trace()
     texts = [' '.join(l.rstrip('\n').split()[1:]) for l in lines]
     ids = [l.rstrip('\n').split()[0] for l in lines]
 
