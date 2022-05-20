@@ -49,7 +49,7 @@ ntype=Gaussian
 nway=mul
 mean=1.0
 weight=0.0
-
+word_keep=1.0
 
 # ----- [dir names] -----
 loaddir=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine
