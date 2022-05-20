@@ -44,7 +44,7 @@ mode='beam-1'
 
 
 # ----------------------- [noise] ---------------------------
-noise=1 #2 is for using the noise
+noise=2 #2 is for using the noise
 ntype=Gaussian
 nway=mul
 mean=1.0
@@ -75,10 +75,10 @@ else
     echo 'LOAD: '$loaddir
 fi
 
-# for word_keep in $(seq 0.1 0.1 1)
-# do
+for weight in $(seq 0.1 0.1 2.5)
+do
     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
-    outdir=$model/$fname-"$mode"/combine_v3/orig
+    outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${mean}_${weight}
     # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
     echo 'OUT: '$outdir
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
@@ -97,4 +97,4 @@ fi
         --mean $mean \
         --weight $weight \
         --word_keep $word_keep
-# done
+done
