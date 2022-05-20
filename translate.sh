@@ -21,9 +21,9 @@ model=models/v001
 ckpt=combine
 
 # ------ [Generation for reranker eval set] ----------
-# FCE
+# CLC
 fname=eval-clc-test
-ftst=./lib/gec-train-bpe-written/prep/test.src
+ftst=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
 # ftst=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.inc
 
 max_tgt_len=100
