@@ -92,8 +92,8 @@ class Dataset_EVAL(object):
 		if type(self.logger) == type(None):
 			self.logger = logging.getLogger(__name__)
 
-		# self.load_sentences()
-		self.load_seqences()
+		self.load_sentences()
+		# self.load_seqences()
 
 
 	def load_sentences(self):
