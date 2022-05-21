@@ -124,14 +124,14 @@ class Dataset(object):
 
 	def load_sentences(self):
 
-		# with codecs.open(self.path_src, encoding='UTF-8') as f:
-		# 	self.src_sentences = f.readlines()
-		# with codecs.open(self.path_tgt, encoding='UTF-8') as f:
-		# 	self.tgt_sentences = f.readlines()
+		with codecs.open(self.path_src, encoding='UTF-8') as f:
+			self.src_sentences = f.readlines()
+		with codecs.open(self.path_tgt, encoding='UTF-8') as f:
+			self.tgt_sentences = f.readlines()
 		
-		inc_id2text = get_sentences_dict(self.path_src)
-		corr_id2text = get_sentences_dict(self.path_tgt)
-		self.src_sentences, self.tgt_sentences = align_data_train(inc_id2text, corr_id2text)
+		# inc_id2text = get_sentences_dict(self.path_src)
+		# corr_id2text = get_sentences_dict(self.path_tgt)
+		# self.src_sentences, self.tgt_sentences = align_data_train(inc_id2text, corr_id2text)
 		# pdb.set_trace()
 		assert len(self.src_sentences) == len(self.tgt_sentences), \
 			'Mismatch src:tgt - {}:{}'.format(len(self.src_sentences),len(self.tgt_sentences))
