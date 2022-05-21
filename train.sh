@@ -121,4 +121,4 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # Orig
 # qsub -cwd -j yes -o 'LOGs/train_orig_test.log' -P esol -l hostname='*' -l qp=cuda-high -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
-qsub -cwd -j yes -o 'LOGs/train.log' -P esol -l hostname='*' -l qp=cuda-high -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/train.log' -P esol -l hostname='*' -l qp=cuda-high -l gpuclass='volta' -l osrel='*' train.sh 1 1
