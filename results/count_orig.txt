@@ -1,0 +1,1 @@
+/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt: 5636 85.82489542098938
