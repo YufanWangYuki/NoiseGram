@@ -45,7 +45,7 @@ mode='beam-1'
 
 # ----------------------- [noise] ---------------------------
 noise=2 #2 is for using the noise
-ntype=Gaussian
+ntype=Bernoulli #Gaussian 
 nway=mul
 mean=1.0
 weight=0.0
@@ -75,7 +75,7 @@ else
     echo 'LOAD: '$loaddir
 fi
 
-for weight in 0.0
+for word_keep in $(seq 0.1 0.1 1.0)
 do
     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
     outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${mean}_${weight}
