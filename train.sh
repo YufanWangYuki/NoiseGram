@@ -62,15 +62,15 @@ savedir=models/v002/
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
-train_path_src=./lib/gec-train-bpe-written/prep/dev.src
-train_path_tgt=./lib/gec-train-bpe-written/prep/dev.tgt
-dev_path_src=./lib/gec-train-bpe-written/prep/toy.src
-dev_path_tgt=./lib/gec-train-bpe-written/prep/toy.tgt
-num_epochs=2
-minibatch_split=1
-batch_size=2
-checkpoint_every=10
-print_every=2
+# train_path_src=./lib/gec-train-bpe-written/prep/dev.src
+# train_path_tgt=./lib/gec-train-bpe-written/prep/dev.tgt
+# dev_path_src=./lib/gec-train-bpe-written/prep/toy.src
+# dev_path_tgt=./lib/gec-train-bpe-written/prep/toy.tgt
+# num_epochs=2
+# minibatch_split=1
+# batch_size=2
+# checkpoint_every=10
+# print_every=2
 
 # ----------------------- [noise] ---------------------------
 ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
@@ -119,4 +119,6 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/train.txt -t 1-5 -l not_host="air113|air116" train.sh 1
 
 # Orig
-# qsub -cwd -j yes -o 'LOGs/train_orig.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/train_orig_test.log' -P esol -l hostname='*' -l qp=cuda-high -l gpuclass='volta' -l osrel='*' train.sh 1 1
+
+qsub -cwd -j yes -o 'LOGs/train.log' -P esol -l hostname='*' -l qp=cuda-high -l gpuclass='volta' -l osrel='*' train.sh 1 1
