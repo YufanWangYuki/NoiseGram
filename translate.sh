@@ -45,7 +45,7 @@ mode='beam-1'
 
 # ----------------------- [noise] ---------------------------
 noise=2 #2 is for using the noise
-ntype=Gaussian #Gaussian 
+ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
 nway=add
 mean=0.0
 weight=0.0
