@@ -50,8 +50,8 @@ keep_num=5
 
 # --------------
 batch_size=256
-# minibatch_split=2 #8 for million
-minibatch_split=8 #8 for million
+minibatch_split=2 #8 for million
+# minibatch_split=8 #8 for million
 num_epochs=100
 
 checkpoint_every=5000 # ~10k if 2M, batch - 256
