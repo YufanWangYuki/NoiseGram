@@ -50,7 +50,8 @@ keep_num=5
 
 # --------------
 batch_size=256
-minibatch_split=2 #8 for million
+# minibatch_split=2 #8 for million
+minibatch_split=8 #8 for million
 num_epochs=100
 
 checkpoint_every=5000 # ~10k if 2M, batch - 256
@@ -77,7 +78,7 @@ ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
 weight=0.0
-savedir=models/${ntype}_${nway}_${mean}_${weight}_${batch_size}_002/
+savedir=models/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
@@ -121,4 +122,4 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # Orig
 # qsub -cwd -j yes -o 'LOGs/train_orig_test.log' -P esol -l hostname='*' -l qp=cuda-high -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
-# qsub -cwd -j yes -o 'LOGs/train.log' -P esol -l hostname='*' -l qp=cuda-high -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/train_orig.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
