@@ -28,7 +28,8 @@ class Seq2seq(nn.Module):
 
 		super(Seq2seq, self).__init__()
 
-		model_name = "prithivida/grammar_error_correcter_v1"
+		# model_name = "prithivida/grammar_error_correcter_v1"
+		model_name = "zuu/grammar-error-correcter"
 		self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 		self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name) #T5ForConditionalGeneration
 
