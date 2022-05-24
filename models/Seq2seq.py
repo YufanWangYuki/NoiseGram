@@ -286,16 +286,12 @@ class Seq2seq(nn.Module):
 
 		# if sent != outseqs[0]:
 		# 	pdb.set_trace()
-		if 'invented' in outseqs[0]:
-			pdb.set_trace()
-			correction_model_tag = "zuu/grammar-error-correcter"
-			tokenizer = AutoTokenizer.from_pretrained(correction_model_tag)
-			test_model = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag)
-			test_model.to(device)
-
-			
-
-
+		# if 'invented' in outseqs[0]:
+		# 	pdb.set_trace()
+		# 	correction_model_tag = "zuu/grammar-error-correcter"
+		# 	tokenizer = AutoTokenizer.from_pretrained(correction_model_tag)
+		# 	test_model = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag)
+		# 	test_model.to(device)
 		return outseqs, scores
 
 
