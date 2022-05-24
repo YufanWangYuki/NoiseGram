@@ -38,7 +38,7 @@ max_tgt_len=100
 eval_mode=3
 use_gpu='True'
 
-batch_size=1
+batch_size=50
 mode='beam-1'
 # batch_size=1
 # mode='beam-50'
@@ -103,7 +103,7 @@ fi
 # done
 
 # for weight in $(seq 0.0 0.1 2.5)
-for weight in 0.0
+for weight in $(seq 0.0 0.1 2.5)
 do
     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
     outdir=$model/$fname-"$mode"/combine_v3_gramformer_edie/${noise}_${ntype}_${nway}_${mean}_${weight}
