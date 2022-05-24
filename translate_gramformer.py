@@ -50,6 +50,12 @@ def correct(model, tokenizer, sentence, beam_width, device):
 		skip_special_tokens=True,
 		clean_up_tokenization_spaces=True)
 	import pdb; pdb.set_trace()
+
+	input_ids = tokenizer.encode(sentence[5:], return_tensors='pt').to(device=device)
+	prediction_ids = model.generate(input_ids,max_length=128,num_beams=beam_width,early_stopping=True,num_return_sequences=1,do_sample=False,length_penalty=1.0,use_cache=True)
+
+	sent = tokenizer.decode(prediction_ids.squeeze(),skip_special_tokens=True,clean_up_tokenization_spaces=True)
+
 	return sent
 
 def correct_ids(model, tokenizer, input_ids, beam_width, device):

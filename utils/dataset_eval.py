@@ -11,6 +11,7 @@ import os
 
 # huggingface api
 from transformers import T5Tokenizer
+from transformers import AutoTokenizer
 
 # customised
 from utils.misc import check_device
@@ -32,7 +33,9 @@ class IterDataset(torch.utils.data.Dataset):
 		super(Dataset_EVAL).__init__()
 
 		self.task_prefix = "translate English to German: "
-		self.t5_tokenizer = T5Tokenizer.from_pretrained("t5-base")
+		# self.t5_tokenizer = T5Tokenizer.from_pretrained("t5-base")
+		correction_model_tag = "zuu/grammar-error-correcter"
+		self.t5_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag)
 		self.max_src_len = max_src_len
 		self.device = device
 
