@@ -75,6 +75,7 @@ else
     echo 'LOAD: '$loaddir
 fi
 
+
 # for weight in $(seq 0 1 20)
 for weight in 0
 do
@@ -84,7 +85,7 @@ do
     echo 'OUT: '$outdir
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
         --test_path_src $ftst \
-        --load $loaddir \
+        # --load $loaddir \
         --test_path_out $outdir \
         --max_tgt_len $max_tgt_len \
         --batch_size $batch_size \

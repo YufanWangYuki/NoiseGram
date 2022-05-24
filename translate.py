@@ -16,6 +16,7 @@ from utils.misc import get_memory_alloc, log_ckpts, plot_attention_transformer
 from utils.misc import plot_alignment, check_device, combine_weights
 from modules.checkpoint import Checkpoint
 from models.Seq2seq import Seq2seq
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 logging.basicConfig(level=logging.INFO)
 import pdb
@@ -27,7 +28,7 @@ def load_arguments(parser):
 	# paths
 	parser.add_argument('--test_path_src', type=str, required=True, help='test src dir')
 	parser.add_argument('--test_path_tgt', type=str, required=False, default=None, help='test src dir')
-	parser.add_argument('--load', type=str, required=True, help='model load dir')
+	parser.add_argument('--load', type=str, required=False, help='model load dir')
 	parser.add_argument('--combine_path', type=str, default='None', help='combine multiple ckpts if given dir')
 	parser.add_argument('--test_path_out', type=str, required=True, help='test out dir')
 
@@ -608,7 +609,10 @@ def main():
 	test_path_src = config['test_path_src']
 	test_path_tgt = config['test_path_tgt']
 	test_path_out = config['test_path_out']
-	load_dir = config['load']
+	if config['load']:
+		load_dir = config['load']
+	else:
+		load_dir = 'Gramformer'
 	max_tgt_len = config['max_tgt_len']
 	batch_size = config['batch_size']
 	mode = config['mode']
@@ -643,12 +647,20 @@ def main():
 	print('device: {}'.format(device))
 
 	# load model
-	latest_checkpoint_path = load_dir
-	resume_checkpoint = Checkpoint.load(latest_checkpoint_path)
-	pdb.set_trace()
-	model = resume_checkpoint.model.to(device)
-	print('Model dir: {}'.format(latest_checkpoint_path))
-	print('Model laoded')
+	if load_dir != 'Gramformer':
+		latest_checkpoint_path = load_dir
+		resume_checkpoint = Checkpoint.load(latest_checkpoint_path)
+		pdb.set_trace()
+		model = resume_checkpoint.model.to(device)
+		print('Model dir: {}'.format(latest_checkpoint_path))
+		print('Model loaded')
+	else:
+		pdb.set_trace()
+		model_name = "zuu/grammar-error-correcter"
+		tokenizer = AutoTokenizer.from_pretrained(model_name)
+		model = AutoModelForSeq2SeqLM.from_pretrained(model_name) #T5ForConditionalGeneration
+		print('Model Gramformer')
+		print('Model loaded')
 
 	# load test_set
 	if MODE == 6 or MODE == 8:
