@@ -278,8 +278,8 @@ class Seq2seq(nn.Module):
 
 			elif gen_mode == 'sample':
 				scores = [0] * len(outseqs)
-			pdb.set_trace()
-			prediction_ids = self.model.generate(
+		pdb.set_trace()
+		prediction_ids = self.model.generate(
 		src_ids,
 		max_length=128,
 		num_beams=num,
