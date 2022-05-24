@@ -659,6 +659,7 @@ def main():
 		model_name = "zuu/grammar-error-correcter"
 		tokenizer = AutoTokenizer.from_pretrained(model_name)
 		model = AutoModelForSeq2SeqLM.from_pretrained(model_name) #T5ForConditionalGeneration
+		# model = 
 		print('Model Gramformer')
 		print('Model loaded')
 
