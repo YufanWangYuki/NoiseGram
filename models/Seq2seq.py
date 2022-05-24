@@ -289,11 +289,11 @@ class Seq2seq(nn.Module):
 		length_penalty=1.0,
 		use_cache=True)
 
-	# sent = tokenizer.decode(
-	# 	prediction_ids.squeeze(),
-	# 	skip_special_tokens=True,
-		# clean_up_tokenization_spaces=True)
-		if len(prediction_ids) != len(outputs.sequences):
+		sent = self.tokenizer.decode(
+		prediction_ids.squeeze(),
+		skip_special_tokens=True,
+		clean_up_tokenization_spaces=True)
+		if len(sent) != len(outputs.outseqs):
 			pdb.set_trace()
 		return outseqs, scores
 
