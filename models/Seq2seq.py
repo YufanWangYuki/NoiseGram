@@ -278,7 +278,7 @@ class Seq2seq(nn.Module):
 
 			elif gen_mode == 'sample':
 				scores = [0] * len(outseqs)
-		pdb.set_trace()
+		# pdb.set_trace()
 		prediction_ids = self.model.generate(
 		src_ids,
 		max_length=128,
@@ -293,7 +293,8 @@ class Seq2seq(nn.Module):
 	# 	prediction_ids.squeeze(),
 	# 	skip_special_tokens=True,
 		# clean_up_tokenization_spaces=True)
-		pdb.set_trace()
+		if prediction_ids != outputs.sequences:
+			pdb.set_trace()
 		return outseqs, scores
 
 
