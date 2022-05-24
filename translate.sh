@@ -25,7 +25,7 @@ ckpt=combine
 fname=eval-clc-test
 # ftst=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
 # ftst=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.inc
-fst=/home/alta/BLTSpeaking/exp-ytl28/projects/lib/gec-tst-collate/test-clc-orig.src
+ftst=/home/alta/BLTSpeaking/exp-ytl28/projects/lib/gec-tst-collate/test-clc-orig.src
 
 max_tgt_len=100
 
