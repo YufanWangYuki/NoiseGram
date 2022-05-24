@@ -23,8 +23,9 @@ ckpt=combine
 # ------ [Generation for reranker eval set] ----------
 # CLC
 fname=eval-clc-test
-ftst=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
+# ftst=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
 # ftst=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.inc
+fst=/home/alta/BLTSpeaking/exp-ytl28/projects/lib/gec-tst-collate/test-clc-orig.src
 
 max_tgt_len=100
 
@@ -104,7 +105,7 @@ fi
 for weight in $(seq 0.0 0.1 2.5)
 do
     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
-    outdir=$model/$fname-"$mode"/combine_v3_gramformer/${noise}_${ntype}_${nway}_${mean}_${weight}
+    outdir=$model/$fname-"$mode"/combine_v3_gramformer_edie/${noise}_${ntype}_${nway}_${mean}_${weight}
     # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
     echo 'OUT: '$outdir
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
