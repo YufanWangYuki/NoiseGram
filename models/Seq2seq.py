@@ -138,7 +138,7 @@ class Seq2seq(nn.Module):
 					new_embeds = inputs_embeds + noise
 
 		
-			pdb.set_trace()
+			# pdb.set_trace()
 			encoder_outputs = self.model.encoder(attention_mask=src_att_mask,inputs_embeds=new_embeds)
 			if gen_mode == 'beam':
 				outputs = self.model.generate(
