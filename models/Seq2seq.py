@@ -20,6 +20,8 @@ warnings.filterwarnings("ignore")
 import pdb
 import data_helpers
 
+from translate_gramformer import correct
+
 class Seq2seq(nn.Module):
 
 	""" T5 enc-dec model """
@@ -279,24 +281,19 @@ class Seq2seq(nn.Module):
 			elif gen_mode == 'sample':
 				scores = [0] * len(outseqs)
 		# pdb.set_trace()
-		prediction_ids = self.model.generate(
-		src_ids,
-		max_length=128,
-		num_beams=num,
-		early_stopping=True,
-		num_return_sequences=1,
-		do_sample=False,
-		length_penalty=1.0,
-		use_cache=True)
+		
 
-		sent = self.tokenizer.decode(
-		prediction_ids.squeeze(),
-		skip_special_tokens=True,
-		clean_up_tokenization_spaces=True)
-		if sent != outseqs[0]:
+
+		# if sent != outseqs[0]:
+		# 	pdb.set_trace()
+		if 'invented' in outseqs[0]:
 			pdb.set_trace()
-		if 'invented' in sent:
-			pdb.set_trace()
+			correction_model_tag = "zuu/grammar-error-correcter"
+			tokenizer = AutoTokenizer.from_pretrained(correction_model_tag)
+			test_model = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag)
+			test_model.to(device)
+
+
 		return outseqs, scores
 
 
