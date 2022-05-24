@@ -51,8 +51,8 @@ keep_num=5
 # --------------
 batch_size=256
 # minibatch_split=2 #8 for million
-minibatch_split=8 #8 for million
-# minibatch_split=16 #8 for million
+# minibatch_split=8 #8 for million
+minibatch_split=16 #8 for million
 num_epochs=100
 
 checkpoint_every=5000 # ~10k if 2M, batch - 256
@@ -115,7 +115,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--ntype $ntype \
 	--nway $nway \
 	--mean $mean \
-	--weight $weight \
+	--weight $weight
 
 # Run below command to submit this script as an array job
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/train.txt -t 1-5 -l not_host="air113|air116" train.sh 1
