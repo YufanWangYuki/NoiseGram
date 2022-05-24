@@ -19,6 +19,7 @@ from utils.gec_tools import get_sentences
 
 import logging
 logging.basicConfig(level=logging.INFO)
+import pdb
 
 class IterDataset(torch.utils.data.Dataset):
 
@@ -32,7 +33,7 @@ class IterDataset(torch.utils.data.Dataset):
 
 		super(Dataset_EVAL).__init__()
 
-		self.task_prefix = "translate English to German: "
+		self.task_prefix = "gec: "
 		# self.t5_tokenizer = T5Tokenizer.from_pretrained("t5-base")
 		correction_model_tag = "zuu/grammar-error-correcter"
 		self.t5_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag)
@@ -60,7 +61,7 @@ class IterDataset(torch.utils.data.Dataset):
 			return_tensors="pt")
 		src_ids = src_encoding.input_ids # b x len
 		src_attention_mask = src_encoding.attention_mask # b x len
-
+		pdb.set_trace()
 		batch = {
 			'src_ids': src_ids.to(device=self.device), # tensor
 			'src_att_mask': src_attention_mask.to(device=self.device), # tensor

@@ -49,12 +49,12 @@ def correct(model, tokenizer, sentence, beam_width, device):
 		prediction_ids.squeeze(),
 		skip_special_tokens=True,
 		clean_up_tokenization_spaces=True)
-	import pdb; pdb.set_trace()
+	# import pdb; pdb.set_trace()
 
-	input_ids = tokenizer.encode(sentence[5:], return_tensors='pt').to(device=device)
-	prediction_ids = model.generate(input_ids,max_length=128,num_beams=beam_width,early_stopping=True,num_return_sequences=1,do_sample=False,length_penalty=1.0,use_cache=True)
+	# input_ids = tokenizer.encode(sentence[5:], return_tensors='pt').to(device=device)
+	# prediction_ids = model.generate(input_ids,max_length=128,num_beams=beam_width,early_stopping=True,num_return_sequences=1,do_sample=False,length_penalty=1.0,use_cache=True)
 
-	sent = tokenizer.decode(prediction_ids.squeeze(),skip_special_tokens=True,clean_up_tokenization_spaces=True)
+	# sent = tokenizer.decode(prediction_ids.squeeze(),skip_special_tokens=True,clean_up_tokenization_spaces=True)
 
 	return sent
 
@@ -119,7 +119,7 @@ if __name__ == "__main__":
 	# Correction (prediction) for each input sentence
 	corrections = []
 	for i, sent in enumerate(srcs):
-		pdb.set_trace()
+		# pdb.set_trace()
 		print('{}/{}'.format(i, len(srcs)))
 		corrections.append(correct(model, tokenizer, sent,config['beam_width'], config['device']))
 	assert len(corrections) == len(srcs), "Number of srcs don't match number of hypotheses"
