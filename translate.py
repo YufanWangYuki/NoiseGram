@@ -655,11 +655,12 @@ def main():
 		print('Model dir: {}'.format(latest_checkpoint_path))
 		print('Model loaded')
 	else:
+		
+		# model_name = "zuu/grammar-error-correcter"
+		# tokenizer = AutoTokenizer.from_pretrained(model_name)
+		# model = AutoModelForSeq2SeqLM.from_pretrained(model_name) #T5ForConditionalGeneration
+		model = Seq2seq()
 		pdb.set_trace()
-		model_name = "zuu/grammar-error-correcter"
-		tokenizer = AutoTokenizer.from_pretrained(model_name)
-		model = AutoModelForSeq2SeqLM.from_pretrained(model_name) #T5ForConditionalGeneration
-		# model = 
 		print('Model Gramformer')
 		print('Model loaded')
 

@@ -77,38 +77,15 @@ fi
 
 
 # for weight in $(seq 0 1 20)
-for weight in 0.0
-do
-    # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
-    outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${mean}_${weight}
-    # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
-    echo 'OUT: '$outdir
-    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
-        --test_path_src $ftst \
-        --load $loaddir \
-        --test_path_out $outdir \
-        --max_tgt_len $max_tgt_len \
-        --batch_size $batch_size \
-        --mode $mode \
-        --use_gpu $use_gpu \
-        --eval_mode $eval_mode \
-        --combine_path $combine_path \
-        --noise $noise \
-        --ntype $ntype \
-        --nway $nway \
-        --mean $mean \
-        --weight $weight \
-        --word_keep $word_keep
-done
-
 # for weight in 0.0
 # do
 #     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
-#     outdir=$model/$fname-"$mode"/combine_v3_gramformer/${noise}_${ntype}_${nway}_${mean}_${weight}
+#     outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${mean}_${weight}
 #     # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
 #     echo 'OUT: '$outdir
 #     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
 #         --test_path_src $ftst \
+#         --load $loaddir \
 #         --test_path_out $outdir \
 #         --max_tgt_len $max_tgt_len \
 #         --batch_size $batch_size \
@@ -123,3 +100,26 @@ done
 #         --weight $weight \
 #         --word_keep $word_keep
 # done
+
+for weight in 0.0
+do
+    # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
+    outdir=$model/$fname-"$mode"/combine_v3_gramformer/${noise}_${ntype}_${nway}_${mean}_${weight}
+    # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
+    echo 'OUT: '$outdir
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
+        --test_path_src $ftst \
+        --test_path_out $outdir \
+        --max_tgt_len $max_tgt_len \
+        --batch_size $batch_size \
+        --mode $mode \
+        --use_gpu $use_gpu \
+        --eval_mode $eval_mode \
+        --combine_path $combine_path \
+        --noise $noise \
+        --ntype $ntype \
+        --nway $nway \
+        --mean $mean \
+        --weight $weight \
+        --word_keep $word_keep
+done
