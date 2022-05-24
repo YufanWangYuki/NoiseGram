@@ -293,7 +293,7 @@ class Seq2seq(nn.Module):
 	# 	prediction_ids.squeeze(),
 	# 	skip_special_tokens=True,
 		# clean_up_tokenization_spaces=True)
-		if prediction_ids != outputs.sequences:
+		if len(prediction_ids) != len(outputs.sequences):
 			pdb.set_trace()
 		return outseqs, scores
 
