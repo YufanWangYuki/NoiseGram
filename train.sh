@@ -7,8 +7,8 @@ unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
 
-# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+# export CUDA_VISIBLE_DEVICES=1
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -78,7 +78,7 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
-weight=0.1
+weight=0.2
 savedir=models/v002/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
@@ -133,3 +133,6 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -o 'LOGs/train_adv_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 # larger
 # qsub -cwd -j yes -o 'LOGs/train_adv_mul_0.1_v.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+
+# Adv mul 0.2
+# qsub -cwd -j yes -o 'LOGs/train_adv_mul_0.2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
