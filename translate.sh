@@ -46,9 +46,9 @@ mode='beam-1'
 
 # ----------------------- [noise] ---------------------------
 noise=2 #2 is for using the noise
-ntype=Bernoulli #Gaussian, Bernoulli, Gaussian-adversarial
-nway=mul
-mean=1.0
+ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
+nway=add
+mean=0.0
 weight=0.0
 word_keep=1.0
 
@@ -103,7 +103,8 @@ fi
 # done
 
 # for weight in $(seq 0.0 0.1 2.5)
-for word_keep in $(seq 0.1 0.1 1)
+# for word_keep in $(seq 0.1 0.1 1)
+for weight in $(seq 0.0 0.5 20)
 do
     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
     # outdir=$model/$fname-"$mode"/combine_v3_gramformer_edie/${noise}_${ntype}_${nway}_${mean}_${weight}
