@@ -72,10 +72,12 @@ def main():
             x = next(fp1)
             y = next(fp2)
             # pdb.set_trace()
-            total_count += count_edits(x, y)
-            total_avg_count += (count_edits(x, y)/len(x))
+            edits = count_edits(x, y)
+            total_count += edits
+            total_avg_count += (edits/len(x))
             # if count_edits(x, y) > 0:
             #     pdb.set_trace()
+            print(line)
         except StopIteration:
             break   
     print(total_count)
