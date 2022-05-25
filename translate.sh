@@ -45,8 +45,8 @@ mode='beam-1'
 
 
 # ----------------------- [noise] ---------------------------
-noise=1 #2 is for using the noise
-ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
+noise=2 #2 is for using the noise
+ntype=Bernoulli #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
 weight=0.0
@@ -103,12 +103,12 @@ fi
 # done
 
 # for weight in $(seq 0.0 0.1 2.5)
-for weight in 0.0
+for word_keep in $(seq 0.1 0.1 1)
 do
     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
     # outdir=$model/$fname-"$mode"/combine_v3_gramformer_edie/${noise}_${ntype}_${nway}_${mean}_${weight}
-    # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
-    outdir=$model/$fname-"$mode"/combine_v3_gramformer/orig
+    outdir=$model/$fname-"$mode"/combine_v3_gramformer/${noise}_${ntype}_${nway}_${word_keep}
+    # outdir=$model/$fname-"$mode"/combine_v3_gramformer/orig
     echo 'OUT: '$outdir
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
         --test_path_src $ftst \
