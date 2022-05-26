@@ -50,8 +50,8 @@ keep_num=5
 
 # --------------
 batch_size=256
-# minibatch_split=2 #8 for million
-minibatch_split=8 #8 for million
+minibatch_split=2 #8 for million
+# minibatch_split=8 #8 for million
 # minibatch_split=16 #8 for million
 num_epochs=100
 
@@ -75,10 +75,10 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
-ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial
+ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
-weight=0.1
+weight=1.5
 savedir=models/v002/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
@@ -136,3 +136,6 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # Adv mul 0.2
 # qsub -cwd -j yes -o 'LOGs/train_adv_mul_0.2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
+
+# Gau mul 1.5
+# qsub -cwd -j yes -o 'LOGs/train_gau_mul_1.5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
