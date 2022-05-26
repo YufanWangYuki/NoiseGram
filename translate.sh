@@ -104,7 +104,7 @@ fi
 
 # for weight in $(seq 0.0 0.1 2.5)
 # for word_keep in $(seq 0.1 0.1 1)
-for weight in $(seq 0.0 0.5 20)
+for weight in $(seq 0.0 0.5 2.0)
 do
     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
     # outdir=$model/$fname-"$mode"/combine_v3_gramformer_edie/${noise}_${ntype}_${nway}_${mean}_${weight}
