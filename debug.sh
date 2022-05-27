@@ -73,7 +73,7 @@ ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
 weight=0.0
-savedir=models/${ntype}_${nway}_${mean}_${weight}_${batch_size}_001/
+savedir=models/fce_train/orig/
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--train_path_src $train_path_src \
@@ -116,14 +116,14 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # Adv 0.1 mul
 # qsub -cwd -j yes -o 'LOGs/train_adv_v2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
 
-# Gaussian mul 1.8
+# Gaussian mul 1.8 batch size = 2
 # qsub -cwd -j yes -o 'LOGs/train_adv_v3.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
 
-# Gasusian-adv 0.1 mul
+# Gasusian-adv 0.1 mul batch size = 2
 # qsub -cwd -j yes -o 'LOGs/train_adv_v4.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
 
-# Bernoulli 0.7 mul
+# Bernoulli 0.7 mul batch size = 2
 # qsub -cwd -j yes -o 'LOGs/train_adv_v5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
 
-# Orig
-# qsub -cwd -j yes -o 'LOGs/train_orig.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
+# Orig batch size = 2
+# qsub -cwd -j yes -o 'LOGs/fce_train/train_orig.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
