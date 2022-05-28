@@ -45,8 +45,8 @@ max_count_num_rollback=0 # 0:no roll back no lr reduce
 keep_num=5
 
 # --------------
-batch_size=128
-minibatch_split=2 #8 for million
+batch_size=256
+minibatch_split=8 #8 for million
 num_epochs=100
 
 checkpoint_every=5000 # ~10k if 2M, batch - 256
@@ -63,8 +63,8 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 # dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
 # dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
 # num_epochs=5
-minibatch_split=1
-batch_size=2
+# minibatch_split=1
+# batch_size=2
 # checkpoint_every=10
 # print_every=2
 
@@ -73,7 +73,7 @@ ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
 weight=0.0
-savedir=models/fce_train/orig/
+savedir=models/fce_train/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--train_path_src $train_path_src \
