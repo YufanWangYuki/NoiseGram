@@ -72,7 +72,7 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
-weight=0.0
+weight=1.75
 savedir=models/fce_train/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
@@ -127,3 +127,5 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # Orig batch size = 2
 # qsub -cwd -j yes -o 'LOGs/fce_train/train_orig.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
+# Orig batch size = 256
+# qsub -cwd -j yes -o 'LOGs/fce_train/train_orig_256.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' debug.sh 1 1
