@@ -127,12 +127,14 @@ class Seq2seq(nn.Module):
 			embedding_dim = inputs_embeds.shape[2]
 			device = inputs_embeds.device
 			grad_noise=None
+			if noise_config['noise'] == 2 and 'Adversarial' in noise_config['noise_type']:
+				grad_noise=None
 			new_embeds = inputs_embeds
 
 			if noise_config['noise'] == 2:
 				noise = data_helpers.add_noise(src_ids, embedding_dim, random_type=noise_config['noise_type'], 
                     word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
-					replace_map=noise_config['replace_map']).astype(np.float32, grad_noise)
+					replace_map=noise_config['replace_map'],grad_noise=grad_noise).astype(np.float32)
 				noise = torch.tensor(noise).to(device=device)
 				if noise_config['noise_way'] == 'mul':
 					new_embeds = inputs_embeds * noise
