@@ -269,7 +269,7 @@ class Trainer(object):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 				with torch.no_grad():
 					self.noise += self.weight * norm_grad
-
+				pdb.set_trace()
 				model.eval()
 				with torch.no_grad():
 					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
@@ -309,8 +309,8 @@ class Trainer(object):
 		ckpt = None
 
 		# loop over epochs
-		for epoch in tqdm(range(start_epoch, n_epochs + 1)):
-
+		# for epoch in tqdm(range(start_epoch, n_epochs + 1)):
+		with open(os.path.join('./temp', 'translate.txt'), 'w', encoding="utf8") as f:
 			# update lr
 			if self.lr_warmup_steps != 0:
 				self.optimizer.optimizer = self.lr_scheduler(
@@ -318,9 +318,9 @@ class Trainer(object):
 					peak_lr=self.lr_peak, warmup_steps=self.lr_warmup_steps)
 
 			# print lr
-			for param_group in self.optimizer.optimizer.param_groups:
-				log.info('epoch:{} lr: {}'.format(epoch, param_group['lr']))
-				lr_curr = param_group['lr']
+			# for param_group in self.optimizer.optimizer.param_groups:
+			# 	log.info('epoch:{} lr: {}'.format(epoch, param_group['lr']))
+			# 	lr_curr = param_group['lr']
 
 			# construct batches - allow re-shuffling of data
 			log.info('--- construct train set ---')
@@ -331,12 +331,11 @@ class Trainer(object):
 
 			# print info
 			steps_per_epoch = len(train_set.iter_loader)
-			pdb.set_trace()
 			total_steps = steps_per_epoch * n_epochs
 			log.info("steps_per_epoch {}".format(steps_per_epoch))
 			log.info("total_steps {}".format(total_steps))
 
-			log.info(" ---------- Epoch: %d, Step: %d ----------" % (epoch, step))
+			# log.info(" ---------- Epoch: %d, Step: %d ----------" % (epoch, step))
 			mem_kb, mem_mb, mem_gb = get_memory_alloc()
 			mem_mb = round(mem_mb, 2)
 			log.info('Memory used: {0:.2f} MB'.format(mem_mb))
@@ -347,7 +346,7 @@ class Trainer(object):
 			model.train(True)
 			trainiter = iter(train_set.iter_loader)
 			for idx in range(steps_per_epoch):
-
+				# with open(os.path.join(test_path_out, 'translate.txt'), 'w', encoding="utf8") as f:
 				# load batch items
 				batch_items = trainiter.next()
 
@@ -363,7 +362,8 @@ class Trainer(object):
 				# Get loss
 				loss = self._train_batch(model, batch_items, self.noise_configs)
 				# print_loss_total += loss
-
+			for sidx in range(len(self.final_pred)):
+				f.write('{}\n'.format(self.final_pred[sidx]))
 				# if step % self.print_every == 0 and step_elapsed > self.print_every:
 				# 	print_loss_avg = print_loss_total / self.print_every
 				# 	print_loss_total = 0
@@ -475,22 +475,22 @@ class Trainer(object):
 				# 			count_no_improve, count_num_rollback))
 
 				# 	sys.stdout.flush()
+			
+			# else:
+			# 	if dev_set is None:
+			# 		# save every epoch if no dev_set
+			# 		ckpt = Checkpoint(model=model,
+			# 				   optimizer=self.optimizer,
+			# 				   epoch=epoch, step=step)
+			# 		saved_path = ckpt.save_epoch(self.expt_dir, epoch)
+			# 		log.info('saving at {} ... '.format(saved_path))
+			# 		continue
 
-			else:
-				if dev_set is None:
-					# save every epoch if no dev_set
-					ckpt = Checkpoint(model=model,
-							   optimizer=self.optimizer,
-							   epoch=epoch, step=step)
-					saved_path = ckpt.save_epoch(self.expt_dir, epoch)
-					log.info('saving at {} ... '.format(saved_path))
-					continue
+			# 	else:
+			# 		continue
 
-				else:
-					continue
-
-			# break nested for loop
-			break
+			# # break nested for loop
+			# break
 
 
 	def train(self, train_set, model, num_epochs=5, optimizer=None,
