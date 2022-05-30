@@ -90,8 +90,13 @@ def translate(test_set, model, test_path_out, max_tgt_len, mode, device, noise_c
 				print('comp time: ', time2-time1)
 
 				# import pdb; pdb.set_trace()
+				count = 0
 				for sidx in range(len(preds)):
-					f.write('{}\n'.format(preds[sidx]))
+					for item in preds[sidx]:
+						f.write('{}\n'.format(item))
+						count += 1
+				print(count)
+				
 
 
 def translate_verbo(test_set, model, test_path_out, max_tgt_len, mode, device):
