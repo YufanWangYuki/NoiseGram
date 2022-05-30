@@ -221,7 +221,7 @@ class Trainer(object):
 
 		# loss
 		resloss = 0
-		pdb.set_trace()
+		# pdb.set_trace()
 		for bidx in range(n_minibatch):
 			# debug
 			# import pdb; pdb.set_trace()
@@ -245,7 +245,7 @@ class Trainer(object):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 				with torch.no_grad():
 					self.noise += self.weight * norm_grad
-				pdb.set_trace()
+				# pdb.set_trace()
 				model.eval()
 				preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 				pdb.set_trace()
