@@ -127,7 +127,7 @@ class Seq2seq(nn.Module):
 			embedding_dim = inputs_embeds.shape[2]
 			device = inputs_embeds.device
 			grad_noise=grad_noise
-			pdb.set_trace()
+			# pdb.set_trace()
 			# if noise_config['noise'] == 2 and 'Adversarial' in noise_config['noise_type']:
 			# 	grad_noise=Nonec
 			new_embeds = inputs_embeds
