@@ -203,6 +203,7 @@ class Trainer(object):
 		'''
 		Count number of edits
 		'''
+		pdb.set_trace()
 		if prediction[-2:] == ' .':
 			prediction = prediction[:-2]+'.'
 		if input[-2:] == ' .':
