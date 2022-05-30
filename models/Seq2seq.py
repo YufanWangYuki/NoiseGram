@@ -138,6 +138,8 @@ class Seq2seq(nn.Module):
 					replace_map=noise_config['replace_map'],grad_noise=grad_noise)
 				if not torch.is_tensor(noise):
 					noise = torch.tensor(noise.astype(np.float32)).to(device=device)
+				else:
+					noise = noise.float()
 				if noise_config['noise_way'] == 'mul':
 					new_embeds = inputs_embeds * noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
 				elif noise_config['noise_way'] == 'add':
