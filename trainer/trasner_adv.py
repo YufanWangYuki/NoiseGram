@@ -311,7 +311,7 @@ class Trainer(object):
 		# loop over epochs
 		# for epoch in tqdm(range(start_epoch, n_epochs + 1)):
 		
-		outdir="/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/2_"+self.noise_configs['ntype']+"_mul_"+str(self.noise_configs['weight'])
+		outdir="/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/2_"+self.noise_configs['noise_type']+"_mul_"+str(self.noise_configs['weight'])
 		with open(os.path.join(outdir, 'translate.txt'), 'w', encoding="utf8") as f:
 			# update lr
 			if self.lr_warmup_steps != 0:
