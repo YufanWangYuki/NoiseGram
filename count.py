@@ -28,6 +28,10 @@ def count_edits(input, prediction):
     '''
     Count number of edits
     '''
+    if prediction[-2:] == ' .':
+        prediction = prediction[:-2]+'.'
+    if input[-2:] == ' .':
+        input = input[:-2]+'.'
     annotator = errant.load('en')
     input = annotator.parse(input)
     prediction = annotator.parse(prediction)
@@ -39,6 +43,10 @@ def return_edits(input, prediction):
     '''
     Get edits
     '''
+    if prediction[-2:] == ' .':
+        prediction = prediction[:-2]+'.'
+    if input[-2:] == ' .':
+        input = input[:-2]+'.'
     annotator = errant.load('en')
     input = annotator.parse(input)
     prediction = annotator.parse(prediction)

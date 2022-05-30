@@ -142,7 +142,7 @@ class Dataset(object):
 		self.num_sentences = len(self.src_sentences)
 		self.src_seqs = [sentence.strip() for sentence in self.src_sentences]
 		self.tgt_seqs = [sentence.strip() for sentence in self.tgt_sentences]
-		pdb.set_trace()
+		# pdb.set_trace()
 
 
 	def construct_batches(self, is_train=False):
