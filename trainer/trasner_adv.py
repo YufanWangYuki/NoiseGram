@@ -87,6 +87,7 @@ class Trainer(object):
 		self.minibatch_size = int(self.batch_size / self.minibatch_split) # to be changed if OOM
 
 		self.noise_configs = {
+			'noise':2,
 			'noise_type':noise_type,
 			'weight':weight,
 			'mean':mean,
