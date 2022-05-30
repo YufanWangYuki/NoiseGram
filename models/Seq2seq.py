@@ -129,14 +129,15 @@ class Seq2seq(nn.Module):
 			grad_noise=grad_noise
 			# pdb.set_trace()
 			# if noise_config['noise'] == 2 and 'Adversarial' in noise_config['noise_type']:
-			# 	grad_noise=None
+			# 	grad_noise=Nonec
 			new_embeds = inputs_embeds
 
 			if noise_config['noise'] == 2:
 				noise = data_helpers.add_noise(src_ids, embedding_dim, random_type=noise_config['noise_type'], 
                     word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
-					replace_map=noise_config['replace_map'],grad_noise=grad_noise).astype(np.float32)
-				noise = torch.tensor(noise).to(device=device)
+					replace_map=noise_config['replace_map'],grad_noise=grad_noise)
+				if 'cuda' not in noise.device:
+					noise = torch.tensor(noise.astype(np.float32)).to(device=device)
 				if noise_config['noise_way'] == 'mul':
 					new_embeds = inputs_embeds * noise
 				elif noise_config['noise_way'] == 'add':
