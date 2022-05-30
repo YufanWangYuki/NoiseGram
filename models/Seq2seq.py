@@ -117,7 +117,7 @@ class Seq2seq(nn.Module):
 				sample: topK sampling
 		"""
 
-		# import pdb; pdb.set_trace()
+		import pdb; pdb.set_trace()
 
 		gen_mode = mode.split('-')[0] # beam-N, sample-N, beamdiv-N
 		num = int(mode.split('-')[-1])
