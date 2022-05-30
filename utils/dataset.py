@@ -154,7 +154,9 @@ class Dataset(object):
 		_x = list(zip(self.src_seqs, self.tgt_seqs))
 		if is_train:
 			# _x = sorted(_x, key=lambda l:l[1])
+			pdb.set_trace()
 			random.shuffle(_x)
+			pdb.set_trace()
 		src_seqs, tgt_seqs = zip(*_x)
 
 		# manual batching to allow shuffling by pt dataloader

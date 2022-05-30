@@ -273,7 +273,7 @@ class Trainer(object):
 				model.eval()
 				preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 				gt = batch_items['tgt_seqs']
-
+				pdb.set_trace()
 				assert len(preds) == len(gt)
 				for idx in range(len(preds)):
 					self.total_noise_edits += self.count_edits(preds[idx], gt[idx][0])
@@ -322,7 +322,7 @@ class Trainer(object):
 
 			# construct batches - allow re-shuffling of data
 			log.info('--- construct train set ---')
-			train_set.construct_batches(is_train=False)
+			train_set.construct_batches(is_train=True)
 			if dev_set is not None:
 				log.info('--- construct dev set ---')
 				dev_set.construct_batches(is_train=False)
