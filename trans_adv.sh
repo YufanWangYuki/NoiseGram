@@ -78,7 +78,7 @@ num_epochs=1
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
-weight=1.5
+weight=0.1
 savedir=models/temp/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
@@ -116,26 +116,3 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--nway $nway \
 	--mean $mean \
 	--weight $weight
-
-# Run below command to submit this script as an array job
-# qsub -cwd -j yes -P esol -l qp=low -o LOGs/train.txt -t 1-5 -l not_host="air113|air116" train.sh 1
-
-# Orig
-# qsub -cwd -j yes -o 'LOGs/train_orig_test.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
-
-# qsub -cwd -j yes -o 'LOGs/train_orig.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
-
-# qsub -cwd -j yes -o 'LOGs/train_orig.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
-
-# qsub -cwd -j yes -o 'LOGs/train_gau_v1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
-
-# Adv mul 0.1
-# qsub -cwd -j yes -o 'LOGs/train_adv_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
-# larger
-# qsub -cwd -j yes -o 'LOGs/train_adv_mul_0.1_v.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
-
-# Adv mul 0.2
-# qsub -cwd -j yes -o 'LOGs/train_adv_mul_0.2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
-
-# Gau mul 1.5
-# qsub -cwd -j yes -o 'LOGs/train_gau_mul_1.5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
