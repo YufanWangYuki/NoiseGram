@@ -263,8 +263,9 @@ class Trainer(object):
 				pdb.set_trace()
 				assert len(preds) == len(gt)
 				for idx in len(preds):
-					self.total_edits += self.count_edits(preds[idx], gt[idx])
+					self.total_edits += self.count_edits(preds[idx], gt[idx][0])
 					print(self.total_edits)
+					pdb.set_trace()
 				pdb.set_trace()
 
 			# Backward propagation: accumulate gradient
