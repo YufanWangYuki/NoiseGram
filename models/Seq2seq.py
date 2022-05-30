@@ -117,7 +117,7 @@ class Seq2seq(nn.Module):
 				sample: topK sampling
 		"""
 
-		import pdb; pdb.set_trace()
+		# import pdb; pdb.set_trace()
 
 		gen_mode = mode.split('-')[0] # beam-N, sample-N, beamdiv-N
 		num = int(mode.split('-')[-1])
@@ -127,7 +127,7 @@ class Seq2seq(nn.Module):
 			embedding_dim = inputs_embeds.shape[2]
 			device = inputs_embeds.device
 			grad_noise=grad_noise
-			# pdb.set_trace()
+			pdb.set_trace()
 			# if noise_config['noise'] == 2 and 'Adversarial' in noise_config['noise_type']:
 			# 	grad_noise=Nonec
 			new_embeds = inputs_embeds
@@ -137,7 +137,7 @@ class Seq2seq(nn.Module):
                     word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
 					replace_map=noise_config['replace_map'],grad_noise=grad_noise)
 				if 'cuda' not in noise.device:
-					noise = torch.tensor(noise.astype(np.float32)).to(device=device)
+					cnoise = torch.tensor(noise.astype(np.float32)).to(device=device)
 				if noise_config['noise_way'] == 'mul':
 					new_embeds = inputs_embeds * noise
 				elif noise_config['noise_way'] == 'add':
