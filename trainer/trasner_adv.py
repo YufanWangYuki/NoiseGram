@@ -322,7 +322,7 @@ class Trainer(object):
 
 			# construct batches - allow re-shuffling of data
 			log.info('--- construct train set ---')
-			train_set.construct_batches(is_train=True)
+			train_set.construct_batches(is_train=False)
 			if dev_set is not None:
 				log.info('--- construct dev set ---')
 				dev_set.construct_batches(is_train=False)
