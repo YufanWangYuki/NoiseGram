@@ -136,7 +136,7 @@ class Seq2seq(nn.Module):
 				noise = data_helpers.add_noise(src_ids, embedding_dim, random_type=noise_config['noise_type'], 
                     word_keep=noise_config['word_keep'], weight=noise_config['weight'], mean=noise_config['mean'],
 					replace_map=noise_config['replace_map'],grad_noise=grad_noise)
-				if grad_noise.device == 'cpu':
+				if not grad_noise.is_cuda:
 					noise = torch.tensor(noise.astype(np.float32)).to(device=device)
 				if noise_config['noise_way'] == 'mul':
 					new_embeds = inputs_embeds * noise
