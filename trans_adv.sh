@@ -82,7 +82,7 @@ weight=0.1
 savedir=models/temp/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
 	--train_path_src $train_path_src \
 	--train_path_tgt $train_path_tgt \
 	--dev_path_src $dev_path_src \

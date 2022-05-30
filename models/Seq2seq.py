@@ -107,7 +107,7 @@ class Seq2seq(nn.Module):
 		return outseqs
 
 
-	def forward_translate(self, src_ids, src_att_mask, max_length=100, mode='beam-1', noise_config=None):
+	def forward_translate(self, src_ids, src_att_mask, max_length=100, mode='beam-1', noise_config=None, grad_noise=None):
 
 		"""
 			for inference
@@ -126,10 +126,10 @@ class Seq2seq(nn.Module):
 			inputs_embeds = self.model.encoder.embed_tokens(src_ids)
 			embedding_dim = inputs_embeds.shape[2]
 			device = inputs_embeds.device
-			grad_noise=None
-			pdb.set_trace()
-			if noise_config['noise'] == 2 and 'Adversarial' in noise_config['noise_type']:
-				grad_noise=None
+			grad_noise=grad_noise
+			# pdb.set_trace()
+			# if noise_config['noise'] == 2 and 'Adversarial' in noise_config['noise_type']:
+			# 	grad_noise=None
 			new_embeds = inputs_embeds
 
 			if noise_config['noise'] == 2:
