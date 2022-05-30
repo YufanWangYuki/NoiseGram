@@ -310,7 +310,8 @@ class Trainer(object):
 
 		# loop over epochs
 		# for epoch in tqdm(range(start_epoch, n_epochs + 1)):
-		with open(os.path.join('./temp', 'translate.txt'), 'w', encoding="utf8") as f:
+		outdir="/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/2_Adv_mul_0.1"
+		with open(os.path.join('temp', 'translate.txt'), 'w', encoding="utf8") as f:
 			# update lr
 			if self.lr_warmup_steps != 0:
 				self.optimizer.optimizer = self.lr_scheduler(
