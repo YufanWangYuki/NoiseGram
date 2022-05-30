@@ -263,7 +263,7 @@ class Trainer(object):
 				pdb.set_trace()
 				assert len(preds) == len(gt)
 				pdb.set_trace()
-				for idx in len(preds):
+				for idx in range(len(preds)):
 					self.total_edits += self.count_edits(preds[idx], gt[idx][0])
 					print(self.total_edits)
 					pdb.set_trace()
