@@ -220,9 +220,8 @@ class Trainer(object):
 
 		# loss
 		resloss = 0
-
+		pdb.set_trace()
 		for bidx in range(n_minibatch):
-
 			# debug
 			# import pdb; pdb.set_trace()
 
@@ -236,6 +235,7 @@ class Trainer(object):
 			# Forward propagation
 			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 			loss = outputs.loss
+			loss /= n_minibatch
 			if "Adversarial" in noise_configs['noise_type']:
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
@@ -246,7 +246,6 @@ class Trainer(object):
 					self.noise += self.weight * norm_grad
 
 			# Backward propagation: accumulate gradient
-			loss /= n_minibatch
 			loss.backward()
 			resloss += loss
 
