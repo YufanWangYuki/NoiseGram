@@ -109,6 +109,7 @@ class Trainer(object):
 		self.weight = weight
 		self.total_noise_edits = 0
 		self.total_trans_edits = 0
+		self.final_pred = []
 
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
@@ -199,11 +200,10 @@ class Trainer(object):
 
 	# 	return metrics
 
-	def count_edits(input, prediction,remove_punct=False):
+	def count_edits(self,input, prediction,remove_punct=False):
 		'''
 		Count number of edits
 		'''
-		pdb.set_trace()
 		if prediction[-2:] == ' .':
 			prediction = prediction[:-2]+'.'
 		if input[-2:] == ' .':
@@ -271,16 +271,18 @@ class Trainer(object):
 					self.noise += self.weight * norm_grad
 
 				model.eval()
-				preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
-				gt = batch_items['tgt_seqs']
-				pdb.set_trace()
-				assert len(preds) == len(gt)
-				for idx in range(len(preds)):
-					self.total_noise_edits += self.count_edits(preds[idx], gt[idx][0])
-					print(self.total_noise_edits)
+				with torch.no_grad():
+					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
+					self.final_pred.append(preds)
+				# with open(os.path.join(test_path_out, 'translate.txt'), 'w', encoding="utf8") as f:
+
+				# gt = batch_items['tgt_seqs']
+				
+				# assert len(preds) == len(gt)
+				# for idx in range(len(preds)):
+				# 	self.total_noise_edits += self.count_edits(preds[idx], gt[idx][0])
+				# 	print(self.total_noise_edits)
 					# self.total_trans_edits += self.count_edits(preds[idx], [idx][0])
-					pdb.set_trace()
-				pdb.set_trace()
 
 			# Backward propagation: accumulate gradient
 		# 	loss.backward()
@@ -329,6 +331,7 @@ class Trainer(object):
 
 			# print info
 			steps_per_epoch = len(train_set.iter_loader)
+			pdb.set_trace()
 			total_steps = steps_per_epoch * n_epochs
 			log.info("steps_per_epoch {}".format(steps_per_epoch))
 			log.info("total_steps {}".format(total_steps))
@@ -359,7 +362,7 @@ class Trainer(object):
 
 				# Get loss
 				loss = self._train_batch(model, batch_items, self.noise_configs)
-				print_loss_total += loss
+				# print_loss_total += loss
 
 				# if step % self.print_every == 0 and step_elapsed > self.print_every:
 				# 	print_loss_avg = print_loss_total / self.print_every
