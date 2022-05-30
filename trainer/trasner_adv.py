@@ -9,7 +9,7 @@ import argparse
 import sys
 import numpy as np
 import torchtext
-
+import errant
 from utils.misc import get_memory_alloc, check_device, reserve_memory
 from modules.optim import Optimizer
 from modules.checkpoint import Checkpoint
@@ -106,6 +106,7 @@ class Trainer(object):
 		self.noise = torch.tensor(self.noise).to(device=self.device)
 		self.noise.requires_grad = True
 		self.weight = weight
+		self.total_edits = 0
 
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
@@ -196,6 +197,16 @@ class Trainer(object):
 
 	# 	return metrics
 
+	def count_edits(input, prediction):
+		'''
+		Count number of edits
+		'''
+		annotator = errant.load('en')
+		input = annotator.parse(input)
+		prediction = annotator.parse(prediction)
+		alignment = annotator.align(input, prediction)
+		edits = annotator.merge(alignment)
+		return len(edits)
 
 	def _train_batch(self, model, batch_items,noise_configs):
 
@@ -248,6 +259,12 @@ class Trainer(object):
 				# pdb.set_trace()
 				model.eval()
 				preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
+				gt = batch_items['tgt_seqs']
+				pdb.set_trace()
+				assert len(preds) == len(gt)
+				for idx in len(preds):
+					self.total_edits += self.count_edits(preds[idx], gt[idx])
+					print(self.total_edits)
 				pdb.set_trace()
 
 			# Backward propagation: accumulate gradient
