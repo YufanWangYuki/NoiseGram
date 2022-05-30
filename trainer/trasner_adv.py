@@ -14,6 +14,7 @@ from utils.misc import get_memory_alloc, check_device, reserve_memory
 from modules.optim import Optimizer
 from modules.checkpoint import Checkpoint
 from models.Seq2seq import Seq2seq
+import string
 
 logging.basicConfig(level=logging.DEBUG)
 # logging.basicConfig(level=logging.INFO)
@@ -106,7 +107,8 @@ class Trainer(object):
 		self.noise = torch.tensor(self.noise).to(device=self.device)
 		self.noise.requires_grad = True
 		self.weight = weight
-		self.total_edits = 0
+		self.total_noise_edits = 0
+		self.total_trans_edits = 0
 
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
@@ -197,7 +199,7 @@ class Trainer(object):
 
 	# 	return metrics
 
-	def count_edits(self, input, prediction):
+	def count_edits(input, prediction,remove_punct=False):
 		'''
 		Count number of edits
 		'''
@@ -205,6 +207,11 @@ class Trainer(object):
 			prediction = prediction[:-2]+'.'
 		if input[-2:] == ' .':
 			input = input[:-2]+'.'
+		exclude = set(string.punctuation)
+		if remove_punct:
+			# remove punctuation
+			input = ''.join(ch for ch in input if ch not in exclude)
+			prediction = ''.join(ch for ch in prediction if ch not in exclude)
 		annotator = errant.load('en')
 		input = annotator.parse(input)
 		prediction = annotator.parse(prediction)
@@ -249,6 +256,7 @@ class Trainer(object):
 			tgt_ids = batch_tgt_ids[i_start:i_end]
 
 			# Forward propagation
+
 			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 			loss = outputs.loss
 			loss /= n_minibatch
@@ -267,8 +275,9 @@ class Trainer(object):
 
 				assert len(preds) == len(gt)
 				for idx in range(len(preds)):
-					self.total_edits += self.count_edits(preds[idx], gt[idx][0])
-					print(self.total_edits)
+					self.total_noise_edits += self.count_edits(preds[idx], gt[idx][0])
+					print(self.total_noise_edits)
+					# self.total_trans_edits += self.count_edits(preds[idx], [idx][0])
 					pdb.set_trace()
 				pdb.set_trace()
 
@@ -312,7 +321,7 @@ class Trainer(object):
 
 			# construct batches - allow re-shuffling of data
 			log.info('--- construct train set ---')
-			train_set.construct_batches(is_train=True)
+			train_set.construct_batches(is_train=False)
 			if dev_set is not None:
 				log.info('--- construct dev set ---')
 				dev_set.construct_batches(is_train=False)

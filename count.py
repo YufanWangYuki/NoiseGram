@@ -21,10 +21,10 @@ from models.Seq2seq import Seq2seq
 
 logging.basicConfig(level=logging.INFO)
 import pdb
+import string
 
 
-
-def count_edits(input, prediction):
+def count_edits(input, prediction,remove_punct=False):
     '''
     Count number of edits
     '''
@@ -32,6 +32,11 @@ def count_edits(input, prediction):
         prediction = prediction[:-2]+'.'
     if input[-2:] == ' .':
         input = input[:-2]+'.'
+    exclude = set(string.punctuation)
+    if remove_punct:
+        # remove punctuation
+        input = ''.join(ch for ch in input if ch not in exclude)
+        prediction = ''.join(ch for ch in prediction if ch not in exclude)
     annotator = errant.load('en')
     input = annotator.parse(input)
     prediction = annotator.parse(prediction)
