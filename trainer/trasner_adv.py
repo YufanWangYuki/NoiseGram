@@ -346,7 +346,7 @@ class Trainer(object):
 			# loop over batches
 			model.train(True)
 			trainiter = iter(train_set.iter_loader)
-			for idx in range(steps_per_epoch):
+			for idx in tqdm(range(steps_per_epoch)):
 				# with open(os.path.join(test_path_out, 'translate.txt'), 'w', encoding="utf8") as f:
 				# load batch items
 				batch_items = trainiter.next()
