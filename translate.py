@@ -708,7 +708,7 @@ def main():
 
 		ckpt = Checkpoint(model=model,
 				   optimizer=None, epoch=0, step=0)
-		pdb.set_trace()
+		# pdb.set_trace()
 		saved_path = ckpt.save_customise(
 			os.path.join(config['combine_path'].strip('/')+'-combine','combine'))
 		log_ckpts(config['combine_path'], config['combine_path'].strip('/')+'-combine')
