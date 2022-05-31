@@ -278,8 +278,8 @@ class Trainer(object):
 					orig_config = noise_configs
 					orig_config['noise'] = 1
 					orig_preds, orig_scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=orig_config, grad_noise=grad_noise)
-					if preds != orig_preds:
-						pdb.set_trace()
+					# if preds != orig_preds:
+					# 	pdb.set_trace()
 				# with open(os.path.join(test_path_out, 'translate.txt'), 'w', encoding="utf8") as f:
 
 				# gt = batch_items['tgt_seqs']
