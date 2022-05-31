@@ -64,8 +64,8 @@ savedir=models/temp/
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
-train_path_src=$orig_path/lib/gec-train-bpe-written/prep/test.src
-train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/test.tgt
+train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
 dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
 dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
 num_epochs=1
