@@ -84,7 +84,7 @@ def main():
             line += 1
             x = next(fp1)
             y = next(fp2)
-            pdb.set_trace()
+            # pdb.set_trace()
             edits = count_edits(x, y)
             total_count += edits
             total_avg_count += (edits/len(x))
