@@ -269,7 +269,7 @@ class Trainer(object):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 				with torch.no_grad():
 					grad_noise = self.noise + self.weight * norm_grad
-				# pdb.set_trace()
+				pdb.set_trace()
 				model.eval()
 				with torch.no_grad():
 					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=grad_noise)
