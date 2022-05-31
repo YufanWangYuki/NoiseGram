@@ -15,14 +15,15 @@ source activate /home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37
 export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/python3
 
 # ===================================================================================
-model=models/v001
+model=models/v002/Gaussian_mul_1.0_1.5_256_2_002
 
 # ckpt=2022_02_01_15_37_10
 ckpt=combine
 
 # ------ [Generation for reranker eval set] ----------
 # CLC
-fname=eval-clc-test
+# fname=eval-clc-test
+fname=checkpoints
 ftst=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
 # ftst=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.inc
 # ftst=/home/alta/BLTSpeaking/exp-ytl28/projects/lib/gec-tst-collate/test-clc-orig.src
@@ -35,14 +36,14 @@ max_tgt_len=100
 # 2. save model dict
 # 3: translate - <sent>
 # 4: translate with verbo - <sid> <score> <sent>
-eval_mode=3
+eval_mode=1
 use_gpu='True'
 
 batch_size=16
-mode='beam-1'
+# mode='beam-1'
 # batch_size=1
 # mode='beam-50'
-
+mode='combine'
 
 # ----------------------- [noise] ---------------------------
 noise=2 #2 is for using the noise
@@ -104,15 +105,35 @@ fi
 
 # for weight in $(seq 0.0 0.1 2.5)
 # for word_keep in $(seq 0.1 0.1 1)
-for weight in 1.1
-do
-    # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
-    # outdir=$model/$fname-"$mode"/combine_v3_gramformer_edie/${noise}_${ntype}_${nway}_${mean}_${weight}
-    # outdir=$model/$fname-"$mode"/combine_v3_gramformer/${noise}_${ntype}_${nway}_${word_keep}
-    outdir=$model/$fname-"$mode"/combine_v3_gramformer/${noise}_${ntype}_${nway}_${mean}_${weight}
-    # outdir=$model/$fname-"$mode"/combine_v3_gramformer/orig
-    echo 'OUT: '$outdir
-    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
+# for weight in 1.1
+# do
+#     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
+#     # outdir=$model/$fname-"$mode"/combine_v3_gramformer_edie/${noise}_${ntype}_${nway}_${mean}_${weight}
+#     # outdir=$model/$fname-"$mode"/combine_v3_gramformer/${noise}_${ntype}_${nway}_${word_keep}
+#     outdir=$model/$fname-"$mode"/combine_v3_gramformer/${noise}_${ntype}_${nway}_${mean}_${weight}
+#     # outdir=$model/$fname-"$mode"/combine_v3_gramformer/orig
+#     echo 'OUT: '$outdir
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
+#         --test_path_src $ftst \
+#         --test_path_out $outdir \
+#         --max_tgt_len $max_tgt_len \
+#         --batch_size $batch_size \
+#         --mode $mode \
+#         --use_gpu $use_gpu \
+#         --eval_mode $eval_mode \
+#         --combine_path $combine_path \
+#         --noise $noise \
+#         --ntype $ntype \
+#         --nway $nway \
+#         --mean $mean \
+#         --weight $weight \
+#         --word_keep $word_keep
+# done
+
+
+# ------- Combine ---------------
+eval_mode=1
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
         --test_path_src $ftst \
         --test_path_out $outdir \
         --max_tgt_len $max_tgt_len \
@@ -127,4 +148,3 @@ do
         --mean $mean \
         --weight $weight \
         --word_keep $word_keep
-done
