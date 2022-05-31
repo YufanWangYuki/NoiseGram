@@ -79,7 +79,7 @@ checkpoint_every=100
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=mul
 mean=1.0
-weight=1
+weight=0.001
 savedir=models/v002/adv_fine/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
@@ -148,5 +148,5 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # Pure Adv 0.01 0.1 1
 # qsub -cwd -j yes -o 'LOGs/adv_fine/train_pure_adv_mul_0.01.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
-# Gau Adv 0.01 0.1 1
-# qsub -cwd -j yes -o 'LOGs/adv_fine/train_gau_adv_mul_1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
+# Gau Adv 0.001 0.01 0.1 1
+# qsub -cwd -j yes -o 'LOGs/adv_fine/train_gau_adv_mul_0.001.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
