@@ -32,6 +32,7 @@ def count_edits(input, prediction,remove_punct=False):
         prediction = prediction[:-2]+'.'
     if input[-2:] == ' .':
         input = input[:-2]+'.'
+    pdb.set_trace()
     exclude = set(string.punctuation)
     if remove_punct:
         # remove punctuation
