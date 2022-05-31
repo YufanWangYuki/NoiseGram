@@ -21,10 +21,10 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 # ===================================================================================
 # ------------------------ DIR --------------------------
 orig_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written
-train_path_src=$orig_path/lib/gec-train-bpe-written/prep/train.src
-train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/train.tgt
-dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
-dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+# train_path_src=$orig_path/lib/gec-train-bpe-written/prep/train.src
+# train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/train.tgt
+# dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+# dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
 
 max_src_len=64
 max_tgt_len=64
@@ -44,13 +44,14 @@ grab_memory='True'
 random_seed=25
 
 # [inactive when dev not given]
-max_count_no_improve=30
+# max_count_no_improve=30
+max_count_no_improve=10
 max_count_num_rollback=0 # 0:no roll back no lr reduce
 keep_num=5
 
 # --------------
-batch_size=256
-minibatch_split=2 #8 for million
+# batch_size=256
+# minibatch_split=2 #8 for million
 # minibatch_split=8 #8 for million
 # minibatch_split=16 #8 for million
 num_epochs=100
@@ -60,17 +61,17 @@ print_every=1000
 
 grab_memory='False'
 loaddir='None'
-savedir=models/v002/
+savedir=models/v002/fine_tune
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
-# train_path_src=./lib/gec-train-bpe-written/prep/dev.src
-# train_path_tgt=./lib/gec-train-bpe-written/prep/dev.tgt
-# dev_path_src=./lib/gec-train-bpe-written/prep/toy.src
-# dev_path_tgt=./lib/gec-train-bpe-written/prep/toy.tgt
+train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
+dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
 # num_epochs=2
-# minibatch_split=1
-# batch_size=2
+minibatch_split=1
+batch_size=16
 # checkpoint_every=10
 # print_every=2
 
@@ -79,9 +80,10 @@ ntype=Adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=mul
 mean=1.0
 weight=0.1
-savedir=models/v002/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
+savedir=models/v002/adv_fine/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
+# for weight in 0.001 0.01 0.1 1
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--train_path_src $train_path_src \
 	--train_path_tgt $train_path_tgt \
@@ -142,3 +144,6 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # Pure Adv
 # qsub -cwd -j yes -o 'LOGs/train_pure_adv_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+
+# Pure Adv
+# qsub -cwd -j yes -o 'LOGs/adv_fine/train_pure_adv_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
