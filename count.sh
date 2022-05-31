@@ -25,7 +25,7 @@ output_file=results/count_gram_adv_trans.txt
 
 for ntype in Gaussian-adversarial Adversarial
 do
-for weight in $(seq 0.0 0.1 1)
+for weight in $(seq 1.1 0.1 2.5)
 do
 # input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
 # input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/2_Gaussian_mul_1.0_${weight}/translate.txt
