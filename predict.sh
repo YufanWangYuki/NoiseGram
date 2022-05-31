@@ -33,3 +33,13 @@ do
         --seed $seed \
         --use_attack 0
 done
+
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoints-combine
+checkpoint=combine
+output=$outdir/${exp}_${checkpoint}_seed_${seed}
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 0
