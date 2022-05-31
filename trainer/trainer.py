@@ -220,8 +220,8 @@ class Trainer(object):
 
 		# loss
 		resloss = 0
-		if noise_configs['noise_type'] == 'Gaussian-adversarial':
-			pdb.set_trace()
+		# if noise_configs['noise_type'] == 'Gaussian-adversarial':
+		# 	# pdb.set_trace()
 		for bidx in range(n_minibatch):
 			# debug
 			# import pdb; pdb.set_trace()
