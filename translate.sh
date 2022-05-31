@@ -157,7 +157,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
         --word_keep $word_keep
 done
 
-# for exp in Gaussian-adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+# for exp in Gaussian-adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
 # do
 # combine_path=$model/$exp/checkpoints/
 # outdir=$model/$exp/checkpoints-combine/combine/
