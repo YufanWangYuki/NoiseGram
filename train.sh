@@ -44,8 +44,8 @@ grab_memory='True'
 random_seed=25
 
 # [inactive when dev not given]
-# max_count_no_improve=30
-max_count_no_improve=10
+max_count_no_improve=30
+# max_count_no_improve=10
 max_count_num_rollback=0 # 0:no roll back no lr reduce
 keep_num=5
 
@@ -72,14 +72,14 @@ dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
 # num_epochs=2
 minibatch_split=1
 batch_size=16
-# checkpoint_every=10
+checkpoint_every=100
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=mul
 mean=1.0
-weight=1
+weight=0.1
 savedir=models/v002/adv_fine/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
@@ -149,4 +149,4 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -o 'LOGs/adv_fine/train_pure_adv_mul_0.01.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
 # Gau Adv 0.01 0.1 1
-# qsub -cwd -j yes -o 'LOGs/adv_fine/train_gau_adv_mul_1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/adv_fine/train_gau_adv_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
