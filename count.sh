@@ -38,7 +38,7 @@ do
 
 # input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/2_Bernoulli_mul_${word_keep}/translate.txt
 # input_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.tgt
-input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/2_${ntype}_mul_${weight}/
+input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/2_${ntype}_mul_${weight}/translate.txt
 echo $base_path >> $output_file
 echo $input_path >> $output_file
 echo $input_path
