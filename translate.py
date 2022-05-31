@@ -705,6 +705,7 @@ def main():
 		# save combined model
 		assert type(config['combine_path']) != type(None)
 		model = combine_weights(config['combine_path'])
+		pdb.set_trace()
 		ckpt = Checkpoint(model=model,
 				   optimizer=None, epoch=0, step=0)
 		saved_path = ckpt.save_customise(

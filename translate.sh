@@ -136,7 +136,7 @@ eval_mode=1
 model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/adv_fine
 fname=checkpoints
 mode='combine'
-for exp in Gaussian-adversarial_mul_1.0_0.001_16_1_002
+for exp in Gaussian-adversarial_mul_1.0_0.01_16_1_002
 do
 combine_path=$model/$exp/checkpoints/
 outdir=$model/$exp/checkpoints-combine/combine/
