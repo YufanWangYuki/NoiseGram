@@ -28,11 +28,13 @@ def count_edits(input, prediction,remove_punct=False):
     '''
     Count number of edits
     '''
+    prediction = prediction.replace('\n', '')
+    input = input.replace('\n', '')
     if prediction[-2:] == ' .':
         prediction = prediction[:-2]+'.'
     if input[-2:] == ' .':
         input = input[:-2]+'.'
-    pdb.set_trace()
+    # pdb.set_trace()
     exclude = set(string.punctuation)
     if remove_punct:
         # remove punctuation
