@@ -36,20 +36,20 @@ max_tgt_len=100
 # 2. save model dict
 # 3: translate - <sent>
 # 4: translate with verbo - <sid> <score> <sent>
-eval_mode=1
+eval_mode=3
 use_gpu='True'
 
 batch_size=16
-# mode='beam-1'
+mode='beam-1'
 # batch_size=1
 # mode='beam-50'
-mode='combine'
+# mode='combine'
 
 # ----------------------- [noise] ---------------------------
 noise=2 #2 is for using the noise
 ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
-nway=add
-mean=0.0
+nway=mul
+mean=1.0
 weight=0.0
 word_keep=1.0
 
@@ -78,30 +78,30 @@ else
 fi
 
 
-# for weight in $(seq 0 1 20)
-# for weight in 0.0
-# do
-#     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
-#     outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${mean}_${weight}
-#     # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
-#     echo 'OUT: '$outdir
-#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
-#         --test_path_src $ftst \
-#         --load $loaddir \
-#         --test_path_out $outdir \
-#         --max_tgt_len $max_tgt_len \
-#         --batch_size $batch_size \
-#         --mode $mode \
-#         --use_gpu $use_gpu \
-#         --eval_mode $eval_mode \
-#         --combine_path $combine_path \
-#         --noise $noise \
-#         --ntype $ntype \
-#         --nway $nway \
-#         --mean $mean \
-#         --weight $weight \
-#         --word_keep $word_keep
-# done
+load_dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine/combine
+for weight in $(seq 0.0 0.1 2.5)
+do
+    # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
+    outdir=$model/$fname-"$mode"/combine_Gau_1.5/${noise}_${ntype}_${nway}_${mean}_${weight}
+    # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
+    echo 'OUT: '$outdir
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
+        --test_path_src $ftst \
+        --load $loaddir \
+        --test_path_out $outdir \
+        --max_tgt_len $max_tgt_len \
+        --batch_size $batch_size \
+        --mode $mode \
+        --use_gpu $use_gpu \
+        --eval_mode $eval_mode \
+        --combine_path $combine_path \
+        --noise $noise \
+        --ntype $ntype \
+        --nway $nway \
+        --mean $mean \
+        --weight $weight \
+        --word_keep $word_keep
+done
 
 # for weight in $(seq 0.0 0.1 2.5)
 # for word_keep in $(seq 0.1 0.1 1)
@@ -201,21 +201,21 @@ fi
 
 
 # ------- Dict ---------------
-eval_mode=2
-load_dir=models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine/combine
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
-        --test_path_src $ftst \
-        --test_path_out $outdir \
-        --max_tgt_len $max_tgt_len \
-        --batch_size $batch_size \
-        --mode $mode \
-        --use_gpu $use_gpu \
-        --eval_mode $eval_mode \
-        --combine_path $combine_path \
-        --noise $noise \
-        --ntype $ntype \
-        --nway $nway \
-        --mean $mean \
-        --weight $weight \
-        --word_keep $word_keep \
-        --load $load_dir
+# eval_mode=2
+# load_dir=models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine/combine
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
+#         --test_path_src $ftst \
+#         --test_path_out $outdir \
+#         --max_tgt_len $max_tgt_len \
+#         --batch_size $batch_size \
+#         --mode $mode \
+#         --use_gpu $use_gpu \
+#         --eval_mode $eval_mode \
+#         --combine_path $combine_path \
+#         --noise $noise \
+#         --ntype $ntype \
+#         --nway $nway \
+#         --mean $mean \
+#         --weight $weight \
+#         --word_keep $word_keep \
+#         --load $load_dir
