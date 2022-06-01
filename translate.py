@@ -650,7 +650,7 @@ def main():
 	if load_dir != 'Gramformer':
 		latest_checkpoint_path = load_dir
 		resume_checkpoint = Checkpoint.load(latest_checkpoint_path)
-		pdb.set_trace()
+		# pdb.set_trace()
 		model = resume_checkpoint.model.to(device)
 		print('Model dir: {}'.format(latest_checkpoint_path))
 		print('Model loaded')
