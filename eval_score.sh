@@ -83,7 +83,7 @@ seed=1
 exp=Gaussian_mul_1.0_1.5_256_2_002
 preddir=prediction_files/for_errant/$exp
 outdir=prediction_files/m2/$exp
-for checkpoint in 2022_05_18_01_41_19  2022_05_18_01_58_04  2022_05_18_02_14_48  2022_05_18_02_31_56  2022_05_18_04_11_27
+for checkpoint in combine
 do 
     input=$preddir/${checkpoint}_seed_${seed}.inc
     pred=$preddir/${checkpoint}_seed_${seed}.pred
@@ -95,6 +95,18 @@ do
     errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/${exp}_Fscore.txt
     echo ${exp}_${checkpoint}
 done
+# for checkpoint in 2022_05_27_14_07_55 2022_05_28_02_45_55 2022_05_28_06_48_16 2022_05_29_00_44_45 2022_05_29_22_26_15 combine
+# do 
+#     input=$preddir/${checkpoint}_seed_${seed}.inc
+#     pred=$preddir/${checkpoint}_seed_${seed}.pred
+#     corr=$preddir/${checkpoint}_seed_${seed}.corr
+#     errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
+#     errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
+
+#     echo ${exp}_${checkpoint} >> results/Fscore/${exp}_Fscore.txt
+#     errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/${exp}_Fscore.txt
+#     echo ${exp}_${checkpoint}
+# done
 
 
 
