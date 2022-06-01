@@ -43,3 +43,11 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --OUT_BASE $output \
         --seed $seed \
         --use_attack 0
+
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --
