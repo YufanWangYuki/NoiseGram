@@ -139,25 +139,25 @@ model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoint
 model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/adv_fine
 checkpoint=combine
 
-for exp in Adversarial_mul_1.0_0.001_16_1_002
-do
-    loadir=$model/$exp/checkpoints-combine
-    output=prediction_files/adv_fine/$exp
-    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $loadir/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 0
-done
-
-# for exp in Adversarial_mul_1.0_0.001_16_1_002 Adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+# for exp in Adversarial_mul_1.0_0.001_16_1_002
 # do
 #     loadir=$model/$exp/checkpoints-combine
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#     output=prediction_files/adv_fine/$exp
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --IN $input \
 #         --MODEL $loadir/$checkpoint \
 #         --OUT_BASE $output \
 #         --seed $seed \
 #         --use_attack 0
 # done
+
+for exp in Adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+do
+    loadir=$model/$exp/checkpoints-combine
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $loadir/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 0
+done
