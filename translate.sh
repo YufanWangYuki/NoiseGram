@@ -22,8 +22,8 @@ ckpt=combine
 
 # ------ [Generation for reranker eval set] ----------
 # CLC
-# fname=eval-clc-test
-fname=checkpoints
+fname=eval-clc-test
+# fname=checkpoints
 ftst=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
 # ftst=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.train16.inc
 # ftst=/home/alta/BLTSpeaking/exp-ytl28/projects/lib/gec-tst-collate/test-clc-orig.src
