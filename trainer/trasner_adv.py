@@ -270,15 +270,15 @@ class Trainer(object):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 				with torch.no_grad():
 					grad_noise = self.noise + self.weight * norm_grad
-				# pdb.set_trace() 
+				pdb.set_trace() 
 				model.eval()
 				with torch.no_grad():
 					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=grad_noise)
 					self.final_pred.append(preds)
 
-					orig_config = noise_configs
-					orig_config['noise'] = 1
-					orig_preds, orig_scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=orig_config, grad_noise=grad_noise)
+					# orig_config = noise_configs
+					# orig_config['noise'] = 1
+					# orig_preds, orig_scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=orig_config, grad_noise=grad_noise)
 					# if preds != orig_preds:
 					# 	pdb.set_trace()
 				# with open(os.path.join(test_path_out, 'translate.txt'), 'w', encoding="utf8") as f:
