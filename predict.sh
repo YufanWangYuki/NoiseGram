@@ -44,8 +44,89 @@ model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoint
 #         --seed $seed \
 #         --use_attack 0
 
-# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine/combine
-# exp=Gaussian_mul_1.0_1.5_256_2_002
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine/combine
+exp=Gaussian_mul_1.0_1.5_256_2_002
+output=prediction_files/$exp/full_N1
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink' \
+        --delim '.'
+output=prediction_files/$exp/full_N2
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l' \
+        --delim '.'
+output=prediction_files/$exp/full_N3
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml' \
+        --delim '.'
+output=prediction_files/$exp/full_N4
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv' \
+        --delim '.'     
+output=prediction_files/$exp/full_N5
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub' \
+        --delim '.'    
+output=prediction_files/$exp/full_N6
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu' \
+        --delim '.'    
+output=prediction_files/$exp/full_N7
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu bec' \
+        --delim '.'   
+output=prediction_files/$exp/full_N8
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu bec l' \
+        --delim '.'    
+output=prediction_files/$exp/full_N9
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu bec l sub' \
+        --delim '.'     
 # output=prediction_files/$exp/comma_N1
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --IN $input \
@@ -136,8 +217,8 @@ model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoint
 #         --phrase 'xl ii xl lbs sub xl dp lbs lc' \
 #         --delim ','
 
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/adv_fine
-checkpoint=combine
+# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/adv_fine
+# checkpoint=combine
 
 # for exp in Adversarial_mul_1.0_0.001_16_1_002
 # do
@@ -151,14 +232,14 @@ checkpoint=combine
 #         --use_attack 0
 # done
 
-for exp in Adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
-do
-    loadir=$model/$exp/checkpoints-combine
-    output=prediction_files/adv_fine/$exp
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $loadir/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 0
-done
+# for exp in Adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+# do
+#     loadir=$model/$exp/checkpoints-combine
+#     output=prediction_files/adv_fine/$exp
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $loadir/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 0
+# done
