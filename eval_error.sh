@@ -25,11 +25,46 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 #     --OUT edit_dist_files/Gaussian_mul_1.0_1.5_256_2_002/orig.txt
 
 
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED prediction_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/comma_N1_with_adv_not_removed.pred \
+#     --OUT edit_dist_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/comma_N1_with_adv_not_removed.txt \
+#     --phrase 'xl' \
+#     --delim ','
+# done
+name=comma_N2
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED prediction_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/comma_N1_with_adv_not_removed.pred \
-    --OUT edit_dist_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/comma_N1_with_adv_not_removed.txt \
-    --phrase 'xl' \
+    --PRED prediction_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/${name}_with_adv_not_removed.pred \
+    --OUT edit_dist_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/${name}_with_adv_not_removed.txt \
+    --phrase 'xl ii' \
     --delim ','
-# done
+
+name=comma_N3
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+    --PRED prediction_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/${name}_with_adv_not_removed.pred \
+    --OUT edit_dist_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/${name}_with_adv_not_removed.txt \
+    --phrase 'xl ii xl' \
+    --delim ','
+
+name=comma_N4
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+    --PRED prediction_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/${name}_with_adv_not_removed.pred \
+    --OUT edit_dist_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/${name}_with_adv_not_removed.txt \
+    --phrase 'xl ii xl lbs' \
+    --delim ','
+
+name=comma_N5
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+    --PRED prediction_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/${name}_with_adv_not_removed.pred \
+    --OUT edit_dist_files/Gaussian_mul_1.0_1.5_256_2_002/attacks/${name}_with_adv_not_removed.txt \
+    --phrase 'xl ii xl lbs sub' \
+    --delim ','
