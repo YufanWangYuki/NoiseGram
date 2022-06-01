@@ -78,7 +78,7 @@ if __name__ == "__main__":
         if args.use_attack == 1 and args.phrase != '':
             attack_phrase = args.phrase + '.'
             sent = concatenate(sent, attack_phrase, delim=args.delim)
-            pdb.set_trace()
+            # pdb.set_trace()
         correction = correct(model, sent)
         corrections.append(correction)
         if args.use_attack == 1 and args.phrase != '':
