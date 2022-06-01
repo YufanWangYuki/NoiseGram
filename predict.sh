@@ -44,94 +44,120 @@ model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoint
 #         --seed $seed \
 #         --use_attack 0
 
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine/combine
-exp=Gaussian_mul_1.0_1.5_256_2_002
-output=prediction_files/$exp/comma_N1
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'xl' \
-        --delim ','
+# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine/combine
+# exp=Gaussian_mul_1.0_1.5_256_2_002
+# output=prediction_files/$exp/comma_N1
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'xl' \
+#         --delim ','
 
-output=prediction_files/$exp/comma_N2
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'xl ii' \
-        --delim ','
+# output=prediction_files/$exp/comma_N2
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'xl ii' \
+#         --delim ','
 
-output=prediction_files/$exp/comma_N3
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'xl ii xl' \
-        --delim ','
+# output=prediction_files/$exp/comma_N3
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'xl ii xl' \
+#         --delim ','
 
-output=prediction_files/$exp/comma_N4
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'xl ii xl lbs' \
-        --delim ','
+# output=prediction_files/$exp/comma_N4
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'xl ii xl lbs' \
+#         --delim ','
 
-output=prediction_files/$exp/comma_N5
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'xl ii xl lbs sub' \
-        --delim ','
+# output=prediction_files/$exp/comma_N5
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'xl ii xl lbs sub' \
+#         --delim ','
 
-output=prediction_files/$exp/comma_N6
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'xl ii xl lbs sub xl' \
-        --delim ','
+# output=prediction_files/$exp/comma_N6
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'xl ii xl lbs sub xl' \
+#         --delim ','
 
-output=prediction_files/$exp/comma_N7
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'xl ii xl lbs sub xl dp' \
-        --delim ','
+# output=prediction_files/$exp/comma_N7
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'xl ii xl lbs sub xl dp' \
+#         --delim ','
 
-output=prediction_files/$exp/comma_N8
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'xl ii xl lbs sub xl dp lbs' \
-        --delim ','
+# output=prediction_files/$exp/comma_N8
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'xl ii xl lbs sub xl dp lbs' \
+#         --delim ','
 
-output=prediction_files/$exp/comma_N9
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+# output=prediction_files/$exp/comma_N9
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'xl ii xl lbs sub xl dp lbs lc' \
+#         --delim ','
+
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/adv_fine
+checkpoint=combine
+
+for exp in Adversarial_mul_1.0_0.001_16_1_002
+do
+    loadir=$model/$exp/checkpoints-combine
+    output=prediction_files/adv_fine/$exp
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
-        --MODEL $model \
+        --MODEL $loadir/$checkpoint \
         --OUT_BASE $output \
         --seed $seed \
-        --use_attack 1 \
-        --phrase 'xl ii xl lbs sub xl dp lbs lc' \
-        --delim ','
+        --use_attack 0
+done
+
+# for exp in Adversarial_mul_1.0_0.001_16_1_002 Adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+# do
+#     loadir=$model/$exp/checkpoints-combine
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $loadir/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 0
+# done
