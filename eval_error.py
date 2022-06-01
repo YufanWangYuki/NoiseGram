@@ -17,7 +17,7 @@ import os
 import argparse
 from utils.gec_tools import return_edits
 from collections import defaultdict
-from utils.align_preds import align_data, get_sentences_dict
+from utils.align_preds import align_data_pred, get_sentences_dict
 from utils.uni_attack import concatenate
 from statistics import mean, stdev
 
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     inc_id2text = get_sentences_dict(args.SOURCE)
     pred_id2text = get_sentences_dict(args.PRED)
     corr_id2text = get_sentences_dict(args.REF)
-    inc_sens, pred_sens, corr_sens = align_data(inc_id2text, pred_id2text, corr_id2text)
+    inc_sens, pred_sens, corr_sens = align_data_pred(inc_id2text, pred_id2text, corr_id2text)
 
     inc_sens = [s.rstrip('\n') for s in inc_sens]
     pred_sens = [s.rstrip('\n') for s in pred_sens]
