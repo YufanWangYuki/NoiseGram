@@ -1,3 +1,4 @@
+from itertools import count
 import torch
 torch.cuda.empty_cache()
 import torch.utils.tensorboard
@@ -88,7 +89,7 @@ class Trainer(object):
 		self.minibatch_size = int(self.batch_size / self.minibatch_split) # to be changed if OOM
 		self.seq_length = seq_length
 		self.embedding_dim = embedding_dim
-		
+
 		self.noise_configs = {
 			'noise':2,
 			'noise_type':noise_type,
@@ -262,7 +263,7 @@ class Trainer(object):
 			# Forward propagation
 			if "dversarial" in noise_configs['noise_type']:
 				with torch.no_grad():
-					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
+					orig_preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 				pdb.set_trace()
 				
 				model.eval()
@@ -287,6 +288,7 @@ class Trainer(object):
 					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 					self.final_pred.append(preds)
 				pdb.set_trace()
+				print(self.count_edits(orig_preds,preds))
 			else:
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
