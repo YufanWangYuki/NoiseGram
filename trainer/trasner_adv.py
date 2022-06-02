@@ -286,10 +286,10 @@ class Trainer(object):
 				with torch.no_grad():
 					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 					self.final_pred.append(preds)
-
-				pdb.set_trace()
-				for idx in len(orig_preds):
+				for idx in range(len(orig_preds)):
 					print(self.count_edits(orig_preds[idx],preds[idx]))
+				pdb.set_trace()
+				
 			else:
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
