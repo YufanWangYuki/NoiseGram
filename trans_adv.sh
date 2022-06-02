@@ -165,3 +165,4 @@ done
 done
 
 # qsub -cwd -j yes -o 'LOGs/adv_trans.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/adv_single.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
