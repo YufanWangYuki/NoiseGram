@@ -82,7 +82,7 @@ weight=0.1
 savedir=models/temp/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
-for ntype in Gaussian-adversarial-single Adversarial-single
+for ntype in Gaussian-adversarial Adversarial
 do
 for weight in 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
 do
