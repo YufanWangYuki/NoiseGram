@@ -22,7 +22,7 @@ def add_noise(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weigh
     elif random_type in ['Gaussian', 'Gaussian-adversarial', 'Bernoulli-word', 'Bernoulli-idf', 'Bernoulli-polary', 'Replace']:
         pass
     
-    if random_type in ['Adversarial','Gaussian-adversarial']:
+    if random_type in ['Adversarial','Gaussian-adversarial','Adversarial-single','Gaussian-adversarial-single']:
         if len(grad_noise) > 1:
             # print("Matrix")
             return grad_noise

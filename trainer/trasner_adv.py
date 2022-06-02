@@ -279,6 +279,7 @@ class Trainer(object):
 					if 'single' in noise_configs['noise_type']:
 						self.noise = incre_noise.clone()
 						self.noise.requires_grad = True
+						pdb.set_trace()
 					else:
 						self.noise += incre_noise
 				
