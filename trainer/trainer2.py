@@ -245,7 +245,10 @@ class Trainer(object):
 				norm_grad = grad.clone()
 				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
 				with torch.no_grad():
-					self.noise += self.weight * norm_grad*np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
+					incre_noise = self.weight * norm_grad * np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
+					incre_noise = torch.tensor(incre_noise).to(device=self.device)
+					# self.noise.requires_grad = True
+					self.noise += incre_noise
 				pdb.set_trace()
 
 			# Backward propagation: accumulate gradient
