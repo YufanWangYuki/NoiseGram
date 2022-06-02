@@ -277,9 +277,9 @@ class Trainer(object):
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 					if 'single' in noise_configs['noise_type']:
+						pdb.set_trace()
 						self.noise = incre_noise.clone()
 						self.noise.requires_grad = True
-						pdb.set_trace()
 					else:
 						self.noise += incre_noise
 				
