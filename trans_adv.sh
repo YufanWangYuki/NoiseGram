@@ -84,7 +84,7 @@ savedir=models/temp/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch
 # ===================================================================================
 for ntype in Gaussian-adversarial
 do
-for weight in $(seq 1.1 0.1 1.1)
+for weight in $(seq 0.0 0.1 0.0)
 do
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
 	--train_path_src $train_path_src \
