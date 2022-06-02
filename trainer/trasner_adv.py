@@ -263,13 +263,12 @@ class Trainer(object):
 			# Forward propagation
 			if "dversarial" in noise_configs['noise_type']:
 				model.eval()
-				with torch.no_grad():
-					orig_preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
+				# with torch.no_grad():
+				# 	orig_preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 				
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
 				loss /= n_minibatch
-				pdb.set_trace()
 
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
@@ -279,16 +278,15 @@ class Trainer(object):
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 					self.noise += incre_noise
 				
-				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-				loss = outputs.loss
-				loss /= n_minibatch
+				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				# loss = outputs.loss
+				# loss /= n_minibatch
 				
 				with torch.no_grad():
 					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 					self.final_pred.append(preds)
-				for idx in range(len(orig_preds)):
-					print(self.count_edits(orig_preds[idx],preds[idx]))
-				pdb.set_trace()
+				# for idx in range(len(orig_preds)):
+				# 	print(self.count_edits(orig_preds[idx],preds[idx]))
 				
 			else:
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
@@ -337,7 +335,7 @@ class Trainer(object):
 		# loop over epochs
 		# for epoch in tqdm(range(start_epoch, n_epochs + 1)):
 		
-		outdir="/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/2_"+self.noise_configs['noise_type']+"_mul_"+str(self.noise_configs['weight'])
+		outdir="/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/2_"+self.noise_configs['noise_type']+"_mul_"+str(self.noise_configs['weight'])
 		if not os.path.isdir(outdir):
 			os.makedirs(outdir)
 		with open(os.path.join(outdir, 'translate.txt'), 'w', encoding="utf8") as f:

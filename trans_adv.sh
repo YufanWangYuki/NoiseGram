@@ -59,7 +59,7 @@ checkpoint_every=5000 # ~10k if 2M, batch - 256
 print_every=1000
 
 grab_memory='False'
-loaddir='None'
+loaddir=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine
 savedir=models/temp/
 load_mode='null' # 'resume' | 'restart' | 'null'
 
@@ -82,9 +82,9 @@ weight=0.1
 savedir=models/temp/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
-for ntype in Gaussian-adversarial
+for ntype in Gaussian-adversarial Adversarial
 do
-for weight in $(seq 0.0 0.1 0.0)
+for weight in $(seq 0.0 0.1 2.5)
 do
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
 	--train_path_src $train_path_src \
