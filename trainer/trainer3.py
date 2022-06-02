@@ -249,7 +249,7 @@ class Trainer(object):
 
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
-					self.noise += incre_noise
+					c += incre_noise
 				pdb.set_trace()
 				
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
@@ -268,6 +268,7 @@ class Trainer(object):
 		# update weights
 		self.optimizer.step()
 		model.zero_grad()
+		pdb.set_trace()
 
 		return resloss
 
