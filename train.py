@@ -11,7 +11,8 @@ from utils.misc import set_global_seeds, save_config, validate_config, check_dev
 from utils.dataset import Dataset
 from models.Seq2seq import Seq2seq
 # from trainer.trainer import Trainer
-from trainer.trainer2 import Trainer
+# from trainer.trainer2 import Trainer
+from trainer.trainer3 import Trainer
 
 def load_arguments(parser):
 
