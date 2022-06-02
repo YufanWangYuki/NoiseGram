@@ -46,7 +46,7 @@ mode='beam-1'
 # mode='combine'
 
 # ----------------------- [noise] ---------------------------
-noise=2 #2 is for using the noise
+noise=1 #2 is for using the noise
 ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial
 nway=mul
 mean=1.0
@@ -79,10 +79,11 @@ fi
 
 
 load_dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine/combine
-for weight in $(seq 0.0 0.1 2.5)
-do
+# for weight in $(seq 0.0 0.1 2.5)
+# do
     # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
-    outdir=$model/$fname-"$mode"/combine_Gau_1.5/${noise}_${ntype}_${nway}_${mean}_${weight}
+    # outdir=$model/$fname-"$mode"/combine_Gau_1.5/${noise}_${ntype}_${nway}_${mean}_${weight}
+    outdir=$model/$fname-"$mode"/combine_Gau_1.5/orig
     # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
     echo 'OUT: '$outdir
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
@@ -96,12 +97,12 @@ do
         --eval_mode $eval_mode \
         --combine_path $combine_path \
         --noise $noise \
-        --ntype $ntype \
-        --nway $nway \
-        --mean $mean \
-        --weight $weight \
-        --word_keep $word_keep
-done
+        # --ntype $ntype \
+        # --nway $nway \
+        # --mean $mean \
+        # --weight $weight \
+        # --word_keep $word_keep
+# done
 
 # for weight in $(seq 0.0 0.1 2.5)
 # for word_keep in $(seq 0.1 0.1 1)
