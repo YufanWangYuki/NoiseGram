@@ -85,6 +85,8 @@ class Trainer(object):
 		self.minibatch_split = minibatch_split
 		self.batch_size = batch_size
 		self.minibatch_size = int(self.batch_size / self.minibatch_split) # to be changed if OOM
+		self.seq_length = seq_length
+		self.embedding_dim = embedding_dim
 
 		self.noise_configs = {
 			'noise_type':noise_type,
@@ -101,8 +103,8 @@ class Trainer(object):
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
 		elif noise_type == 'Gaussian-adversarial':
 			start_value = np.random.normal(1, weight)
-			self.noise =  np.ones([self.minibatch_size, seq_length, embedding_dim])*start_value
-		pdb.set_trace()
+			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])*start_value
+		# pdb.set_trace()
 		self.noise = torch.tensor(self.noise).to(device=self.device)
 		self.noise.requires_grad = True
 		self.weight = weight
@@ -241,11 +243,10 @@ class Trainer(object):
 			if "dversarial" in noise_configs['noise_type']:
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
-				pdb.set_trace()
-				for i in range(len(src_ids)):
-					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
+				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
 				with torch.no_grad():
-					self.noise += self.weight * norm_grad
+					self.noise += self.weight * norm_grad*np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
+				pdb.set_trace()
 
 			# Backward propagation: accumulate gradient
 			loss.backward()
