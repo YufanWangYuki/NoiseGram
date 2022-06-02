@@ -79,11 +79,8 @@ fi
 
 
 loaddir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine/combine
-# for weight in $(seq 0.0 0.1 2.5)
-# do
-    # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
-    # outdir=$model/$fname-"$mode"/combine_Gau_1.5/${noise}_${ntype}_${nway}_${mean}_${weight}
-    outdir=$model/$fname-"$mode"/combine_Gau_1.5/orig
+noise=1
+outdir=$model/$fname-"$mode"/combine_Gau_1.5/orig
     # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
     echo 'OUT: '$outdir
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
@@ -97,12 +94,32 @@ loaddir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_
         --eval_mode $eval_mode \
         --combine_path $combine_path \
         --noise $noise \
-        # --ntype $ntype \
-        # --nway $nway \
-        # --mean $mean \
-        # --weight $weight \
-        # --word_keep $word_keep
-# done
+
+noise=2
+for weight in $(seq 0.0 0.1 2.5)
+do
+    # outdir=$model/$fname-"$mode"/combine_v2/${noise}_${ntype}_${nway}_${mean}_${weight}
+    outdir=$model/$fname-"$mode"/combine_Gau_1.5/${noise}_${ntype}_${nway}_${mean}_${weight}
+    # outdir=$model/$fname-"$mode"/combine_Gau_1.5/orig
+    # outdir=$model/$fname-"$mode"/combine_v3/${noise}_${ntype}_${nway}_${word_keep}
+    echo 'OUT: '$outdir
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/translate.py \
+        --test_path_src $ftst \
+        --load $loaddir \
+        --test_path_out $outdir \
+        --max_tgt_len $max_tgt_len \
+        --batch_size $batch_size \
+        --mode $mode \
+        --use_gpu $use_gpu \
+        --eval_mode $eval_mode \
+        --combine_path $combine_path \
+        --noise $noise \
+        --ntype $ntype \
+        --nway $nway \
+        --mean $mean \
+        --weight $weight \
+        --word_keep $word_keep
+done
 
 # for weight in $(seq 0.0 0.1 2.5)
 # for word_keep in $(seq 0.1 0.1 1)
