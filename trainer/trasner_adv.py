@@ -102,7 +102,8 @@ class Trainer(object):
 		if noise_type == 'Adversarial':
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
 		elif noise_type == 'Gaussian-adversarial':
-			self.noise = np.random.normal(1, weight, [self.minibatch_size, seq_length, embedding_dim])
+			start_value = np.random.normal(1, weight)
+			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])*start_value
 		# pdb.set_trace()
 		self.noise = torch.tensor(self.noise).to(device=self.device)
 		self.noise.requires_grad = True
@@ -257,24 +258,37 @@ class Trainer(object):
 			tgt_ids = batch_tgt_ids[i_start:i_end]
 
 			# Forward propagation
-
-			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-			loss = outputs.loss
-			loss /= n_minibatch
-			# pdb.set_trace()
 			if "dversarial" in noise_configs['noise_type']:
+				with torch.no_grad():
+					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
+				pdb.set_trace()
+				
+				model.eval()
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				loss = outputs.loss
+				loss /= n_minibatch
+				
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
+				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
+
+				with torch.no_grad():
+					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
+					self.noise += incre_noise
+				# pdb.set_trace()
 				
-				for i in range(len(src_ids)):
-					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				loss = outputs.loss
+				loss /= n_minibatch
+				
 				with torch.no_grad():
-					grad_noise = self.noise + self.weight * norm_grad
-				pdb.set_trace() 
-				model.eval()
-				with torch.no_grad():
-					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=grad_noise)
+					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 					self.final_pred.append(preds)
+				pdb.set_trace()
+			else:
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				loss = outputs.loss
+				loss /= n_minibatch
 
 					# orig_config = noise_configs
 					# orig_config['noise'] = 1
