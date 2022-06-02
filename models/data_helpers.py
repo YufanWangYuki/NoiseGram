@@ -24,7 +24,7 @@ def add_noise(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weigh
     
     if random_type in ['Adversarial','Gaussian-adversarial']:
         if len(grad_noise) > 1:
-            print("Matrix")
+            # print("Matrix")
             return grad_noise
         else:
             return np.ones([batch_size, seq_length, embedding_dim])*grad_noise
