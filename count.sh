@@ -19,12 +19,12 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 # base_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-pretrained/models/gramformer/eval_clc-orig/beam1
 
 # base_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
-base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/orig/translate.txt
-
+# base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/orig/translate.txt
+base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/eval-clc-test-beam-1/combine_Gau_1.5/orig/translate.txt
 output_file=results/count_gau_1.5_noise.txt
 
-for ntype in Gaussian-adversarial
-do
+# for ntype in Gaussian-adversarial
+# do
 for weight in $(seq 0.0 0.1 2.5)
 do
 # input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
@@ -48,4 +48,4 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/count.py \
     --input_path $input_path \
     --output_file $output_file
 done
-done
+# done
