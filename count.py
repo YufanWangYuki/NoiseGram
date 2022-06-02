@@ -93,7 +93,8 @@ def main():
             total_avg_count += (edits/len(x))
             # if count_edits(x, y) > 0:
             #     pdb.set_trace()
-            print(line)
+            # print(line)
+            print(total_count)
         except StopIteration:
             break   
     print(total_count)
