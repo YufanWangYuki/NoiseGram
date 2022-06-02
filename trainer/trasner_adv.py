@@ -290,6 +290,7 @@ class Trainer(object):
 				with torch.no_grad():
 					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 					self.final_pred.append(preds)
+					pdb.set_trace()
 				# for idx in range(len(orig_preds)):
 				# 	print(self.count_edits(orig_preds[idx],preds[idx]))
 				
@@ -400,6 +401,7 @@ class Trainer(object):
 				for item in self.final_pred[sidx]:
 					f.write('{}\n'.format(item))
 					count += 1
+			pdb.set_trace()
 			print(count)
 				# if step % self.print_every == 0 and step_elapsed > self.print_every:
 				# 	print_loss_avg = print_loss_total / self.print_every
