@@ -76,10 +76,10 @@ checkpoint_every=100
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
-ntype=Adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
+ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=mul
 mean=1.0
-weight=1
+weight=0.1
 savedir=models/v002/adv_fine/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
