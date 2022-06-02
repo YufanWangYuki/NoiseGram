@@ -401,7 +401,7 @@ class Trainer(object):
 				for item in self.final_pred[sidx]:
 					f.write('{}\n'.format(item))
 					count += 1
-			pdb.set_trace()
+			# pdb.set_trace()
 			print(count)
 				# if step % self.print_every == 0 and step_elapsed > self.print_every:
 				# 	print_loss_avg = print_loss_total / self.print_every
