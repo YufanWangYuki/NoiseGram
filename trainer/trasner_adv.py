@@ -279,7 +279,7 @@ class Trainer(object):
 					if 'single' in noise_configs['noise_type']:
 						# pdb.set_trace()
 						self.noise = incre_noise.clone()
-						self.noise.requires_grad = True
+						# self.noise.requires_grad = True
 					else:
 						self.noise += incre_noise
 				
@@ -290,6 +290,13 @@ class Trainer(object):
 				with torch.no_grad():
 					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 				self.final_pred.append(preds)
+				if noise_configs['noise_type'] == 'Adversarial-single':
+					self.noise = np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
+				elif noise_configs['noise_type'] == 'Gaussian-adversarial-single':
+					start_value = np.random.normal(1, self.weight)
+					self.noise = np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])*start_value
+				self.noise = torch.tensor(self.noise).to(device=self.device)
+				self.noise.requires_grad = True
 				# pdb.set_trace()
 				# for idx in range(len(orig_preds)):
 				# 	print(self.count_edits(orig_preds[idx],preds[idx]))
