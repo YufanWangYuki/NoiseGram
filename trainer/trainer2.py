@@ -102,7 +102,7 @@ class Trainer(object):
 		elif noise_type == 'Gaussian-adversarial':
 			start_value = np.random.normal(1, weight)
 			self.noise =  np.ones([self.minibatch_size, seq_length, embedding_dim])*start_value
-		# pdb.set_trace()
+		pdb.set_trace()
 		self.noise = torch.tensor(self.noise).to(device=self.device)
 		self.noise.requires_grad = True
 		self.weight = weight
@@ -238,7 +238,7 @@ class Trainer(object):
 			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 			loss = outputs.loss
 			loss /= n_minibatch
-			if "Adversarial" in noise_configs['noise_type']:
+			if "dversarial" in noise_configs['noise_type']:
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
 				pdb.set_trace()
