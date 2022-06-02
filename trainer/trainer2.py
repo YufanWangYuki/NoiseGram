@@ -244,6 +244,7 @@ class Trainer(object):
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
 				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
+				pdb.set_trace()
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
 					incre_noise = torch.tensor(incre_noise).to(device=self.device)
