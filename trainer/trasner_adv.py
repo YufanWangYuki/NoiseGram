@@ -276,7 +276,11 @@ class Trainer(object):
 
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
-					self.noise += incre_noise
+					if 'single' in noise_configs['noise_type']:
+						self.noise = incre_noise
+						pdb.set_trace()
+					else:
+						self.noise += incre_noise
 				
 				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				# loss = outputs.loss
