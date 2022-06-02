@@ -86,7 +86,9 @@ class Trainer(object):
 		self.minibatch_split = minibatch_split
 		self.batch_size = batch_size
 		self.minibatch_size = int(self.batch_size / self.minibatch_split) # to be changed if OOM
-
+		self.seq_length = seq_length
+		self.embedding_dim = embedding_dim
+		
 		self.noise_configs = {
 			'noise':2,
 			'noise_type':noise_type,
