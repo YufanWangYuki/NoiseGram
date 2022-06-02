@@ -244,14 +244,15 @@ class Trainer(object):
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
 				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
-				# pdb.set_trace()
+
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
-					# np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
-					# incre_noise = torch.tensor(incre_noise).to(device=self.device)
-					# self.noise.requires_grad = True
 					self.noise += incre_noise
-				# pdb.set_trace()
+				pdb.set_trace
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				loss = outputs.loss
+				loss /= n_minibatch
+				pdb.set_trace()
 
 			# Backward propagation: accumulate gradient
 			loss.backward()
