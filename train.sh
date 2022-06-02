@@ -71,7 +71,7 @@ dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
 dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
 # num_epochs=2
 minibatch_split=1
-batch_size=16
+batch_size=4
 checkpoint_every=100
 # print_every=2
 
