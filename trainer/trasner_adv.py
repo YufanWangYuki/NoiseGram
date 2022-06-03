@@ -278,11 +278,11 @@ class Trainer(object):
 					if 'single' in noise_configs['noise_type']:
 						# pdb.set_trace()
 						self.noise = incre_noise.clone()
-						self.noise.requires_grad = True
+						c.requires_grad = True
 					else:
 						self.noise += incre_noise
 				pdb.set_trace()
-				model.eval()
+				# model.eval()
 				preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 				self.final_pred.append(preds)
 				if noise_configs['noise_type'] == 'Adversarial-single':
