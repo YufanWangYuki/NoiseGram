@@ -94,7 +94,7 @@ def main():
             # if count_edits(x, y) > 0:
             #     pdb.set_trace()
             # print(line)
-            print(total_count)
+            print('Temp Count: {0}, Idx: {1}'.format(total_count,line))
         except StopIteration:
             break   
     print(total_count)
