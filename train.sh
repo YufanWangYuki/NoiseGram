@@ -21,10 +21,10 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 # ===================================================================================
 # ------------------------ DIR --------------------------
 orig_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written
-# train_path_src=$orig_path/lib/gec-train-bpe-written/prep/train.src
-# train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/train.tgt
-# dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
-# dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+train_path_src=$orig_path/lib/gec-train-bpe-written/prep/train.src
+train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/train.tgt
+dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
 
 max_src_len=64
 max_tgt_len=64
@@ -61,29 +61,27 @@ print_every=1000
 
 grab_memory='False'
 loaddir='None'
-savedir=models/v002/fine_tune
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
-train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
-train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
-dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
-dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
-# num_epochs=2
-minibatch_split=1
-batch_size=4
-checkpoint_every=100
+# train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+# train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+# dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
+# dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
+# # num_epochs=2
+# minibatch_split=1
+# batch_size=4
+# checkpoint_every=100
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
-ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
+ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=mul
 mean=1.0
-weight=0.0
-savedir=models/v002/adv_fine/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
+weight=0.1
+savedir=models/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
-# for weight in 0.001 0.01 0.1 1
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--train_path_src $train_path_src \
 	--train_path_tgt $train_path_tgt \
@@ -140,6 +138,8 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -o 'LOGs/train_adv_mul_0.2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
 # Gau mul 1.5
+# qsub -cwd -j yes -o 'LOGs/train_gau_mul_1.5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+
 # qsub -cwd -j yes -o 'LOGs/train_gau_mul_1.5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
 # Pure Adv
