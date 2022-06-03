@@ -275,15 +275,8 @@ class Trainer(object):
 
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
-					if 'single' in noise_configs['noise_type']:
-						self.noise = incre_noise.clone()
-						self.noise.requires_grad = True
-						print("yes")
-					else:
-						self.noise += incre_noise
-				pdb.set_trace()
-				# model.eval()
-				preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
+					self.noise += incre_noise
+					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 				self.final_pred.append(preds)
 				if noise_configs['noise_type'] == 'Adversarial-single':
 					self.noise = np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
