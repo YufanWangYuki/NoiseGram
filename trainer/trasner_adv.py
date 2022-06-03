@@ -285,7 +285,7 @@ class Trainer(object):
 					self.noise = np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])*start_value
 				self.noise = torch.tensor(self.noise).to(device=self.device)
 				self.noise.requires_grad = True
-				pdb.set_trace()
+				# pdb.set_trace()
 				
 			else:
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
