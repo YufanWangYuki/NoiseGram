@@ -265,7 +265,6 @@ class Trainer(object):
 			# Forward propagation
 			if "dversarial" in noise_configs['noise_type']:
 				model.eval()
-				
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
 				loss /= n_minibatch
@@ -282,10 +281,9 @@ class Trainer(object):
 						self.noise.requires_grad = True
 					else:
 						self.noise += incre_noise
-				
-				
-				with torch.no_grad():
-					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
+				pdb.set_trace()
+				model.eval()
+				preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
 				self.final_pred.append(preds)
 				if noise_configs['noise_type'] == 'Adversarial-single':
 					self.noise = np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
