@@ -21,13 +21,13 @@ base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-te
 # base_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/orig/translate.txt
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/eval-clc-test-beam-1/combine_Gau_1.5/orig/translate.txt
-output_file=results/adv/count_trans.txt
+output_file=results/adv/count_trans_single.txt
 
-for ntype in Gaussian-adversarial Adversarial
-do
-# for ntype in Gaussian-adversarial-single Adversarial-single
+# for ntype in Gaussian-adversarial Adversarial
 # do
-for weight in 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
+for ntype in Gaussian-adversarial-single Adversarial-single
+do
+for weight in 0.0 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
 do
 # input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
 # input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/2_Gaussian_mul_1.0_${weight}/translate.txt
