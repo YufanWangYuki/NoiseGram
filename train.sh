@@ -140,7 +140,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # Gau mul 1.5
 # qsub -cwd -j yes -o 'LOGs/train_gau_mul_1.5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
-# qsub -cwd -j yes -o 'LOGs/train_gau_mul_1.5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/train_gau_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
 # Pure Adv
 # qsub -cwd -j yes -o 'LOGs/train_pure_adv_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
