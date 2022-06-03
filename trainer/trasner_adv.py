@@ -107,6 +107,8 @@ class Trainer(object):
 		elif noise_type == 'Gaussian-adversarial':
 			start_value = np.random.normal(1, weight)
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])*start_value
+		elif noise_type == 'Gaussian-adversarial-diff':
+			self.noise = np.random.normal(1, weight, [self.minibatch_size, seq_length, embedding_dim])
 		# pdb.set_trace()
 		self.noise = torch.tensor(self.noise).to(device=self.device)
 		self.noise.requires_grad = True
@@ -297,7 +299,7 @@ class Trainer(object):
 					self.noise = np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])*start_value
 				self.noise = torch.tensor(self.noise).to(device=self.device)
 				self.noise.requires_grad = True
-				# pdb.set_trace()
+				pdb.set_trace()
 				# for idx in range(len(orig_preds)):
 				# 	print(self.count_edits(orig_preds[idx],preds[idx]))
 				
