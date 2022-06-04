@@ -238,8 +238,8 @@ class Trainer(object):
 
 			# Forward propagation
 			if "dversarial" in noise_configs['noise_type']:
-				with torch.no_grad():
-					outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				model.eval()
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
 				loss /= n_minibatch
 				paras_old = list(model.model.parameters())
@@ -247,11 +247,11 @@ class Trainer(object):
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
 				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
-
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 					self.noise += incre_noise
 				
+				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				paras_mid = list(model.model.parameters())
 				
