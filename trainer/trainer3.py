@@ -240,8 +240,8 @@ class Trainer(object):
 			if "dversarial" in noise_configs['noise_type']:
 				with torch.no_grad():
 					outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-					loss = outputs.loss
-					loss /= n_minibatch
+				loss = outputs.loss
+				loss /= n_minibatch
 				paras_old = list(model.model.parameters())
 				pdb.set_trace()
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
