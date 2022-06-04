@@ -70,6 +70,8 @@ class Trainer(object):
 		self.max_count_no_improve = max_count_no_improve
 		self.max_count_num_rollback = max_count_num_rollback
 		self.keep_num = keep_num
+		self.max_tgt_len = 100
+		self.mode = 'beam-1'
 
 		if not os.path.isabs(expt_dir):
 			expt_dir = os.path.join(os.getcwd(), expt_dir)
@@ -276,7 +278,7 @@ class Trainer(object):
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 					self.noise += incre_noise
-					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, noise_config=noise_configs, grad_noise=self.noise)
+					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, max_length=self.max_tgt_len, mode=self.mode, noise_config=noise_configs, grad_noise=self.noise)
 				self.final_pred.append(preds)
 				if noise_configs['noise_type'] == 'Adversarial-single':
 					self.noise = np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
