@@ -254,9 +254,10 @@ class Trainer(object):
 				
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				paras_mid = list(model.model.parameters())
-				for num,para in enumerate(paras_mid):
-					if para != paras_old[num]:
-						print("Diff!!!!")
+				# for num,para in enumerate(paras_mid):
+				# 	if para != paras_old[num]:
+				# 		print("Diff!!!!")
+				
 				pdb.set_trace()
 				loss = outputs.loss
 				loss /= n_minibatch
