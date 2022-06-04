@@ -82,49 +82,7 @@ weight=0.1
 savedir=models/v001/eval-clc-test-beam-1/adv_updated/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
-# for ntype in Gaussian-adversarial Adversarial
-# do
-# for weight in 0.0 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
-# do
-# savedir=models/v001/eval-clc-test-beam-1/adv_updated/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
-# 	--train_path_src $train_path_src \
-# 	--train_path_tgt $train_path_tgt \
-# 	--dev_path_src $dev_path_src \
-# 	--dev_path_tgt $dev_path_tgt \
-# 	--max_src_len $max_src_len \
-# 	--max_tgt_len $max_tgt_len \
-# 	\
-# 	--lr_peak $lr_peak \
-# 	--lr_init $lr_init \
-# 	--lr_warmup_steps $lr_warmup_steps \
-# 	\
-# 	--batch_size $batch_size \
-# 	--minibatch_split $minibatch_split \
-# 	--num_epochs $num_epochs \
-# 	\
-# 	--load $loaddir \
-# 	--load_mode $load_mode \
-# 	--save $savedir \
-# 	\
-# 	--random_seed $random_seed \
-# 	--max_grad_norm 1.0 \
-# 	--checkpoint_every $checkpoint_every \
-# 	--print_every $print_every \
-# 	--max_count_no_improve $max_count_no_improve \
-# 	--max_count_num_rollback $max_count_num_rollback \
-# 	--keep_num $keep_num \
-# 	--grab_memory $grab_memory \
-# 	--use_gpu True \
-# 	--gpu_id $CUDA_VISIBLE_DEVICES \
-# 	--ntype $ntype \
-# 	--nway $nway \
-# 	--mean $mean \
-# 	--weight $weight
-# done
-# done
-
-for ntype in Gaussian-adversarial-single Adversarial-single
+for ntype in Gaussian-adversarial Adversarial
 do
 for weight in 0.0 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
 do
@@ -165,6 +123,48 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
 	--weight $weight
 done
 done
+
+# for ntype in Gaussian-adversarial-single Adversarial-single
+# do
+# for weight in 0.0 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
+# do
+# savedir=models/v001/eval-clc-test-beam-1/adv_updated/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
+# 	--train_path_src $train_path_src \
+# 	--train_path_tgt $train_path_tgt \
+# 	--dev_path_src $dev_path_src \
+# 	--dev_path_tgt $dev_path_tgt \
+# 	--max_src_len $max_src_len \
+# 	--max_tgt_len $max_tgt_len \
+# 	\
+# 	--lr_peak $lr_peak \
+# 	--lr_init $lr_init \
+# 	--lr_warmup_steps $lr_warmup_steps \
+# 	\
+# 	--batch_size $batch_size \
+# 	--minibatch_split $minibatch_split \
+# 	--num_epochs $num_epochs \
+# 	\
+# 	--load $loaddir \
+# 	--load_mode $load_mode \
+# 	--save $savedir \
+# 	\
+# 	--random_seed $random_seed \
+# 	--max_grad_norm 1.0 \
+# 	--checkpoint_every $checkpoint_every \
+# 	--print_every $print_every \
+# 	--max_count_no_improve $max_count_no_improve \
+# 	--max_count_num_rollback $max_count_num_rollback \
+# 	--keep_num $keep_num \
+# 	--grab_memory $grab_memory \
+# 	--use_gpu True \
+# 	--gpu_id $CUDA_VISIBLE_DEVICES \
+# 	--ntype $ntype \
+# 	--nway $nway \
+# 	--mean $mean \
+# 	--weight $weight
+# done
+# done
 
 # qsub -cwd -j yes -o 'LOGs/adv_trans_2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/adv_single_2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
