@@ -64,18 +64,18 @@ loaddir='None'
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
-# train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
-# train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
-# dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
-# dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
+train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
+dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
 # # num_epochs=2
-# minibatch_split=1
-# batch_size=4
+minibatch_split=1
+batch_size=4
 # checkpoint_every=100
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
-ntype=Gaussian #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
+ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=mul
 mean=1.0
 weight=0.1
