@@ -26,7 +26,7 @@ output_file=results/adv/count_adv_trans0.txt
 base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/adv_updated/2_Gaussian-adversarial_mul_0.0/translate.txt
 # for ntype in Gaussian-adversarial Adversarial
 # do
-for ntype in Gaussian-adversarial-single Adversarial-single
+for ntype in Gaussian-adversarial Adversarial
 do
 for weight in 0.0 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
 do
