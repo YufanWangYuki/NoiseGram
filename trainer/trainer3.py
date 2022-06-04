@@ -243,9 +243,10 @@ class Trainer(object):
 				loss = outputs.loss
 				loss /= n_minibatch
 				
+				# ------------------debug------------------
 				old_loss = loss
 				paras_old = list(model.model.parameters())
-				pdb.set_trace()
+				# ------------------debug------------------
 				
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
@@ -254,18 +255,22 @@ class Trainer(object):
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 					self.noise += incre_noise
 				
+				# ------------------debug------------------
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
 				loss /= n_minibatch
 				mid_loss = loss
 				paras_old = list(model.model.parameters())
 				pdb.set_trace()
+				# ------------------debug------------------
 
 				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+
+				# ------------------debug------------------
 				paras_mid = list(model.model.parameters())
-				
-				# pdb.set_trace()
+				# ------------------debug------------------
+
 				loss = outputs.loss
 				loss /= n_minibatch
 
@@ -283,9 +288,10 @@ class Trainer(object):
 		# update weights
 		self.optimizer.step()
 		model.zero_grad()
+		
+		# ------------------debug------------------
 		paras_new = list(model.model.parameters())
-		pdb.set_trace()
-		# pdb.set_trace()
+		# ------------------debug------------------
 
 		return resloss
 

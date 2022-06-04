@@ -75,8 +75,7 @@ batch_size=4
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
-# ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
-ntype=Gaussia #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
+ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=mul
 mean=1.0
 weight=0.1
