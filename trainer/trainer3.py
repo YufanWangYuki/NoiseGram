@@ -257,24 +257,19 @@ class Trainer(object):
 				loss = outputs.loss
 				loss /= n_minibatch
 				mid_loss = loss
-				paras_old = list(model.model.parameters())
+				paras_mid = list(model.model.parameters())
 				# ------------------debug------------------
 
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
+					old_noise = self.noise.clone()
 					self.noise += incre_noise
 				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-
-				# ------------------debug------------------
-				paras_mid = list(model.model.parameters())
-				# ------------------debug------------------
-
 				loss = outputs.loss
 				loss /= n_minibatch
 
-				if old_loss == mid_loss and old_loss != loss:
-					print("yes")
+				
 			else:
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
@@ -289,9 +284,14 @@ class Trainer(object):
 		model.zero_grad()
 
 		# ------------------debug------------------
-		paras_new = list(model.model.parameters())
+		outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, old_noise)
+		new_loss = outputs.loss
+		new_loss /= n_minibatch
 		# ------------------debug------------------
 
+		if old_loss == mid_loss and old_loss != new_loss:
+			print("yes")
+			pdb.set_trace()
 		return resloss
 
 
