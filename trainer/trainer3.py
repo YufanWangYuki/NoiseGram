@@ -238,10 +238,10 @@ class Trainer(object):
 
 			# Forward propagation
 			if "dversarial" in noise_configs['noise_type']:
-				model.eval()
-				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-				loss = outputs.loss
-				loss /= n_minibatch
+				with torch.no_grad():
+					outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+					loss = outputs.loss
+					loss /= n_minibatch
 				paras_old = list(model.model.parameters())
 				pdb.set_trace()
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
@@ -254,9 +254,6 @@ class Trainer(object):
 				
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				paras_mid = list(model.model.parameters())
-				# for num,para in enumerate(paras_mid):
-				# 	if para != paras_old[num]:
-				# 		print("Diff!!!!")
 				
 				pdb.set_trace()
 				loss = outputs.loss
