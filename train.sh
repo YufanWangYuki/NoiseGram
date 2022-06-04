@@ -50,8 +50,8 @@ max_count_num_rollback=0 # 0:no roll back no lr reduce
 keep_num=5
 
 # --------------
-# batch_size=256
-# minibatch_split=2 #8 for million
+batch_size=256
+minibatch_split=2 #8 for million
 # minibatch_split=8 #8 for million
 # minibatch_split=16 #8 for million
 num_epochs=100
