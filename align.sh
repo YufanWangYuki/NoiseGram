@@ -117,6 +117,7 @@ do
     checkpoint=combine
     # Gaussian-adversarial_mul_1.0_0.001_16_1_002.pred
     pred=$preddir/${exp}.pred
+    mkdir $outdir/${exp}
     output=$outdir/${exp}/${checkpoint}_seed_${seed}
     echo $pred
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
