@@ -51,8 +51,8 @@ keep_num=5
 
 # --------------
 batch_size=256
-# minibatch_split=2 #8 for million
-minibatch_split=8 #8 for million
+minibatch_split=2 #8 for million
+# minibatch_split=8 #8 for million
 # minibatch_split=16 #8 for million
 num_epochs=100
 
@@ -155,5 +155,5 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # Gau Adv mul 0.1 0.01
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.01.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train0.01.sh 1 1
-# qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.1_split8.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.1_split8.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.01.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train0.01.sh 1 1
