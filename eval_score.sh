@@ -17,8 +17,8 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/"
 
 # ===================================================================================
-preddir=prediction_files/for_errant
-outdir=prediction_files/m2
+# preddir=prediction_files/for_errant
+# outdir=prediction_files/m2
 seed=1
 
 # exp=Adversarial_mul_1.0_0.1_2_001
@@ -80,9 +80,9 @@ seed=1
 #     echo ${exp}_${checkpoint}
 # done
 
-exp=Gaussian_mul_1.0_1.5_256_2_002
-preddir=prediction_files/for_errant/$exp
-outdir=prediction_files/m2/$exp
+# exp=Gaussian_mul_1.0_1.5_256_2_002
+# preddir=prediction_files/for_errant/$exp
+# outdir=prediction_files/m2/$exp
 # for checkpoint in combine
 # do 
 #     input=$preddir/${checkpoint}_seed_${seed}.inc
@@ -108,17 +108,19 @@ outdir=prediction_files/m2/$exp
 #     echo ${exp}_${checkpoint}
 # done
 
-preddir=prediction_files/for_errant
+
 for exp in Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
 do
+    preddir=prediction_files/for_errant/${exp}
+    checkpoint=combine
     input=$preddir/${checkpoint}_seed_${seed}.inc
     pred=$preddir/${checkpoint}_seed_${seed}.pred
     corr=$preddir/${checkpoint}_seed_${seed}.corr
     errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
     errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
 
-    echo ${exp}_${checkpoint} >> results/Fscore/${exp}_Fscore.txt
-    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/${exp}_Fscore.txt
+    echo ${exp}_${checkpoint} >> results/Fscore/adv_fine_Fscore.txt
+    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/adv_fine_Fscore.txt
     echo ${exp}_${checkpoint}
 done
 
