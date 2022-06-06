@@ -82,8 +82,8 @@ seed=1
 #         --BASE $output \
 #         --seed $seed
 # done
-preddir=prediction_files/Gaussian_mul_1.0_1.5_256_2_002/orig
-exp=Gaussian_mul_1.0_1.5_256_2_002
+# preddir=prediction_files/Gaussian_mul_1.0_1.5_256_2_002/orig
+# exp=Gaussian_mul_1.0_1.5_256_2_002
 # for checkpoint in combine
 # do 
 #     # Gaussian_mul_1.0_1.5_256_2_002_2022_05_27_14_07_55_seed_1.pred
@@ -98,12 +98,27 @@ exp=Gaussian_mul_1.0_1.5_256_2_002
 #         --seed $seed
 # done
 
-for checkpoint in 2022_05_27_14_07_55 2022_05_28_02_45_55 2022_05_28_06_48_16 2022_05_29_00_44_45 2022_05_29_22_26_15 combine
-do 
-    # Gaussian_mul_1.0_1.5_256_2_002_2022_05_27_14_07_55_seed_1.pred
-    pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
+# for checkpoint in 2022_05_27_14_07_55 2022_05_28_02_45_55 2022_05_28_06_48_16 2022_05_29_00_44_45 2022_05_29_22_26_15 combine
+# do 
+#     # Gaussian_mul_1.0_1.5_256_2_002_2022_05_27_14_07_55_seed_1.pred
+#     pred=$preddir/${exp}_${checkpoint}_seed_${seed}.pred
+#     output=$outdir/${exp}/${checkpoint}_seed_${seed}
+#     echo $pred
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
+#         --INC $input \
+#         --PRED $pred \
+#         --CORR $corr \
+#         --BASE $output \
+#         --seed $seed
+# done
+preddir=prediction_files/adv_fine
+for exp in Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+do
+    checkpoint=combine
+    # Gaussian-adversarial_mul_1.0_0.001_16_1_002.pred
+    pred=$preddir/${exp}.pred
     output=$outdir/${exp}/${checkpoint}_seed_${seed}
-    echo pred
+    echo $pred
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
         --INC $input \
         --PRED $pred \
