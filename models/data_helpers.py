@@ -4,7 +4,7 @@ import itertools
 from collections import Counter
 import pdb
 
-def c(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weight=0.0, replace_map = None, grad_noise=None):
+def add_noise(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weight=0.0, replace_map = None, grad_noise=None):
     seq_length = len(x[0])
     batch_size = len(x)
     noise = np.ones([batch_size, seq_length, embedding_dim])
