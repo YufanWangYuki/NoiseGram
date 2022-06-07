@@ -5,6 +5,7 @@ import sys
 sys.path.append(r"/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/")
 
 import torch
+torch.cuda.empty_cache()
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable

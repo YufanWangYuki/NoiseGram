@@ -1,4 +1,5 @@
 import torch
+torch.cuda.empty_cache()
 import random
 import time
 import os
