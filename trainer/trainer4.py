@@ -245,7 +245,7 @@ class Trainer(object):
 				# old_loss = loss
 				# paras_old = list(model.model.parameters())
 				# # ------------------debug------------------
-
+				print(bidx)
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				if bidx == 0:
 					res_sum = torch.sum(grad)
@@ -266,6 +266,7 @@ class Trainer(object):
 				incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 				self.noise += incre_noise
 			torch.cuda.empty_cache()	
+			print("updating noise")
 
 		for bidx in range(n_minibatch):
 			# load data
