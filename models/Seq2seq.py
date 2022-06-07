@@ -76,6 +76,7 @@ class Seq2seq(nn.Module):
 			if 'dversarial' in noise_config['noise_type']:
 				for i in range(len(inputs_embeds)):
 					new_embeds[i] = inputs_embeds[i] * noise[0,:len(inputs_embeds[0]),:]
+				pdb.set_trace()
 			else:
 				new_embeds = inputs_embeds * noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
 		elif noise_config['noise_way'] == 'add':

@@ -23,7 +23,6 @@ def add_noise(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weigh
         pass
     
     if random_type in ['Adversarial','Gaussian-adversarial','Adversarial-single','Gaussian-adversarial-single']:
-        pdb.set_trace()
         if len(grad_noise) > 0:
             # print("Matrix")
             return grad_noise

@@ -248,7 +248,7 @@ class Trainer(object):
 				# old_loss = loss
 				# paras_old = list(model.model.parameters())
 				# # ------------------debug------------------
-				
+				pdb.set_trace()
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
 				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
