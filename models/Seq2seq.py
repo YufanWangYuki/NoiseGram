@@ -21,6 +21,7 @@ import pdb
 import data_helpers
 
 from translate_gramformer import correct
+torch.cuda.empty_cache()
 
 class Seq2seq(nn.Module):
 

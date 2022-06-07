@@ -1,5 +1,4 @@
 import torch
-torch.cuda.empty_cache()
 import torch.utils.tensorboard
 import random
 import time
@@ -16,6 +15,7 @@ from modules.checkpoint import Checkpoint
 from models.Seq2seq import Seq2seq
 
 logging.basicConfig(level=logging.DEBUG)
+torch.cuda.empty_cache()
 # logging.basicConfig(level=logging.INFO)
 
 import pdb

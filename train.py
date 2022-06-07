@@ -1,5 +1,4 @@
 import torch
-torch.cuda.empty_cache()
 import random
 import time
 import os
@@ -164,4 +163,5 @@ def main():
 
 
 if __name__ == '__main__':
+	torch.cuda.empty_cache()
 	main()

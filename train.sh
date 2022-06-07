@@ -80,7 +80,7 @@ ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversari
 nway=mul
 mean=1.0
 weight=0.1
-savedir=models/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
+savedir=models/v002/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
@@ -155,6 +155,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # Gau Adv mul 0.1 0.01
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.1_split4.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.01.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train0.01.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.1_split8.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.01_split16.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train0.01.sh 1 1
