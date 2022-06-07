@@ -111,14 +111,31 @@ seed=1
 #         --BASE $output \
 #         --seed $seed
 # done
-preddir=prediction_files/adv_fine
-for exp in Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+# preddir=prediction_files/adv_fine
+# for exp in Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+# do
+#     checkpoint=combine
+#     # Gaussian-adversarial_mul_1.0_0.001_16_1_002.pred
+#     pred=$preddir/${exp}.pred
+#     mkdir $outdir/${exp}
+#     output=$outdir/${exp}/${checkpoint}_seed_${seed}
+#     echo $pred
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
+#         --INC $input \
+#         --PRED $pred \
+#         --CORR $corr \
+#         --BASE $output \
+#         --seed $seed
+# done
+
+preddir=prediction_files/adv_old
+for exp in Gaussian-adversarial_mul_1.0_0.1_256_2_002
 do
     checkpoint=combine
     # Gaussian-adversarial_mul_1.0_0.001_16_1_002.pred
-    pred=$preddir/${exp}.pred
-    mkdir $outdir/${exp}
-    output=$outdir/${exp}/${checkpoint}_seed_${seed}
+    pred=$preddir/${exp}_combine_seed_1.pred
+    mkdir $outdir/${exp}_adv_old
+    output=$outdir/${exp}_adv_old/${checkpoint}_seed_${seed}
     echo $pred
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
         --INC $input \
