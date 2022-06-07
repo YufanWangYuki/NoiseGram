@@ -224,21 +224,17 @@ class Trainer(object):
 
 		# loss
 		resloss = 0
-		# if noise_configs['noise_type'] == 'Gaussian-adversarial':
-		# 	# pdb.set_trace()
-		for bidx in range(n_minibatch):
-			# debug
-			# import pdb; pdb.set_trace()
 
-			# load data
-			i_start = bidx * self.minibatch_size
-			i_end = min(i_start + self.minibatch_size, batch_size)
-			src_ids = batch_src_ids[i_start:i_end]
-			src_att_mask = batch_src_att_mask[i_start:i_end]
-			tgt_ids = batch_tgt_ids[i_start:i_end]
+		if "dversarial" in noise_configs['noise_type']:
+			for bidx in range(n_minibatch):
+				# load data
+				i_start = bidx * self.minibatch_size
+				i_end = min(i_start + self.minibatch_size, batch_size)
+				src_ids = batch_src_ids[i_start:i_end]
+				src_att_mask = batch_src_att_mask[i_start:i_end]
+				tgt_ids = batch_tgt_ids[i_start:i_end]
 
-			# Forward propagation
-			if "dversarial" in noise_configs['noise_type']:
+				# Forward propagation
 				model.eval()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
@@ -248,11 +244,13 @@ class Trainer(object):
 				# old_loss = loss
 				# paras_old = list(model.model.parameters())
 				# # ------------------debug------------------
-				
+
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
+				if bidx == 0:
+					res_grad = grad.clone()
+				else:
+					res_grad = torch.cat((res_grad,grad),0)
 				pdb.set_trace()
-				norm_grad = grad.clone()
-				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
 
 				# # ------------------debug------------------
 				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
@@ -263,21 +261,25 @@ class Trainer(object):
 				# # ------------------debug------------------
 				# pdb.set_trace()
 
-				with torch.no_grad():
-					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
-					# old_noise = self.noise.clone()
-					self.noise += incre_noise
-				torch.cuda.empty_cache()
-				model.train()
-				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-				loss = outputs.loss
-				loss /= n_minibatch
-				# print("second pred")
+			with torch.no_grad():
+				norm_grad = torch.sum(res_grad)/(torch.norm(res_grad) + 1e-10)
+				incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
+				self.noise += incre_noise
+			torch.cuda.empty_cache()	
 
-			else:
-				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-				loss = outputs.loss
-				loss /= n_minibatch
+		for bidx in range(n_minibatch):
+			# load data
+			i_start = bidx * self.minibatch_size
+			i_end = min(i_start + self.minibatch_size, batch_size)
+			src_ids = batch_src_ids[i_start:i_end]
+			src_att_mask = batch_src_att_mask[i_start:i_end]
+			tgt_ids = batch_tgt_ids[i_start:i_end]
+
+			model.train()
+			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+			pdb.set_trace()
+			loss = outputs.loss
+			loss /= n_minibatch
 
 			# Backward propagation: accumulate gradient
 			loss.backward()
