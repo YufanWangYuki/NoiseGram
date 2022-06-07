@@ -4,7 +4,7 @@ import itertools
 from collections import Counter
 import pdb
 
-def add_noise(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weight=0.0, replace_map = None, grad_noise=None):
+def c(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weight=0.0, replace_map = None, grad_noise=None):
     seq_length = len(x[0])
     batch_size = len(x)
     noise = np.ones([batch_size, seq_length, embedding_dim])
@@ -24,7 +24,7 @@ def add_noise(x, embedding_dim, random_type=None, word_keep=1.0, mean=1.0, weigh
     
     if random_type in ['Adversarial','Gaussian-adversarial','Adversarial-single','Gaussian-adversarial-single']:
         pdb.set_trace()
-        if not grad_noise:
+        if len(grad_noise) > 0:
             # print("Matrix")
             return grad_noise
         else:
