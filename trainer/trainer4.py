@@ -248,11 +248,12 @@ class Trainer(object):
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				if bidx == 0:
 					res_sum = torch.sum(grad)
-					res_norm = torch.norm(grad)
+					res_norm = [torch.norm(grad)]
 				else:
 					res_sum += torch.sum(grad)
 					pdb.set_trace()
-					res_norm = torch.stack((res_norm,torch.norm(grad)),0)
+					# res_norm = torch.stack((res_norm,torch.norm(grad)),0)
+					res_norm = torch.cat((res_norm, [torch.norm(grad)]),0)
 
 				# # ------------------debug------------------
 				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
