@@ -250,7 +250,7 @@ class Trainer(object):
 					res_grad = grad.clone()
 				else:
 					res_grad = torch.cat((res_grad,grad),0)
-				pdb.set_trace()
+				# pdb.set_trace()
 
 				# # ------------------debug------------------
 				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
@@ -277,7 +277,7 @@ class Trainer(object):
 
 			model.train()
 			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-			pdb.set_trace()
+			# pdb.set_trace()
 			loss = outputs.loss
 			loss /= n_minibatch
 
