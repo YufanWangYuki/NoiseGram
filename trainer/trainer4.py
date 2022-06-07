@@ -226,6 +226,7 @@ class Trainer(object):
 		resloss = 0
 
 		if "dversarial" in noise_configs['noise_type']:
+			res_norm = torch.ones(1,n_minibatch)
 			for bidx in range(n_minibatch):
 				# load data
 				i_start = bidx * self.minibatch_size
@@ -248,12 +249,9 @@ class Trainer(object):
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				if bidx == 0:
 					res_sum = torch.sum(grad)
-					res_norm = [torch.norm(grad)]
 				else:
 					res_sum += torch.sum(grad)
-					pdb.set_trace()
-					# res_norm = torch.stack((res_norm,torch.norm(grad)),0)
-					res_norm = torch.cat((res_norm, [torch.norm(grad)]),0)
+				res_norm[bidx] = torch.norm(grad)
 
 				# # ------------------debug------------------
 				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
