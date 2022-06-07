@@ -252,7 +252,6 @@ class Trainer(object):
 				else:
 					res_sum += torch.sum(grad)
 					res_norm = torch.stack((res_norm,torch.norm(grad)),0)
-				pdb.set_trace()
 
 				# # ------------------debug------------------
 				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
@@ -265,7 +264,6 @@ class Trainer(object):
 
 			with torch.no_grad():
 				norm_grad = res_sum/(torch.norm(res_norm) + 1e-10)
-				pdb.set_trace()
 				incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 				self.noise += incre_noise
 			torch.cuda.empty_cache()	
