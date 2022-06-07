@@ -17,7 +17,7 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 
 # ===================================================================================
 input=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc 
-outdir=prediction_files/v002
+outdir=prediction_files
 seed=1
 
 # ------ [Generation for reranker eval set] ----------
