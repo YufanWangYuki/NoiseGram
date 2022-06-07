@@ -260,7 +260,7 @@ class Trainer(object):
 				# mid_loss = loss
 				# paras_mid = list(model.model.parameters())
 				# # ------------------debug------------------
-				# pdb.set_trace()
+				pdb.set_trace()
 
 			with torch.no_grad():
 				norm_grad = res_sum/(torch.norm(res_norm) + 1e-10)
