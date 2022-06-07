@@ -251,6 +251,7 @@ class Trainer(object):
 					res_norm = torch.norm(grad)
 				else:
 					res_sum += torch.sum(grad)
+					pdb.set_trace()
 					res_norm = torch.stack((res_norm,torch.norm(grad)),0)
 
 				# # ------------------debug------------------
