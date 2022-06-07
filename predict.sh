@@ -17,7 +17,7 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 
 # ===================================================================================
 input=/home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc 
-outdir=prediction_files/v002/
+outdir=prediction_files/v002
 seed=1
 
 # ------ [Generation for reranker eval set] ----------
@@ -46,18 +46,18 @@ do
         --seed $seed \
         --use_attack 0
 done
-# exp=Gaussian-adversarial_mul_1.0_0.1_256_2_002
-# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoints
-# for checkpoint in 2022_05_25_22_26_25 2022_05_26_04_45_51 2022_05_26_07_56_00 2022_05_26_17_25_33 
-# do
-#     output=$outdir/adv_old/${exp}_${checkpoint}_seed_${seed}
-#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 0
-# done
+exp=Gaussian-adversarial_mul_1.0_0.1_256_2_002
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoints
+for checkpoint in 2022_05_25_22_26_25 2022_05_26_04_45_51 2022_05_26_07_56_00 2022_05_26_17_25_33 
+do
+    output=$outdir/adv_old/${exp}_${checkpoint}_seed_${seed}
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 0
+done
 
 # model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoints-combine
 # checkpoint=combine
