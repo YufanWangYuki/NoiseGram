@@ -97,13 +97,14 @@ class Trainer(object):
 			'noise_way':noise_way
 		}
 
-		self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
+		self.noise = None
 
 		if noise_type == 'Adversarial':
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
 		elif noise_type == 'Gaussian-adversarial':
-			start_value = np.random.normal(1, weight)
-			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])*start_value
+			self.start_value = np.random.normal(1, weight)
+			# self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])*self.start_value
+			self.noise = np.ones([1, seq_length, embedding_dim])*self.start_value
 		# pdb.set_trace()
 		self.noise = torch.tensor(self.noise).to(device=self.device)
 		self.noise.requires_grad = True
@@ -261,9 +262,10 @@ class Trainer(object):
 				# # ------------------debug------------------
 
 				with torch.no_grad():
-					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
-					# old_noise = self.noise.clone()
+					# incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
+					incre_noise = self.weight * norm_grad * torch.full([1, self.seq_length, self.embedding_dim],1).to(device=self.device)
 					self.noise += incre_noise
+					pdb.set_trace()
 				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss

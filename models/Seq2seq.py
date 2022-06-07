@@ -71,7 +71,13 @@ class Seq2seq(nn.Module):
 		else:
 			noise = noise.float()
 		if noise_config['noise_way'] == 'mul':
-			new_embeds = inputs_embeds * noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
+			new_embeds = inputs_embeds
+			print("location forward_train")
+			if 'dversarial' in noise_config['noise_type']:
+				for i in range(len(inputs_embeds)):
+					new_embeds[i] = inputs_embeds[i] * noise[0,:len(inputs_embeds[0]),:]
+			else:
+				new_embeds = inputs_embeds * noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
 		elif noise_config['noise_way'] == 'add':
 			new_embeds = inputs_embeds + noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
 		
@@ -81,7 +87,7 @@ class Seq2seq(nn.Module):
 			labels=tgt_ids,
 			inputs_embeds=new_embeds
 		)
-
+		print("location outputs")
 		return outputs
 
 
