@@ -241,10 +241,10 @@ class Trainer(object):
 				loss = outputs.loss
 				loss /= n_minibatch
 				
-				# # ------------------debug------------------
-				# old_loss = loss
-				# paras_old = list(model.model.parameters())
-				# # ------------------debug------------------
+				# ------------------debug------------------
+				old_loss = loss
+				paras_old = list(model.model.parameters())
+				# ------------------debug------------------
 				print(bidx)
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				if bidx == 0:
@@ -252,14 +252,14 @@ class Trainer(object):
 				else:
 					res_sum += torch.sum(grad)
 				res_norm[bidx] = torch.norm(grad)
-
-				# # ------------------debug------------------
-				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-				# loss = outputs.loss
-				# loss /= n_minibatch
-				# mid_loss = loss
-				# paras_mid = list(model.model.parameters())
-				# # ------------------debug------------------
+				loss.backward()
+				# ------------------debug------------------
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				loss = outputs.loss
+				loss /= n_minibatch
+				mid_loss = loss
+				# ------------------debug------------------
+				pdb.set_trace()
 
 			with torch.no_grad():
 				norm_grad = res_sum/(torch.norm(res_norm) + 1e-10)
