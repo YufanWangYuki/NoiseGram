@@ -244,8 +244,8 @@ class Trainer(object):
 				loss /= n_minibatch
 				
 				# ------------------debug------------------
-				old_loss = loss
-				print(loss)
+				# old_loss = loss
+				# print(loss)
 				# paras_old = list(model.model.parameters())
 				# ------------------debug------------------
 				# print(bidx)
@@ -257,11 +257,11 @@ class Trainer(object):
 				res_norm[bidx] = torch.norm(grad)
 				loss.backward()
 				# ------------------debug------------------
-				outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, self.noise)
-				loss = outputs.loss
-				loss /= n_minibatch
-				mid_loss = loss
-				print(loss)
+				# outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, self.noise)
+				# loss = outputs.loss
+				# loss /= n_minibatch
+				# mid_loss = loss
+				# print(loss)
 				# ------------------debug------------------
 				# pdb.set_trace()
 
@@ -296,13 +296,13 @@ class Trainer(object):
 		model.zero_grad()
 
 		# # ------------------debug------------------
-		outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, old_noise)
-		new_loss = outputs.loss
-		new_loss /= n_minibatch
-		pdb.set_trace()
-		if old_loss == mid_loss and old_loss != new_loss:
-			print("yes")
-			pdb.set_trace()
+		# outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, old_noise)
+		# new_loss = outputs.loss
+		# new_loss /= n_minibatch
+		# pdb.set_trace()
+		# if old_loss == mid_loss and old_loss != new_loss:
+		# 	print("yes")
+		# 	pdb.set_trace()
 		# # ------------------debug------------------
 
 		
