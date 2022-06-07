@@ -109,11 +109,28 @@ seed=1
 # done
 
 
-for exp in Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+# for exp in Gaussian-adversarial_mul_1.0_0.01_16_1_002 Gaussian-adversarial_mul_1.0_1_16_1_002 Gaussian-adversarial_mul_1.0_0.001_16_1_002 Gaussian-adversarial_mul_1.0_0.1_16_1_002
+# do
+#     preddir=prediction_files/for_errant/${exp}
+#     checkpoint=combine
+#     outdir=prediction_files/m2/adv_fine
+#     mkdir $outdir
+#     input=$preddir/${checkpoint}_seed_${seed}.inc
+#     pred=$preddir/${checkpoint}_seed_${seed}.pred
+#     corr=$preddir/${checkpoint}_seed_${seed}.corr
+#     errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
+#     errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
+
+#     echo ${exp}_${checkpoint} >> results/Fscore/adv_fine_Fscore.txt
+#     errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/adv_fine_Fscore.txt
+#     echo ${exp}_${checkpoint}
+# done
+
+for exp in Gaussian-adversarial_mul_1.0_0.1_256_2_002
 do
-    preddir=prediction_files/for_errant/${exp}
+    preddir=prediction_files/for_errant/${exp}_adv_old
     checkpoint=combine
-    outdir=prediction_files/m2/adv_fine
+    outdir=prediction_files/m2/adv_old
     mkdir $outdir
     input=$preddir/${checkpoint}_seed_${seed}.inc
     pred=$preddir/${checkpoint}_seed_${seed}.pred
@@ -121,11 +138,10 @@ do
     errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
     errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
 
-    echo ${exp}_${checkpoint} >> results/Fscore/adv_fine_Fscore.txt
-    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/adv_fine_Fscore.txt
+    echo ${exp}_${checkpoint} >> results/Fscore/adv_old_Fscore.txt
+    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/adv_old_Fscore.txt
     echo ${exp}_${checkpoint}
 done
-
 
 
 
