@@ -254,7 +254,7 @@ class Trainer(object):
 				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
 				loss.backward()
 
-				# print("finish gradient")
+				print("finish gradient")
 				# # ------------------debug------------------
 				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				# loss = outputs.loss
@@ -263,17 +263,17 @@ class Trainer(object):
 				# paras_mid = list(model.model.parameters())
 				# # ------------------debug------------------
 				# pdb.set_trace()
-				
+
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 					# old_noise = self.noise.clone()
 					self.noise += incre_noise
-				# print("Finish updating")
+				print("Finish updating")
 				torch.cuda.empty_cache()
 				model.train()
-				# print("1")
+				print("1")
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-				# print("2")
+				print("2")
 				loss = outputs.loss
 				loss /= n_minibatch
 				# print("second pred")
