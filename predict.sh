@@ -37,6 +37,7 @@ seed=1
 exp=Gaussian-adversarial_mul_1.0_0.1_256_2_002
 model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoints-combine
 for checkpoint in combine
+do
     output=$outdir/adv_old/${exp}_${checkpoint}_seed_${seed}
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
@@ -48,6 +49,7 @@ done
 # exp=Gaussian-adversarial_mul_1.0_0.1_256_2_002
 # model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoints
 # for checkpoint in 2022_05_25_22_26_25 2022_05_26_04_45_51 2022_05_26_07_56_00 2022_05_26_17_25_33 
+# do
 #     output=$outdir/adv_old/${exp}_${checkpoint}_seed_${seed}
 #     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --IN $input \
