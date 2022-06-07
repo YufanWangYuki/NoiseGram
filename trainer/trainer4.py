@@ -110,6 +110,8 @@ class Trainer(object):
 			self.noise.requires_grad = True
 		self.weight = weight
 
+		# self.res_id = None
+		# self.res_mask = None
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
 
@@ -242,9 +244,9 @@ class Trainer(object):
 				loss /= n_minibatch
 				
 				# ------------------debug------------------
-				# old_loss = loss
-				# print(loss)
-				paras_old = list(model.model.parameters())
+				old_loss = loss
+				print(loss)
+				# paras_old = list(model.model.parameters())
 				# ------------------debug------------------
 				# print(bidx)
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
@@ -255,17 +257,18 @@ class Trainer(object):
 				res_norm[bidx] = torch.norm(grad)
 				loss.backward()
 				# ------------------debug------------------
-				# outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, self.noise)
-				# loss = outputs.loss
-				# loss /= n_minibatch
-				# mid_loss = loss
-				# print(loss)
+				outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, self.noise)
+				loss = outputs.loss
+				loss /= n_minibatch
+				mid_loss = loss
+				print(loss)
 				# ------------------debug------------------
 				# pdb.set_trace()
 
 			with torch.no_grad():
 				norm_grad = res_sum/(torch.norm(res_norm) + 1e-10)
 				incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
+				old_noise = self.noise.clone()
 				self.noise += incre_noise
 			torch.cuda.empty_cache()	
 			# print("updating noise")
@@ -293,12 +296,13 @@ class Trainer(object):
 		model.zero_grad()
 
 		# # ------------------debug------------------
-		# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, old_noise)
-		# new_loss = outputs.loss
-		# new_loss /= n_minibatch
-		# if old_loss == mid_loss and old_loss != new_loss:
-		# 	print("yes")
-		# 	pdb.set_trace()
+		outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], old_noise)
+		new_loss = outputs.loss
+		new_loss /= n_minibatch
+		pdb.set_trace()
+		if old_loss == mid_loss and old_loss != new_loss:
+			print("yes")
+			pdb.set_trace()
 		# # ------------------debug------------------
 
 		
