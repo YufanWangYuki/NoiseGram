@@ -244,24 +244,26 @@ class Trainer(object):
 				loss = outputs.loss
 				loss /= n_minibatch
 				
-				# ------------------debug------------------
-				old_loss = loss
-				paras_old = list(model.model.parameters())
-				# ------------------debug------------------
+				# # ------------------debug------------------
+				# old_loss = loss
+				# paras_old = list(model.model.parameters())
+				# # ------------------debug------------------
 				
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
 				norm_grad = torch.sum(grad)/(torch.norm(grad) + 1e-10)
 				loss.backward()
+
 				# print("finish gradient")
-				# ------------------debug------------------
-				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-				loss = outputs.loss
-				loss /= n_minibatch
-				mid_loss = loss
-				paras_mid = list(model.model.parameters())
-				# ------------------debug------------------
-				pdb.set_trace()
+				# # ------------------debug------------------
+				# outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				# loss = outputs.loss
+				# loss /= n_minibatch
+				# mid_loss = loss
+				# paras_mid = list(model.model.parameters())
+				# # ------------------debug------------------
+				# pdb.set_trace()
+				
 				with torch.no_grad():
 					incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 					# old_noise = self.noise.clone()
