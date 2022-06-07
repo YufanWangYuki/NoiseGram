@@ -226,7 +226,7 @@ class Trainer(object):
 		resloss = 0
 
 		if "dversarial" in noise_configs['noise_type']:
-			res_norm = torch.ones(1,n_minibatch)
+			res_norm = torch.ones(n_minibatch,1)
 			for bidx in range(n_minibatch):
 				# load data
 				i_start = bidx * self.minibatch_size
