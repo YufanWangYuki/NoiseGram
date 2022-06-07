@@ -242,7 +242,8 @@ class Trainer(object):
 				loss /= n_minibatch
 				
 				# ------------------debug------------------
-				old_loss = loss
+				# old_loss = loss
+				print(loss)
 				paras_old = list(model.model.parameters())
 				# ------------------debug------------------
 				print(bidx)
@@ -258,6 +259,7 @@ class Trainer(object):
 				loss = outputs.loss
 				loss /= n_minibatch
 				mid_loss = loss
+				print(loss)
 				# ------------------debug------------------
 				pdb.set_trace()
 
