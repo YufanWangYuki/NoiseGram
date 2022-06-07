@@ -296,7 +296,7 @@ class Trainer(object):
 		model.zero_grad()
 
 		# # ------------------debug------------------
-		outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], old_noise)
+		outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, old_noise)
 		new_loss = outputs.loss
 		new_loss /= n_minibatch
 		pdb.set_trace()
