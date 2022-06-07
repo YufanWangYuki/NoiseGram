@@ -243,10 +243,10 @@ class Trainer(object):
 				
 				# ------------------debug------------------
 				# old_loss = loss
-				print(loss)
+				# print(loss)
 				paras_old = list(model.model.parameters())
 				# ------------------debug------------------
-				print(bidx)
+				# print(bidx)
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				if bidx == 0:
 					res_sum = torch.sum(grad)
@@ -255,20 +255,20 @@ class Trainer(object):
 				res_norm[bidx] = torch.norm(grad)
 				loss.backward()
 				# ------------------debug------------------
-				outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, self.noise)
-				loss = outputs.loss
-				loss /= n_minibatch
-				mid_loss = loss
-				print(loss)
+				# outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, self.noise)
+				# loss = outputs.loss
+				# loss /= n_minibatch
+				# mid_loss = loss
+				# print(loss)
 				# ------------------debug------------------
-				pdb.set_trace()
+				# pdb.set_trace()
 
 			with torch.no_grad():
 				norm_grad = res_sum/(torch.norm(res_norm) + 1e-10)
 				incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 				self.noise += incre_noise
 			torch.cuda.empty_cache()	
-			print("updating noise")
+			# print("updating noise")
 
 		for bidx in range(n_minibatch):
 			# load data
