@@ -285,19 +285,6 @@ class Trainer(object):
 		model.zero_grad()
 		with torch.no_grad():
 			self.noise += acc_norm_gra/n_minibatch
-
-		# # ------------------debug------------------
-		# outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, old_noise)
-		# new_loss = outputs.loss
-		# new_loss /= n_minibatch
-		# pdb.set_trace()
-		# if old_loss == mid_loss and old_loss != new_loss:
-		# 	print("yes")
-		# 	pdb.set_trace()
-		# # ------------------debug------------------
-
-		print(self.noise)
-		time.sleep(1)
 		return resloss
 
 
