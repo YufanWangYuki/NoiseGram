@@ -149,11 +149,15 @@ seed=1
 # done
 
 preddir=prediction_files/v002
-mkdir $outdir/diff
-corr=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
-pred=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_0.1_256_2_002/eval-clc-test-beam-1/orig/translate.txt
-    
-    output=$outdir/diff/0.1_seed_${seed}
+for exp in orig
+do
+mkdir $outdir/${exp}
+# for checkpoint in combine 2022_06_04_13_20_01 2022_06_04_17_24_51 2022_06_05_01_43_16 2022_06_05_05_52_26 2022_06_05_10_02_02
+# do
+    checkpoint=combine
+    # Gaussian-adversarial_mul_1.0_0.001_16_1_002.pred
+    pred=$preddir/${exp}_${checkpoint}_seed_1.pred
+    output=$outdir/${exp}/${checkpoint}_seed_${seed}
     echo $pred
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
         --INC $input \
@@ -161,14 +165,6 @@ pred=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0
         --CORR $corr \
         --BASE $output \
         --seed $seed
-
-pred=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/eval-clc-test-beam-1/combine_Gau_1.5/orig/translate.txt
-    output=$outdir/diff/1.5_seed_${seed}
-    echo $pred
-    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
-        --INC $input \
-        --PRED $pred \
-        --CORR $corr \
-        --BASE $output \
-        --seed $seed
+# done
+done
 
