@@ -81,7 +81,7 @@ output_file=results/count_influence.txt
 # qsub -cwd -j yes -o 'LOGs/count/count_single_003.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/count/count_gau_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
 
-
+# qsub -cwd -j yes -o 'LOGs/count/count_pred.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
 input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/eval-clc-test-beam-1/combine_Gau_1.5/orig/translate.txt
 echo $base_path >> $output_file
 echo $input_path >> $output_file
