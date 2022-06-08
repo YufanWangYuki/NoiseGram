@@ -248,8 +248,8 @@ class Trainer(object):
 				# print(loss)
 				# paras_old = list(model.model.parameters())
 				# ------------------debug------------------
-				print(bidx)
-				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
+				# print(bidx)
+				grad = torch.autograd.grad(loss, self.noise, retain_graph=False, create_graph=False)[0]
 				if bidx == 0:
 					res_sum = torch.sum(grad)
 				else:
