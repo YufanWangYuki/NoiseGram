@@ -131,12 +131,12 @@ seed=1
 preddir=prediction_files/v002
 for exp in Gaussian_mul_1.0_0.1_256_2_002
 do
+mkdir $outdir/${exp}
 for checkpoint in combine 2022_06_04_13_20_01 2022_06_04_17_24_51 2022_06_05_01_43_16 2022_06_05_05_52_26 2022_06_05_10_02_02
 do
     # checkpoint=combine
     # Gaussian-adversarial_mul_1.0_0.001_16_1_002.pred
     pred=$preddir/${exp}_${checkpoint}_seed_1.pred
-    mkdir $outdir/${exp}
     output=$outdir/${exp}/${checkpoint}_seed_${seed}
     echo $pred
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \

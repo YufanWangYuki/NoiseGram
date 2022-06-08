@@ -272,6 +272,7 @@ class Trainer(object):
 				old_noise = self.noise.clone()
 				self.noise += incre_noise
 				print(self.noise)
+				time.sleep(1)
 			torch.cuda.empty_cache()	
 			# print("updating noise")
 

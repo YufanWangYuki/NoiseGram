@@ -128,11 +128,11 @@ seed=1
 
 for exp in Gaussian_mul_1.0_0.1_256_2_002
 do
+outdir=prediction_files/m2/${exp}
+mkdir $outdir
 for checkpoint in combine 2022_06_04_13_20_01 2022_06_04_17_24_51 2022_06_05_01_43_16 2022_06_05_05_52_26 2022_06_05_10_02_02
 do
-    preddir=prediction_files/for_errant/${exp}
-    outdir=prediction_files/m2/${exp}
-    mkdir $outdir
+    preddir=prediction_files/for_errant/${exp}    
     input=$preddir/${checkpoint}_seed_${seed}.inc
     pred=$preddir/${checkpoint}_seed_${seed}.pred
     corr=$preddir/${checkpoint}_seed_${seed}.corr
