@@ -15,7 +15,7 @@ source activate /home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37
 export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/python3
 
 # ===================================================================================
-model=models/v002/Gaussian_mul_1.0_1.5_256_2_002
+model=models/Gaussian_mul_1.0_0.1_256_2_002
 
 # ckpt=2022_02_01_15_37_10
 ckpt=combine
@@ -154,7 +154,7 @@ eval_mode=1
 model=models/v002
 fname=checkpoints
 mode='combine'
-for exp in Gaussian-adversarial_mul_1.0_0.1_256_2_002
+for exp in Gaussian_mul_1.0_0.1_256_2_002
 do
 combine_path=$model/$exp/checkpoints/
 outdir=$model/$exp/checkpoints-combine/combine/
