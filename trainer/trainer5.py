@@ -230,6 +230,7 @@ class Trainer(object):
 
 		if "dversarial" in noise_configs['noise_type']:
 			res_norm = torch.ones(n_minibatch,1)
+			norm_grad = torch.zeros([self.minibatch_size, self.seq_length, self.embedding_dim])
 			for bidx in range(n_minibatch):
 				# load data
 				i_start = bidx * self.minibatch_size
@@ -251,12 +252,18 @@ class Trainer(object):
 				# ------------------debug------------------
 				# print(bidx)
 				# pdb.set_trace()
+				
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
+				pdb.set_trace()
+				with torch.no_grad():
+					norm_grad += grad
+					print(norm_grad)
 				# if bidx == 0:
 				# 	res_sum = torch.sum(grad)
 				# else:
 				# 	res_sum += torch.sum(grad)
 				# res_norm[bidx] = torch.norm(grad)
+
 				# pdb.set_trace()
 				# loss.backward()
 				# ------------------debug------------------
@@ -269,9 +276,9 @@ class Trainer(object):
 				# pdb.set_trace()
 
 			with torch.no_grad():
-				norm_grad = res_sum/(torch.norm(res_norm) + 1e-10)
-				incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
-				old_noise = self.noise.clone()
+				# norm_grad = res_sum/(torch.norm(res_norm) + 1e-10)
+				incre_noise = self.weight * norm_grad
+				# old_noise = self.noise.clone()
 				self.noise += incre_noise
 				print(self.noise)
 			torch.cuda.empty_cache()	
