@@ -250,7 +250,7 @@ class Trainer(object):
 				# ------------------debug------------------
 				# print(bidx)
 				pdb.set_trace()
-				grad = torch.autograd.grad(loss, self.noise, retain_graph=False, create_graph=False)[0]
+				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
 				if bidx == 0:
 					res_sum = torch.sum(grad)
 				else:
