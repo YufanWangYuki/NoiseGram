@@ -257,7 +257,7 @@ class Trainer(object):
 				else:
 					res_sum += torch.sum(grad)
 				res_norm[bidx] = torch.norm(grad)
-				pdb.set_trace()
+				# pdb.set_trace()
 				# loss.backward()
 				# ------------------debug------------------
 				# outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, self.noise)
