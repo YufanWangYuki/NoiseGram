@@ -126,11 +126,12 @@ seed=1
 #     echo ${exp}_${checkpoint}
 # done
 
-for exp in Gaussian-adversarial_mul_1.0_0.1_256_2_002
+for exp in Gaussian_mul_1.0_0.1_256_2_002
 do
-    preddir=prediction_files/for_errant/${exp}_adv_old
-    checkpoint=combine
-    outdir=prediction_files/m2/adv_old
+for checkpoint in combine 2022_06_04_13_20_01 2022_06_04_17_24_51 2022_06_05_01_43_16 2022_06_05_05_52_26 2022_06_05_10_02_02
+do
+    preddir=prediction_files/for_errant/${exp}
+    outdir=prediction_files/m2/${exp}
     mkdir $outdir
     input=$preddir/${checkpoint}_seed_${seed}.inc
     pred=$preddir/${checkpoint}_seed_${seed}.pred
@@ -138,10 +139,10 @@ do
     errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
     errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
 
-    echo ${exp}_${checkpoint} >> results/Fscore/adv_old_Fscore.txt
-    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/adv_old_Fscore.txt
+    echo ${exp}_${checkpoint} >> results/Fscore/${exp}_Fscore.txt
+    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/${exp}_Fscore.txt
     echo ${exp}_${checkpoint}
 done
-
+done
 
 
