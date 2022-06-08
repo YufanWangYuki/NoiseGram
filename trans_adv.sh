@@ -82,7 +82,7 @@ weight=0.1
 savedir=models/v003/eval-clc-test-beam-1/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
-for ntype in Gaussian-adversarial Adversarial
+for ntype in Gaussian-adversarial-single Adversarial-single
 do
 for weight in 0.0 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
 do
@@ -168,3 +168,5 @@ done
 
 # qsub -cwd -j yes -o 'LOGs/adv_trans_2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/adv_single_2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/adv_003_trans.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/adv_003_single.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
