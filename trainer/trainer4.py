@@ -271,6 +271,7 @@ class Trainer(object):
 				incre_noise = self.weight * norm_grad * torch.full([self.minibatch_size, self.seq_length, self.embedding_dim],1).to(device=self.device)
 				old_noise = self.noise.clone()
 				self.noise += incre_noise
+				print(self.noise)
 			torch.cuda.empty_cache()	
 			# print("updating noise")
 
