@@ -247,7 +247,7 @@ class Trainer(object):
 				loss /= n_minibatch
 				
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
-				# norm_grad = np.zeros([self.minibatch_size, self.seq_length, self.embedding_dim]).to(device=self.device)
+				
 				norm_grad = grad.clone()
 				for i in range(len(src_ids)):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)

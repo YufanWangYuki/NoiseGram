@@ -49,8 +49,8 @@ max_count_num_rollback=0 # 0:no roll back no lr reduce
 keep_num=5
 
 # --------------
-batch_size=16
-minibatch_split=1 #8 for million
+batch_size=256
+minibatch_split=8 #8 for million
 # minibatch_split=8 #8 for million
 # minibatch_split=16 #8 for million
 num_epochs=100
@@ -79,14 +79,14 @@ ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversari
 nway=mul
 mean=1.0
 weight=0.1
-savedir=models/v001/eval-clc-test-beam-1/adv_updated/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
+savedir=models/v003/eval-clc-test-beam-1/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 
 # ===================================================================================
 for ntype in Gaussian-adversarial Adversarial
 do
 for weight in 0.0 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
 do
-savedir=models/v001/eval-clc-test-beam-1/adv_updated/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
+savedir=models/v003/eval-clc-test-beam-1/adv_updated/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
 	--train_path_src $train_path_src \
 	--train_path_tgt $train_path_tgt \
