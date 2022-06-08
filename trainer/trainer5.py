@@ -1,3 +1,4 @@
+from zmq import device
 import torch
 torch.cuda.empty_cache()
 import torch.utils.tensorboard
@@ -229,8 +230,8 @@ class Trainer(object):
 		resloss = 0
 
 		if "dversarial" in noise_configs['noise_type']:
-			res_norm = torch.ones(n_minibatch,1)
-			norm_grad = torch.zeros([self.minibatch_size, self.seq_length, self.embedding_dim])
+			acc_norm_gra = np.zeros([self.minibatch_size, self.seq_length, self.embedding_dim]).to(device=self.device)
+
 			for bidx in range(n_minibatch):
 				# load data
 				i_start = bidx * self.minibatch_size
@@ -239,72 +240,53 @@ class Trainer(object):
 				src_att_mask = batch_src_att_mask[i_start:i_end]
 				tgt_ids = batch_tgt_ids[i_start:i_end]
 
-				# Forward propagation
+				# First forward propagation-get noise
 				model.eval()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
 				loss /= n_minibatch
 				
-				# ------------------debug------------------
-				# old_loss = loss
-				# print(loss)
-				# paras_old = list(model.model.parameters())
-				# ------------------debug------------------
-				# print(bidx)
-				# pdb.set_trace()
-				
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
+				# norm_grad = np.zeros([self.minibatch_size, self.seq_length, self.embedding_dim]).to(device=self.device)
+				norm_grad = grad.clone()
+				for i in range(len(src_ids)):
+					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
+				new_noise = self.noise+self.weight * norm_grad
 				pdb.set_trace()
-				with torch.no_grad():
-					norm_grad += grad
-					print(norm_grad)
-				# if bidx == 0:
-				# 	res_sum = torch.sum(grad)
-				# else:
-				# 	res_sum += torch.sum(grad)
-				# res_norm[bidx] = torch.norm(grad)
+				
+				model.train()
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
+				loss = outputs.loss
+				loss /= n_minibatch
+				pdb.set_trace()
 
+				loss.backward()
+				resloss += loss
+				acc_norm_gra += norm_grad
+		else:
+			for bidx in range(n_minibatch):
+				# load data
+				i_start = bidx * self.minibatch_size
+				i_end = min(i_start + self.minibatch_size, batch_size)
+				src_ids = batch_src_ids[i_start:i_end]
+				src_att_mask = batch_src_att_mask[i_start:i_end]
+				tgt_ids = batch_tgt_ids[i_start:i_end]
+
+				model.train()
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				# pdb.set_trace()
-				# loss.backward()
-				# ------------------debug------------------
-				# outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, self.noise)
-				# loss = outputs.loss
-				# loss /= n_minibatch
-				# mid_loss = loss
-				# print(loss)
-				# ------------------debug------------------
-				# pdb.set_trace()
+				loss = outputs.loss
+				loss /= n_minibatch
 
-			with torch.no_grad():
-				# norm_grad = res_sum/(torch.norm(res_norm) + 1e-10)
-				incre_noise = self.weight * norm_grad
-				# old_noise = self.noise.clone()
-				self.noise += incre_noise
-				print(self.noise)
-			torch.cuda.empty_cache()	
-			# print("updating noise")
-
-		for bidx in range(n_minibatch):
-			# load data
-			i_start = bidx * self.minibatch_size
-			i_end = min(i_start + self.minibatch_size, batch_size)
-			src_ids = batch_src_ids[i_start:i_end]
-			src_att_mask = batch_src_att_mask[i_start:i_end]
-			tgt_ids = batch_tgt_ids[i_start:i_end]
-
-			model.train()
-			outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-			# pdb.set_trace()
-			loss = outputs.loss
-			loss /= n_minibatch
-
-			# Backward propagation: accumulate gradient
-			loss.backward()
-			resloss += loss
+				# Backward propagation: accumulate gradient
+				loss.backward()
+				resloss += loss
 
 		# update weights
 		self.optimizer.step()
 		model.zero_grad()
+		with torch.no_grad():
+			self.noise += acc_norm_gra/n_minibatch
 
 		# # ------------------debug------------------
 		# outputs = model.forward_train(batch_src_ids[0:self.minibatch_size], batch_src_att_mask[0:self.minibatch_size], batch_tgt_ids[0:self.minibatch_size], noise_configs, old_noise)
@@ -316,7 +298,7 @@ class Trainer(object):
 		# 	pdb.set_trace()
 		# # ------------------debug------------------
 
-		
+		print(self.noise)
 		return resloss
 
 
