@@ -230,7 +230,6 @@ class Trainer(object):
 		resloss = 0
 
 		if "dversarial" in noise_configs['noise_type']:
-			
 			acc_norm_gra = torch.tensor(np.zeros([self.minibatch_size, self.seq_length, self.embedding_dim])).to(device=self.device)
 			
 			for bidx in range(n_minibatch):
@@ -253,13 +252,11 @@ class Trainer(object):
 				for i in range(len(src_ids)):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise+self.weight * norm_grad
-				pdb.set_trace()
 				
 				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
 				loss = outputs.loss
 				loss /= n_minibatch
-				pdb.set_trace()
 
 				loss.backward()
 				resloss += loss
@@ -300,6 +297,7 @@ class Trainer(object):
 		# # ------------------debug------------------
 
 		print(self.noise)
+		time.sleep(1)
 		return resloss
 
 
