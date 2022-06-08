@@ -18,7 +18,7 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 
 # ===================================================================================
 # preddir=prediction_files/for_errant
-# outdir=prediction_files/m2
+outdir=prediction_files/m2
 seed=1
 
 # exp=Adversarial_mul_1.0_0.1_2_001
@@ -145,15 +145,19 @@ seed=1
 # done
 # done
 
+outdir=prediction_files/m2/diff
+mkdir prediction_files/m2/diff
 for exp in Gaussian_mul_1.0_1.5_256_2_002 Gaussian_mul_1.0_0.1_256_2_002
 do
+checkpoint=combine
 dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/$exp
 input=$dir/combine_seed_1.inc
 pred=$dir/combine_seed_1.pred
-corr=$dir/combine_seed_1.corr
-errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
-errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
-
-
+corr=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/orig/combine_seed_1.pred
+errant_parallel -orig $input -cor $pred -out $outdir/${exp}_combine_edits-pred.m2
+errant_parallel -orig $input -cor $corr -out $outdir/${exp}_combine_edits-corr.m2
+    echo ${exp}_${checkpoint} >> results/Fscore/diff_Fscore.txt
+    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/diff_Fscore.txt
+    echo ${exp}_${checkpoint}
 done
 
