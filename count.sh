@@ -15,16 +15,16 @@ source activate /home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37
 export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/python3
 
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v2/2_Gaussian_mul_1.0_0.0/translate.txt
-base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
+# base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
 # base_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-pretrained/models/gramformer/eval_clc-orig/beam1
 
 # base_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/orig/translate.txt
-# base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/eval-clc-test-beam-1/combine_Gau_1.5/orig/translate.txt
-output_file=results/adv/003_single_orig.txt
+base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/eval-clc-test-beam-1/2_Gaussian-adversarial_mul_0.0/translate.txt
+output_file=results/adv/003_trans_0.txt
 
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/adv_updated/2_Gaussian-adversarial_mul_0.0/translate.txt
-for ntype in Gaussian-adversarial-single Adversarial-single
+for ntype in Gaussian-adversarial Adversarial
 do
 # for ntype in Gaussian-adversarial-single Adversarial-single
 # do
@@ -57,3 +57,4 @@ done
 done
 
 # qsub -cwd -j yes -o 'LOGs/count/count_single.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/count/count_single_003.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
