@@ -7,8 +7,8 @@ unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
 
-export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-# export CUDA_VISIBLE_DEVICES=0
+# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -64,15 +64,15 @@ loaddir='None'
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
-# train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
-# train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
-# dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
-# dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
-# # # num_epochs=2
-# minibatch_split=4
-# batch_size=8
-# checkpoint_every=100
-# print_every=2
+train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
+dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
+# # num_epochs=2
+minibatch_split=4
+batch_size=8
+checkpoint_every=100
+print_every=2
 
 # ----------------------- [noise] ---------------------------
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
@@ -159,4 +159,4 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.01.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train0.01.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.1_split8.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.01_split16.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train0.01.sh 1 1
-# qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.01_split32_v.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/adv_updated/train_adv_mul_0.01_split8_v.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
