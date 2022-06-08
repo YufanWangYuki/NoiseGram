@@ -21,13 +21,13 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 # base_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/lib/gec-train-bpe-written/prep/test.src
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/orig/translate.txt
 base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/eval-clc-test-beam-1/2_Gaussian-adversarial_mul_0.0/translate.txt
-output_file=results/adv/003_trans_0.txt
+output_file=results/adv/003_single_0.txt
 
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/adv_updated/2_Gaussian-adversarial_mul_0.0/translate.txt
-for ntype in Gaussian-adversarial Adversarial
-do
-# for ntype in Gaussian-adversarial-single Adversarial-single
+# for ntype in Gaussian-adversarial Adversarial
 # do
+for ntype in Gaussian-adversarial-single Adversarial-single
+do
 for weight in 0.0 0.001 0.005 0.01 0.05 0.1 0.5 1 1.5
 do
 # input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
