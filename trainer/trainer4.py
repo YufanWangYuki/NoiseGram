@@ -249,7 +249,7 @@ class Trainer(object):
 				# paras_old = list(model.model.parameters())
 				# ------------------debug------------------
 				# print(bidx)
-				pdb.set_trace()
+				# pdb.set_trace()
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
 				if bidx == 0:
 					res_sum = torch.sum(grad)
