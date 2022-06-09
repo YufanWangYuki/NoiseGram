@@ -73,6 +73,7 @@ class Seq2seq(nn.Module):
 		if noise_config['noise_way'] == 'mul':
 			new_embeds = inputs_embeds * noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
 		elif noise_config['noise_way'] == 'add':
+			print("Add"*20)
 			new_embeds = inputs_embeds + noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
 		# print("Finish adding")
 		outputs = self.model(
