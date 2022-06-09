@@ -253,8 +253,8 @@ class Trainer(object):
 
 		# loss
 		resloss = 0
-		acc_norm_gra = torch.tensor(np.zeros([self.minibatch_size, self.seq_length, self.embedding_dim])).to(device=self.device)
 		noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
+
 		for bidx in range(n_minibatch):
 			# load data
 			i_start = bidx * self.minibatch_size

@@ -291,10 +291,9 @@ class Trainer(object):
 		model.zero_grad()
 		with torch.no_grad():
 			noise_bar = noise_bar/batch_size + torch.sum(self.noise, dim=(0,1))/self.seq_length/self.minibatch_size
-			self.noise = noise_bar/batch_size
+			self.noise = noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		print(torch.mean(self.noise))
 		print(torch.var(self.noise))
-		self.noise = self.noise.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		self.noise.requires_grad = True
 		time.sleep(1)
 		return resloss
