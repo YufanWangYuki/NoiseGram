@@ -296,7 +296,7 @@ class Trainer(object):
 		print(torch.var(self.noise))
 		self.noise = self.noise.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		self.noise.requires_grad = True
-		pdb.set_trace()
+		# pdb.set_trace()
 		# time.sleep(1)
 		return resloss
 
