@@ -280,6 +280,8 @@ class Trainer(object):
 					preds, scores = model.forward_translate(src_ids=src_ids, src_att_mask=src_att_mask, max_length=self.max_tgt_len, mode=self.mode, noise_config=noise_configs, grad_noise=new_noise)
 
 				self.final_pred.append(preds)
+				# Update the noise to be the noise bar
+				noise_bar += torch.sum(norm_grad, dim=(0,1))/self.seq_length
 				if noise_configs['noise_type'] == 'Adversarial-single':
 					self.noise = np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
 					self.noise = torch.tensor(self.noise).to(device=self.device)
@@ -288,7 +290,6 @@ class Trainer(object):
 					self.noise = np.random.normal(1, self.weight, [self.minibatch_size, self.seq_length, self.embedding_dim])
 					self.noise = torch.tensor(self.noise).to(device=self.device)
 					self.noise.requires_grad = True
-				else:
 					
 				
 				
@@ -320,7 +321,12 @@ class Trainer(object):
 		# self.optimizer.step()
 		# model.zero_grad()
 		with torch.no_grad():
-			self.noise += acc_norm_gra/n_minibatch
+			noise_bar = noise_bar/batch_size + torch.sum(self.noise, dim=(0,1))/self.seq_length/self.minibatch_size
+			self.noise = noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
+		print(torch.mean(self.noise))
+		print(torch.var(self.noise))
+		print(noise_bar.max())
+		self.noise.requires_grad = True
 		return resloss
 
 
