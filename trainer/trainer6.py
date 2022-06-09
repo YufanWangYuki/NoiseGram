@@ -265,7 +265,7 @@ class Trainer(object):
 				loss /= n_minibatch
 
 				# Update the noise to be the noise bar
-				noise_bar += torch.sum(new_noise, dim=(0,1))
+				noise_bar += torch.sum(norm_grad, dim=(0,1))
 				pdb.set_trace()
 				loss.backward()
 				resloss += loss
@@ -292,6 +292,7 @@ class Trainer(object):
 		self.optimizer.step()
 		model.zero_grad()
 		with torch.no_grad():
+			noise_bar += torch.sum(self.noise, dim=(0,1))
 			self.noise = noise_bar/batch_size
 		pdb.set_trace()
 		return resloss
