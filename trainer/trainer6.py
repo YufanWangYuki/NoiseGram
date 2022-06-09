@@ -287,17 +287,15 @@ class Trainer(object):
 				resloss += loss
 
 		# update weights
-		pdb.set_trace()
 		self.optimizer.step()
 		model.zero_grad()
 		with torch.no_grad():
-			noise_bar = noise_bar/batch_size + torch.sum(self.noise, dim=(0,1))/self.seq_length
+			noise_bar = noise_bar/batch_size + torch.sum(self.noise, dim=(0,1))/self.seq_length/self.minibatch_size
 			self.noise = noise_bar/batch_size
 		print(torch.mean(self.noise))
 		print(torch.var(self.noise))
 		self.noise = self.noise.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		self.noise.requires_grad = True
-		pdb.set_trace()
 		time.sleep(1)
 		return resloss
 
