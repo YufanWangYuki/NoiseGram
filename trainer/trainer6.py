@@ -292,7 +292,9 @@ class Trainer(object):
 		with torch.no_grad():
 			noise_bar += torch.sum(self.noise, dim=(0,1))
 			self.noise = noise_bar/batch_size
-		print(self.noise)
+		# print(self.noise)
+		print(torch.mean(self.noise))
+		print(torch.var(self.noise))
 		time.sleep(1)
 		return resloss
 
