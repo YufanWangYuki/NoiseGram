@@ -264,7 +264,7 @@ class Trainer(object):
 				loss /= n_minibatch
 
 				# Update the noise to be the noise bar
-				noise_bar += torch.sum(norm_grad, dim=(0,1))
+				noise_bar += torch.sum(norm_grad, dim=(0,1))/self.seq_length
 				loss.backward()
 				resloss += loss
 		else:
