@@ -106,7 +106,9 @@ class Trainer(object):
 		elif noise_type == 'Gaussian-adversarial':
 			# start_value = np.random.normal(1, weight)
 			# self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])*start_value
-			self.noise = np.random.normal(1, weight, [self.minibatch_size, seq_length, embedding_dim])
+			pdb.set_trace()
+			self.noise = np.random.normal(1, weight, [1, 1, embedding_dim])
+
 		if 'dversarial'in noise_type:
 			self.noise = torch.tensor(self.noise).to(device=self.device)
 			self.noise.requires_grad = True
