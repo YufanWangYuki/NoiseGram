@@ -281,7 +281,7 @@ class Trainer(object):
 
 				self.final_pred.append(preds)
 				# Update the noise to be the noise bar
-				noise_bar += torch.sum(norm_grad, dim=(0,1))/self.seq_length
+				noise_bar += torch.sum(norm_grad, dim=(0,1))
 				if noise_configs['noise_type'] == 'Adversarial-single':
 					self.noise = np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
 					self.noise = torch.tensor(self.noise).to(device=self.device)
