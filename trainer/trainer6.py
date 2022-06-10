@@ -115,7 +115,7 @@ class Trainer(object):
 		# 	self.noise = torch.tensor(self.noise).to(device=self.device)
 		# 	self.noise.requires_grad = True
 		self.weight = weight
-
+		self.noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
 		# self.res_id = None
 		# self.res_mask = None
 
@@ -234,7 +234,7 @@ class Trainer(object):
 		resloss = 0
 
 		if "dversarial" in noise_configs['noise_type']:
-			noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
+			self.noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
 			
 			for bidx in range(n_minibatch):
 				# load data
@@ -252,10 +252,10 @@ class Trainer(object):
 
 				# Update the noise
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
-				norm_grad = grad.clone()
 				for i in range(len(src_ids)):
-					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
-				new_noise = self.noise + self.weight * norm_grad
+					grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
+				new_noise = self.noise + self.weight * grad
+				pdb.set_trace()
 
 				# Second forward propagation-get loss
 				model.train()
@@ -264,7 +264,7 @@ class Trainer(object):
 				loss /= n_minibatch
 
 				# Update the noise to be the noise bar
-				noise_bar += torch.sum(norm_grad, dim=(0,1))
+				self.noise_bar += torch.sum(grad, dim=(0,1))
 				loss.backward()
 				resloss += loss
 		else:
@@ -289,11 +289,10 @@ class Trainer(object):
 		# update weights
 		self.optimizer.step()
 		model.zero_grad()
-		noise_bar = noise_bar/batch_size
-		# pdb.set_trace()
-		# noise_bar = noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
+		self.noise_bar /= batch_size
+		pdb.set_trace()
 		with torch.no_grad():
-			self.noise = self.noise.clone() + noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
+			self.noise += self.noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		# print(torch.mean(self.noise))
 		# print(torch.var(self.noise))
 		
