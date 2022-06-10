@@ -284,7 +284,7 @@ class Trainer(object):
 		# update weights
 		self.optimizer.step()
 		model.zero_grad()
-		self.noise_bar /= batch_size
+		noise_bar /= batch_size
 		with torch.no_grad():
 			self.noise = self.noise + noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		# print(torch.mean(self.noise))
