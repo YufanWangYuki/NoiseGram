@@ -76,10 +76,10 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [noise] ---------------------------
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
-nway=mul
-mean=1.0
+nway=add
+mean=0.0
 weight=0.01
-savedir=models/v003/volta_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
+savedir=models/v004/volta_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
