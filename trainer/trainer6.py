@@ -265,6 +265,8 @@ class Trainer(object):
 
 				# Update the noise to be the noise bar
 				noise_bar += torch.sum(norm_grad, dim=(0,1))
+				print(noise_bar.shape)
+				pdb.set_trace()
 				loss.backward()
 				resloss += loss
 		else:
