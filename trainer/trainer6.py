@@ -290,12 +290,12 @@ class Trainer(object):
 		self.optimizer.step()
 		model.zero_grad()
 		noise_bar = noise_bar/batch_size
-		noise_bar = noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
+		# noise_bar = noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		with torch.no_grad():
-			self.noise += noise_bar
+			self.noise += noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		# print(torch.mean(self.noise))
 		# print(torch.var(self.noise))
-		# # pdb.set_trace()
+		pdb.set_trace()
 		# time.sleep(1)
 		
 		# print(noise_bar.max())
