@@ -79,7 +79,7 @@ ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversari
 nway=add
 mean=0.0
 weight=0.1
-savedir=models/v004/volta_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
+savedir=models/v004/temp_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
