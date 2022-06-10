@@ -297,7 +297,7 @@ class Trainer(object):
 			self.noise = self.noise.clone() + noise_bar
 		print(torch.mean(self.noise))
 		print(torch.var(self.noise))
-		pdb.set_trace()
+		# pdb.set_trace()
 		time.sleep(1)
 		# print(noise_bar.max())
 		self.noise.requires_grad = True
