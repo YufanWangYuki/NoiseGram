@@ -111,7 +111,7 @@ class Trainer(object):
 			self.noise = torch.tensor(self.noise).to(device=self.device)
 			self.noise.requires_grad = True
 		self.weight = weight
-
+		
 		# self.res_id = None
 		# self.res_mask = None
 
