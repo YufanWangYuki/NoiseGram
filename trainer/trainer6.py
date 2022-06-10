@@ -290,12 +290,13 @@ class Trainer(object):
 		self.optimizer.step()
 		model.zero_grad()
 		noise_bar = noise_bar/batch_size
+		# pdb.set_trace()
 		# noise_bar = noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		with torch.no_grad():
-			self.noise += noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
+			self.noise = self.noise.clone() + noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		# print(torch.mean(self.noise))
 		# print(torch.var(self.noise))
-		pdb.set_trace()
+		
 		# time.sleep(1)
 		
 		# print(noise_bar.max())
@@ -355,6 +356,7 @@ class Trainer(object):
 			model.train(True)
 			trainiter = iter(train_set.iter_loader)
 			for idx in range(steps_per_epoch):
+				print(idx)
 
 				# load batch items
 				batch_items = trainiter.next()
