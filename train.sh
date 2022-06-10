@@ -7,8 +7,8 @@ unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
 
-# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+# export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -20,14 +20,14 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 
 # ===================================================================================
 # ------------------------ DIR --------------------------
-orig_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written
-train_path_src=$orig_path/lib/gec-train-bpe-written/prep/train.src
-train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/train.tgt
-dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
-dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+# orig_path=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written
+# train_path_src=$orig_path/lib/gec-train-bpe-written/prep/train.src
+# train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/train.tgt
+# dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+# dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
 
-max_src_len=64
-max_tgt_len=64
+# max_src_len=64
+# max_tgt_len=64
 
 # ------------------------ TRAIN --------------------------
 # [SCHEDULE 1]
@@ -79,7 +79,7 @@ ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversari
 nway=add
 mean=0.0
 weight=0.1
-savedir=models/v004/temp_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
+savedir=models/v004/volta_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
