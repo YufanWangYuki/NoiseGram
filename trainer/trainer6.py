@@ -294,7 +294,7 @@ class Trainer(object):
 		
 		# print(noise_bar.max())
 		self.noise.requires_grad = True
-		torch.cuda.empty_cache()
+		# torch.cuda.empty_cache()
 		return resloss
 
 
@@ -350,8 +350,6 @@ class Trainer(object):
 			trainiter = iter(train_set.iter_loader)
 			log.info(' ---------- Start Training ----------')
 			for idx in range(steps_per_epoch):
-				print(idx)
-
 				# load batch items
 				batch_items = trainiter.next()
 
