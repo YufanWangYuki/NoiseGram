@@ -343,7 +343,7 @@ class Trainer(object):
 		# loop over epochs
 		# for epoch in tqdm(range(start_epoch, n_epochs + 1)):
 		
-		outdir="/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/eval-clc-test-beam-1/2_"+self.noise_configs['noise_type']+"_mul_"+str(self.noise_configs['weight'])
+		outdir="/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v004/eval-clc-test-beam-1/2_"+self.noise_configs['noise_type']+"_add_"+str(self.noise_configs['weight'])
 		if not os.path.isdir(outdir):
 			os.makedirs(outdir)
 		with open(os.path.join(outdir, 'translate.txt'), 'w', encoding="utf8") as f:
