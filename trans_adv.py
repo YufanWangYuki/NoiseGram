@@ -10,7 +10,7 @@ import numpy as np
 from utils.misc import set_global_seeds, save_config, validate_config, check_device
 from utils.dataset import Dataset
 from models.Seq2seq import Seq2seq
-from trainer.trasner_adv5 import Trainer
+from trainer.trasner_adv6 import Trainer
 
 
 def load_arguments(parser):

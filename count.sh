@@ -22,7 +22,8 @@ base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-te
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/orig/translate.txt
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/eval-clc-test-beam-1/2_Gaussian-adversarial_mul_0.0/translate.txt
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_0.1_256_2_002/eval-clc-test-beam-1/orig/translate.txt
-output_file=results/count_influence.txt
+base_path=
+output_file=results/v004/count_influence.txt
 
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/adv_updated/2_Gaussian-adversarial_mul_0.0/translate.txt
 # for ntype in Gaussian-adversarial Adversarial
@@ -61,12 +62,28 @@ output_file=results/count_influence.txt
 # done
 
 
-# base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3/orig/translate.txt
-# for ntype in Gaussian-adversarial Adversarial Gaussian-adversarial-single Adversarial-single
-# do
-# for weight in 1.0
-# do
-# input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/eval-clc-test-beam-1/2_${ntype}_mul_${weight}/translate.txt
+base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v004/eval-clc-test-beam-1/2_Gaussian-adversarial_add_0.0/translate.txt
+for ntype in Gaussian-adversarial
+do
+for weight in 0.0 0.001 0.005 0.01 0.05 0.1 0.5 1.0 1.5
+do
+input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v004/eval-clc-test-beam-1/2_${ntype}_add_${weight}/translate.txt
+echo $base_path >> $output_file
+echo $input_path >> $output_file
+echo $input_path
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/count.py \
+    --base_path $base_path \
+    --input_path $input_path \
+    --output_file $output_file
+done
+done
+
+# qsub -cwd -j yes -o 'LOGs/count/count_single.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/count/count_single_003.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/count/count_gau_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
+
+# qsub -cwd -j yes -o 'LOGs/count/count_pred.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
+# input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/eval-clc-test-beam-1/combine_Gau_1.5/orig/translate.txt
 # echo $base_path >> $output_file
 # echo $input_path >> $output_file
 # echo $input_path
@@ -74,28 +91,12 @@ output_file=results/count_influence.txt
 #     --base_path $base_path \
 #     --input_path $input_path \
 #     --output_file $output_file
-# done
-# done
 
-# qsub -cwd -j yes -o 'LOGs/count/count_single.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
-# qsub -cwd -j yes -o 'LOGs/count/count_single_003.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
-# qsub -cwd -j yes -o 'LOGs/count/count_gau_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
-
-# qsub -cwd -j yes -o 'LOGs/count/count_pred.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' count.sh 1 1
-input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/eval-clc-test-beam-1/combine_Gau_1.5/orig/translate.txt
-echo $base_path >> $output_file
-echo $input_path >> $output_file
-echo $input_path
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/count.py \
-    --base_path $base_path \
-    --input_path $input_path \
-    --output_file $output_file
-
-input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_0.1_256_2_002/eval-clc-test-beam-1/orig/translate.txt
-echo $base_path >> $output_file
-echo $input_path >> $output_file
-echo $input_path
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/count.py \
-    --base_path $base_path \
-    --input_path $input_path \
-    --output_file $output_file
+# input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_0.1_256_2_002/eval-clc-test-beam-1/orig/translate.txt
+# echo $base_path >> $output_file
+# echo $input_path >> $output_file
+# echo $input_path
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/count.py \
+#     --base_path $base_path \
+#     --input_path $input_path \
+#     --output_file $output_file
