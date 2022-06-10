@@ -289,13 +289,12 @@ class Trainer(object):
 		# update weights
 		self.optimizer.step()
 		model.zero_grad()
-		pdb.set_trace()
 		with torch.no_grad():
 			# noise_bar = noise_bar/batch_size + torch.sum(self.noise, dim=(0,1))/self.seq_length/self.minibatch_size
 			# self.noise = noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 			noise_bar = noise_bar/batch_size
 			noise_bar = noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim]).clone()
-			self.noise += noise_bar
+			self.noise = self.noise.clone() + noise_bar
 		print(torch.mean(self.noise))
 		print(torch.var(self.noise))
 		pdb.set_trace()
