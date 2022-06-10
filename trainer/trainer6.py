@@ -111,7 +111,7 @@ class Trainer(object):
 			# self.noise = self.noise.expand([self.minibatch_size,seq_length,embedding_dim])
 			self.noise.requires_grad = True
 		self.weight = weight
-		self.noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
+		# self.noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
 		print("Trainer Loaded")
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
@@ -229,7 +229,7 @@ class Trainer(object):
 		resloss = 0
 
 		if "dversarial" in noise_configs['noise_type']:
-			self.noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
+			noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
 			
 			for bidx in range(n_minibatch):
 				# load data
@@ -259,7 +259,7 @@ class Trainer(object):
 				loss /= n_minibatch
 
 				# Update the noise to be the noise bar
-				self.noise_bar += torch.sum(grad, dim=(0,1))
+				noise_bar += torch.sum(grad, dim=(0,1))
 				loss.backward()
 				resloss += loss
 		else:
@@ -286,7 +286,7 @@ class Trainer(object):
 		model.zero_grad()
 		self.noise_bar /= batch_size
 		with torch.no_grad():
-			self.noise = self.noise + self.noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
+			self.noise = self.noise + noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		# print(torch.mean(self.noise))
 		# print(torch.var(self.noise))
 		
@@ -294,8 +294,9 @@ class Trainer(object):
 		
 		# print(noise_bar.max())
 		self.noise.requires_grad = True
+		del noise_bar, loss, grad, outputs, new_noise
 		# torch.cuda.empty_cache()
-		return resloss
+		return resloss.item()
 
 
 	def _train_epochs(self,
