@@ -353,6 +353,7 @@ class Trainer(object):
 			# loop over batches
 			model.train(True)
 			trainiter = iter(train_set.iter_loader)
+			log.info(' ---------- Start Training ----------')
 			for idx in range(steps_per_epoch):
 				print(idx)
 
