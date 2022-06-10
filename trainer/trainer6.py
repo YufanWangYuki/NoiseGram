@@ -300,7 +300,7 @@ class Trainer(object):
 		# time.sleep(1)
 		
 		# print(noise_bar.max())
-		# self.noise.requires_grad = True
+		self.noise.requires_grad = True
 		torch.cuda.empty_cache()
 		return resloss
 
