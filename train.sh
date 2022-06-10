@@ -76,9 +76,9 @@ print_every=2
 
 # ----------------------- [noise] ---------------------------
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
-nway=mul
-mean=1.0
-weight=0.01
+nway=add
+mean=0.0
+weight=0.1
 savedir=models/v004/temp_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
