@@ -107,17 +107,12 @@ class Trainer(object):
 			self.noise.requires_grad = True
 		elif noise_type == 'Gaussian-adversarial':
 			self.noise = np.random.normal(mean, weight, [1, 1, embedding_dim])
-			self.noise = torch.tensor(self.noise).to(device=self.device)
-			self.noise = self.noise.expand([self.minibatch_size,seq_length,embedding_dim])
+			self.noise = torch.tensor(self.noise).to(device=self.device).expand([self.minibatch_size,seq_length,embedding_dim])
+			# self.noise = self.noise.expand([self.minibatch_size,seq_length,embedding_dim])
 			self.noise.requires_grad = True
-
-		# if 'dversarial'in noise_type:
-		# 	self.noise = torch.tensor(self.noise).to(device=self.device)
-		# 	self.noise.requires_grad = True
 		self.weight = weight
 		self.noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
-		# self.res_id = None
-		# self.res_mask = None
+		print("Trainer Loaded")
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
 
