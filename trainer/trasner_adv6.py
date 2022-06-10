@@ -290,9 +290,6 @@ class Trainer(object):
 					self.noise = np.random.normal(1, self.weight, [self.minibatch_size, self.seq_length, self.embedding_dim])
 					self.noise = torch.tensor(self.noise).to(device=self.device)
 					self.noise.requires_grad = True
-					
-				
-				
 			else:
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
@@ -323,9 +320,9 @@ class Trainer(object):
 		with torch.no_grad():
 			noise_bar = noise_bar/batch_size + torch.sum(self.noise, dim=(0,1))/self.seq_length/self.minibatch_size
 			self.noise = noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
-		print(torch.mean(self.noise))
-		print(torch.var(self.noise))
-		print(noise_bar.max())
+		# print(torch.mean(self.noise))
+		# print(torch.var(self.noise))
+		# print(noise_bar.max())
 		self.noise.requires_grad = True
 		return resloss
 
