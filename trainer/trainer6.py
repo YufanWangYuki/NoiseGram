@@ -252,11 +252,9 @@ class Trainer(object):
 
 				# Update the noise
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
-				pdb.set_trace()
 				for i in range(len(src_ids)):
 					grad[i] /= (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.weight * grad
-				pdb.set_trace()
 				
 
 				# Second forward propagation-get loss
@@ -292,9 +290,8 @@ class Trainer(object):
 		self.optimizer.step()
 		model.zero_grad()
 		self.noise_bar /= batch_size
-		pdb.set_trace()
 		with torch.no_grad():
-			self.noise += self.noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
+			self.noise = self.noise + self.noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		# print(torch.mean(self.noise))
 		# print(torch.var(self.noise))
 		
