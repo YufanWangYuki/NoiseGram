@@ -257,7 +257,8 @@ class Trainer(object):
 					for i in range(len(src_ids)):
 						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
 						new_noise[i] *= self.weight
-				print(new_noise)
+				print(torch.max(new_noise))
+
 				# Second forward propagation-get loss
 				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
