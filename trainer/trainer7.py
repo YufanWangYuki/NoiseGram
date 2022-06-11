@@ -249,6 +249,7 @@ class Trainer(object):
 
 				# Update the noise
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
+				pdb.set_trace()
 				
 				with torch.no_grad():
 					for i in range(len(src_ids)):
