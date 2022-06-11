@@ -251,9 +251,10 @@ class Trainer(object):
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
 				new_noise = self.noise + self.alpha * grad
 
-				for i in range(len(src_ids)):
-					new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
-					new_noise[i] *= self.weight
+				with torch.no_grad():
+					for i in range(len(src_ids)):
+						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
+						new_noise[i] *= self.weight
 				
 
 				# Second forward propagation-get loss
