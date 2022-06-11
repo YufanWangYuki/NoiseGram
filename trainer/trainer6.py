@@ -250,7 +250,6 @@ class Trainer(object):
 
 				for i in range(len(src_ids)):
 					grad[i] /= (torch.norm(grad[i]) + 1e-10)
-				pdb.set_trace()
 				new_noise = self.noise + self.weight * grad
 				
 
@@ -264,7 +263,6 @@ class Trainer(object):
 				noise_bar += torch.sum(grad, dim=(0,1))
 				loss.backward()
 				resloss += loss
-				pdb.set_trace()
 		else:
 			for bidx in range(n_minibatch):
 				# load data
