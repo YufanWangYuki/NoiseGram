@@ -289,7 +289,7 @@ class Trainer(object):
 		with torch.no_grad():
 			self.noise = self.noise + noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		print(torch.mean(self.noise))
-		print(torch.meax(self.noise))
+		print(torch.max(self.noise))
 		# print(torch.var(self.noise))
 		
 		# time.sleep(1)
