@@ -281,6 +281,7 @@ class Trainer(object):
 				# Backward propagation: accumulate gradient
 				loss.backward()
 				resloss += loss
+				pdb.set_trace()
 
 		# update weights
 		self.optimizer.step()
@@ -288,8 +289,7 @@ class Trainer(object):
 		noise_bar /= batch_size
 		with torch.no_grad():
 			self.noise = self.noise + noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
-		print(torch.mean(self.noise))
-		print(torch.max(self.noise))
+		pdb.set_trace()
 		# print(torch.var(self.noise))
 		
 		# time.sleep(1)
