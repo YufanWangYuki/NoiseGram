@@ -247,11 +247,10 @@ class Trainer(object):
 
 				# Update the noise
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
-				pdb.set_trace()
+
 				for i in range(len(src_ids)):
 					grad[i] /= (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.weight * grad
-				pdb.set_trace()
 				
 
 				# Second forward propagation-get loss
@@ -298,7 +297,6 @@ class Trainer(object):
 		self.noise.requires_grad = True
 		# del noise_bar, loss, grad, outputs, new_noise
 		# torch.cuda.empty_cache()
-		pdb.set_trace()
 		return resloss
 
 
