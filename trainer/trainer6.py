@@ -296,7 +296,7 @@ class Trainer(object):
 		self.noise.requires_grad = True
 		del noise_bar, loss, grad, outputs, new_noise
 		# torch.cuda.empty_cache()
-		return resloss.item()
+		return resloss
 
 
 	def _train_epochs(self,
