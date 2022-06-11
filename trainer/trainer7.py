@@ -255,12 +255,12 @@ class Trainer(object):
 						grad[i] /= (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.alpha * grad
 				pdb.set_trace()
-				
+
 				with torch.no_grad():
 					for i in range(len(src_ids)):
 						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
 						new_noise[i] *= self.weight
-				
+				pdb.set_trace()
 
 				# Second forward propagation-get loss
 				model.train()
