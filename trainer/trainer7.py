@@ -262,11 +262,9 @@ class Trainer(object):
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
 				loss = outputs.loss
 				loss /= n_minibatch
+				loss.backward()
 
 				# Update the noise to be the noise bar
-				
-				pdb.set_trace()
-				loss.backward()
 				noise_bar += torch.sum(new_noise, dim=(0,1))
 				resloss += loss.item()
 		else:
