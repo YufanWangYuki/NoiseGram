@@ -258,6 +258,7 @@ class Trainer(object):
 						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
 						new_noise[i] *= self.weight
 				print(torch.max(new_noise))
+				pdb.set_trace()
 
 				# Second forward propagation-get loss
 				model.train()
