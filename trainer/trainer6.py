@@ -289,8 +289,9 @@ class Trainer(object):
 		noise_bar /= batch_size
 		with torch.no_grad():
 			self.noise = self.noise + noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
-		pdb.set_trace()
+		# pdb.set_trace()
 		# print(torch.var(self.noise))
+		print(self.noise)
 		
 		# time.sleep(1)
 		
