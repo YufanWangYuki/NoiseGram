@@ -294,7 +294,7 @@ class Trainer(object):
 		
 		# print(noise_bar.max())
 		self.noise.requires_grad = True
-		del noise_bar, loss, grad, outputs, new_noise
+		# del noise_bar, loss, grad, outputs, new_noise
 		# torch.cuda.empty_cache()
 		return resloss
 
