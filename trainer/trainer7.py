@@ -263,9 +263,10 @@ class Trainer(object):
 				loss /= n_minibatch
 
 				# Update the noise to be the noise bar
-				noise_bar += torch.sum(new_noise, dim=(0,1))
+				
 				pdb.set_trace()
 				loss.backward()
+				noise_bar += torch.sum(new_noise, dim=(0,1))
 				resloss += loss.item()
 		else:
 			for bidx in range(n_minibatch):
