@@ -260,7 +260,9 @@ class Trainer(object):
 				# 	for i in range(len(src_ids)):
 				# 		new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
 				# 		new_noise[i] *= self.weight
-				pdb.set_trace()
+				
+						# new_noise[i] *= self.weight
+				# pdb.set_trace()
 
 				# Second forward propagation-get loss
 				model.train()
@@ -270,6 +272,9 @@ class Trainer(object):
 				loss.backward()
 
 				# Update the noise to be the noise bar
+				with torch.no_grad():
+					for i in range(len(src_ids)):
+						new_noise[i] /= (torch.sum(src_att_mask[i]))
 				noise_bar += torch.sum(new_noise, dim=(0,1))
 				resloss += loss.item()
 		else:
