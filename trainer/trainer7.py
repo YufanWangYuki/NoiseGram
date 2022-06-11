@@ -395,6 +395,7 @@ class Trainer(object):
 						log_msg = 'Progress: %d%%, Dev bleu: %.4f' % (step / total_steps * 100, bleu)
 						log.info(log_msg)
 						self.writer.add_scalar('dev_bleu', bleu, global_step=step)
+						log.info(self.noise)
 
 						# save condition
 						cond_bleu = (bleu < 0.1) or (prev_bleu <= bleu)
