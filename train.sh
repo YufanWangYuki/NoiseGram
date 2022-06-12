@@ -188,5 +188,5 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # normal 6198698
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
-#volta 6198701
+#volta 6198702
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
