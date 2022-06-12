@@ -230,7 +230,7 @@ class Trainer(object):
 
 		# loss
 		resloss = 0
-		print("-"*20)
+		# print("-"*20)
 
 		if "dversarial" in noise_configs['noise_type']:
 			noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
@@ -261,7 +261,7 @@ class Trainer(object):
 						for i in range(len(new_noise[0])):
 							new_noise[b][i] /= (torch.norm(new_noise[b][i]) + 1e-10)
 				new_noise *= self.weight
-				pdb.set_trace()
+				# pdb.set_trace()
 
 				# Second forward propagation-get loss
 				model.train()
