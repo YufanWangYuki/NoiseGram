@@ -7,8 +7,8 @@ unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
 
-# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+# export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -84,10 +84,8 @@ savedir=models/v005/eval-clc-test-beam-1/temp2/
 # ===================================================================================
 for ntype in Gaussian-adversarial-norm
 do
-for weight in 1.0
+for weight in 0.0 0.1 1.0 10.0 100.0 1000.0
 do
-# for weight in 0.0 0.1 1.0 10.0 100.0 1000.0
-# do
 savedir=models/v005/eval-clc-test-beam-1/temp2/
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
 	--train_path_src $train_path_src \
