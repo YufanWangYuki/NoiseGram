@@ -261,7 +261,7 @@ class Trainer(object):
 						for i in range(len(new_noise[0])):
 							new_noise[b][i] /= (torch.norm(new_noise[b][i]) + 1e-10)
 				new_noise *= self.weight
-				# pdb.set_trace()
+				# pdb.set_trace() 
 
 				# Second forward propagation-get loss
 				model.train()
