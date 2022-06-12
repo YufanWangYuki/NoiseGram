@@ -78,7 +78,7 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 ntype=Gaussian-adversarial-norm #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=add
 mean=0.0
-weight=100
+weight=1000
 savedir=models/v005/volta_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
@@ -181,7 +181,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # 6198693 volta
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_100.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
-
+# 6198718 volta
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_100_norm.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
 # 6198696 normal cancel
@@ -192,3 +192,5 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # volta 6198702 1000 norm
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# volta norm
+# qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000_norm.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
