@@ -108,12 +108,13 @@ class Trainer(object):
 		elif noise_type == 'Gaussian-adversarial' or noise_type == 'Gaussian-adversarial-norm':
 			self.noise = np.random.normal(mean, weight, [1, 1, embedding_dim])
 			self.noise = torch.tensor(self.noise).to(device=self.device).expand([self.minibatch_size,seq_length,embedding_dim])
-			# self.noise = self.noise.expand([self.minibatch_size,seq_length,embedding_dim])
 			self.noise.requires_grad = True
 		self.weight = weight
-		self.alpha =  weight # 1000000
+		self.alpha =  1000000 # 1000000
 		self.gamma = 0.5
-		# self.noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
+		if 'norm' in noise_type:
+			print('norm')
+			self.alpha = weight
 		print("Trainer Loaded")
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
@@ -251,13 +252,15 @@ class Trainer(object):
 				# Update the noise
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
 				pdb.set_trace()
-				with torch.no_grad():
-					for i in range(len(src_ids)):
-						grad[i] /= (torch.norm(grad[i]) + 1e-10)
+				# if 'norm' in noise_configs['noise_type']:
+				# 	with torch.no_grad():
+				# 		for i in range(len(src_ids)):
+				# 			grad[i] /= (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.alpha * grad
 				with torch.no_grad():
-					for i in range(len(src_ids)):
-						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
+					for b in range(len(src_ids)):
+						for i in range(len(new_noise[0])):
+							new_noise[b][i] /= (torch.norm(new_noise[b][i]) + 1e-10)
 				new_noise *= self.weight
 				pdb.set_trace()
 				# Second forward propagation-get loss

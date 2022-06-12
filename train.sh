@@ -76,8 +76,8 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [noise] ---------------------------
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
-nway=mul
-mean=1.0
+nway=add
+mean=0.0
 weight=100
 savedir=models/v005/temp_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
 
@@ -176,7 +176,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -o 'LOGs/v004/temp_adv_add_0.01.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
 
-#florence cancel + 6198694 volta
+#florence cancel + 6198694 volta cancel
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_10.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
 # 6198693 volta
