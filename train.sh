@@ -7,8 +7,8 @@ unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
 
-# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+# export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -175,6 +175,15 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -o 'LOGs/v004/temp_adv_add_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/v004/temp_adv_add_0.01.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
+
+#florence + waiting for volta
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_10.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+
+# 6198693 volta
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_100.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+
+# 6198696 normal
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
+
+# normal
+# qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
