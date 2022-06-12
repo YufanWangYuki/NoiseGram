@@ -257,6 +257,7 @@ class Trainer(object):
 					for i in range(len(src_ids)):
 						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
 				new_noise *= self.weight
+				print("*"*20)
 				print(torch.max(self.alpha * grad))
 				print(torch.mean(self.alpha * grad))
 				print(torch.max(new_noise))
