@@ -274,9 +274,8 @@ class Trainer(object):
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
 				loss /= n_minibatch
-				pdb.set_trace()
 
-				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
+				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False,allow_unused=True)[0]
 				
 				if "norm" in noise_configs['noise_type']:
 					print("norm")
