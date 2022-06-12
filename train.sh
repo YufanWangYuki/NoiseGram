@@ -7,7 +7,7 @@ unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
 
-export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
 # export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
@@ -52,8 +52,8 @@ keep_num=5
 # --------------
 batch_size=256
 # minibatch_split=2 #8 for million
-minibatch_split=8 #8 for million
-# minibatch_split=32 #8 for million
+# minibatch_split=8 #8 for million
+minibatch_split=32 #8 for million
 num_epochs=100
 
 checkpoint_every=5000 # ~10k if 2M, batch - 256
@@ -79,7 +79,7 @@ ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversari
 nway=add
 mean=0.0
 weight=1000
-savedir=models/v005/volta_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
+savedir=models/v005/temp_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
@@ -188,5 +188,5 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # normal 6198698
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
-#volta
+#volta 6198701
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
