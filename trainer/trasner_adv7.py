@@ -123,7 +123,6 @@ class Trainer(object):
 		self.final_pred = []
 		if 'norm' in noise_type:
 			self.alpha = weight
-			pdb.set_trace()
 		print(self.alpha)
 
 
@@ -273,10 +272,11 @@ class Trainer(object):
 			if "dversarial" in noise_configs['noise_type']:
 				model.eval()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				pdb.set_trace()
 				loss = outputs.loss
 				loss /= n_minibatch
 
-				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False,allow_unused=True)[0]
+				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
 				
 				if "norm" in noise_configs['noise_type']:
 					print("norm")

@@ -88,7 +88,7 @@ for weight in 1.0
 do
 # for weight in 0.0 0.1 1.0 10.0 100.0 1000.0
 # do
-savedir=models/v005/eval-clc-test-beam-1/temp/
+savedir=models/v005/eval-clc-test-beam-1/temp2/
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
 	--train_path_src $train_path_src \
 	--train_path_tgt $train_path_tgt \
