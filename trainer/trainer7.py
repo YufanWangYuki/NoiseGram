@@ -257,7 +257,6 @@ class Trainer(object):
 					for i in range(len(src_ids)):
 						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
 						new_noise[i] *= self.weight
-				print(torch.max(new_noise))
 
 				# Second forward propagation-get loss
 				model.train()
@@ -296,7 +295,6 @@ class Trainer(object):
 		self.optimizer.step()
 		model.zero_grad()
 		noise_bar /= batch_size
-		# pdb.set_trace()
 		with torch.no_grad():
 			self.noise = self.gamma * self.noise + (1 - self.gamma) * noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		# pdb.set_trace()
@@ -402,7 +400,7 @@ class Trainer(object):
 						log.info(log_msg)
 						self.writer.add_scalar('dev_bleu', bleu, global_step=step)
 						log.info(self.noise)
-						print(self.noise)
+						# print(self.noise)
 
 						# save condition
 						cond_bleu = (bleu < 0.1) or (prev_bleu <= bleu)
