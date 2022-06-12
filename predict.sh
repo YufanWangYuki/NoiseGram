@@ -71,7 +71,7 @@ seed=1
 #         --use_attack 0
 
 exp=volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/${exp}/checkpoints-combine/combine
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/${exp}/checkpoints-combine
 checkpoint=combine
 outdir=prediction_files/v003_volta_Gaussian-adversarial_mul_1.0_0.1_256_8
 output=$outdir/${checkpoint}_seed_${seed}
