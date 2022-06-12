@@ -52,7 +52,7 @@ keep_num=5
 # --------------
 batch_size=256
 # minibatch_split=2 #8 for million
-minibatch_split=16 #8 for million
+minibatch_split=8 #8 for million
 # minibatch_split=32 #8 for million
 num_epochs=100
 
@@ -78,7 +78,7 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=add
 mean=0.0
-weight=0.1
+weight=1000
 savedir=models/v005/volta_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
