@@ -116,7 +116,7 @@ class Trainer(object):
 		# self.noise = torch.tensor(self.noise).to(device=self.device)
 		self.noise.requires_grad = True
 		self.weight = weight
-		self.alpha =  weight # 1000000
+		self.alpha =  1000000 # 1000000
 		self.gamma = 0.5
 		self.total_noise_edits = 0
 		self.total_trans_edits = 0
@@ -273,9 +273,9 @@ class Trainer(object):
 				loss /= n_minibatch
 
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
-				with torch.no_grad():
-					for i in range(len(src_ids)):
-						grad[i] /= (torch.norm(grad[i]) + 1e-10)
+				# with torch.no_grad():
+				# 	for i in range(len(src_ids)):
+				# 		grad[i] /= (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.alpha * grad
 				with torch.no_grad():
 					for i in range(len(src_ids)):
