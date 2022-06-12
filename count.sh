@@ -22,7 +22,7 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/combine_v3_gramformer/orig/translate.txt
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/eval-clc-test-beam-1/2_Gaussian-adversarial_mul_0.0/translate.txt
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_0.1_256_2_002/eval-clc-test-beam-1/orig/translate.txt
-output_file=results/v005/count_adv.txt
+output_file=results/v005/count_adv_norm.txt
 
 # base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v001/eval-clc-test-beam-1/adv_updated/2_Gaussian-adversarial_mul_0.0/translate.txt
 # for ntype in Gaussian-adversarial Adversarial
@@ -61,7 +61,7 @@ output_file=results/v005/count_adv.txt
 # done
 
 base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/eval-clc-test-beam-1/2_Gaussian-adversarial_add_0.0/translate.txt
-for ntype in Gaussian-adversarial
+for ntype in Gaussian-adversarial-norm
 do
 for weight in 0.0 0.1 1.0 10.0 100.0 1000.0
 do
