@@ -281,6 +281,7 @@ class Trainer(object):
 					for i in range(len(src_ids)):
 						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
 				new_noise *= self.weight
+				# pdb.set_trace()
 				
 
 				with torch.no_grad():
@@ -300,6 +301,7 @@ class Trainer(object):
 		# print(torch.mean(self.noise))
 		# print(torch.var(self.noise))
 		# print(noise_bar.max())
+		
 		self.noise.requires_grad = True
 		return resloss
 

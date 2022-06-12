@@ -84,9 +84,9 @@ savedir=models/v005/eval-clc-test-beam-1/temp/
 # ===================================================================================
 for ntype in Gaussian-adversarial
 do
-for weight in 0.1 1 10 100 1000
+for weight in 0 0.1 1 10 100 1000
 do
-savedir=models/v004/eval-clc-test-beam-1/temp/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_002/
+savedir=models/v005/eval-clc-test-beam-1/temp/
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \
 	--train_path_src $train_path_src \
 	--train_path_tgt $train_path_tgt \
@@ -173,3 +173,4 @@ done
 
 
 # qsub -cwd -j yes -o 'LOGs/adv_004_add.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/v005/adv_005_add.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' trans_adv.sh 1 1
