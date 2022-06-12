@@ -105,15 +105,16 @@ mkdir prediction_files/$exp/attacks
 #         --use_attack 1 \
 #         --phrase 'ink l' \
 #         --delim '.'
-output=prediction_files/$exp/attacks/full_N3
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'ink l xml' \
-        --delim '.'
+# output=prediction_files/$exp/attacks/full_N3
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'ink l xml' \
+#         --delim '.'
+
 output=prediction_files/$exp/attacks/full_N4
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
@@ -122,7 +123,8 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --seed $seed \
         --use_attack 1 \
         --phrase 'ink l xml mv' \
-        --delim '.'     
+        --delim '.'   
+
 output=prediction_files/$exp/attacks/full_N5
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
@@ -132,6 +134,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --use_attack 1 \
         --phrase 'ink l xml mv sub' \
         --delim '.'    
+
 output=prediction_files/$exp/attacks/full_N6
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
@@ -141,6 +144,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --use_attack 1 \
         --phrase 'ink l xml mv sub xu' \
         --delim '.'    
+
 output=prediction_files/$exp/attacks/full_N7
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
@@ -150,6 +154,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --use_attack 1 \
         --phrase 'ink l xml mv sub xu bec' \
         --delim '.'   
+
 output=prediction_files/$exp/attacks/full_N8
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
@@ -158,7 +163,8 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --seed $seed \
         --use_attack 1 \
         --phrase 'ink l xml mv sub xu bec l' \
-        --delim '.'    
+        --delim '.'   
+
 output=prediction_files/$exp/attacks/full_N9
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
