@@ -78,7 +78,7 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=add
 mean=0.0
-weight=1000
+weight=100
 savedir=models/v005/temp_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================

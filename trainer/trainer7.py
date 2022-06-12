@@ -259,6 +259,7 @@ class Trainer(object):
 						# new_noise[i] *= self.weight
 				pdb.set_trace()
 				new_noise *= self.weight
+				print(new_noise.max())
 				# Second forward propagation-get loss
 				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
