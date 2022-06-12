@@ -63,7 +63,7 @@ output_file=results/v005/count_adv_norm.txt
 base_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/eval-clc-test-beam-1/2_Gaussian-adversarial_add_0.0/translate.txt
 for ntype in Gaussian-adversarial-norm
 do
-for weight in 0.0 0.1 1.0 10.0 100.0 1000.0
+for weight in 100.0 1000.0
 do
 input_path=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/eval-clc-test-beam-1/2_${ntype}_add_${weight}/translate.txt
 echo $base_path >> $output_file
