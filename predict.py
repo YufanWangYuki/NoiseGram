@@ -88,6 +88,7 @@ if __name__ == "__main__":
 
     # Save predictions
     if args.use_attack == 1 and args.phrase != '':
+        print(args.OUT_BASE)
         file2 = f'{args.OUT_BASE}_with_adv_removed.pred'
         file1 = f'{args.OUT_BASE}_with_adv_not_removed.pred'
         with open(file2, 'w') as f:
