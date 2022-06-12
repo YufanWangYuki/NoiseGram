@@ -110,11 +110,11 @@ class Trainer(object):
 			self.noise = torch.tensor(self.noise).to(device=self.device).expand([self.minibatch_size,seq_length,embedding_dim])
 			self.noise.requires_grad = True
 		self.weight = weight
-		self.alpha =  1000000 # 1000000
+		self.alpha =  1000000000 # 1000000
 		self.gamma = 0.5
 		if 'norm' in noise_type:
-			print('norm')
 			self.alpha = weight
+		print(self.alpha)
 		print("Trainer Loaded")
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
@@ -251,11 +251,10 @@ class Trainer(object):
 
 				# Update the noise
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
-				pdb.set_trace()
-				# if 'norm' in noise_configs['noise_type']:
-				# 	with torch.no_grad():
-				# 		for i in range(len(src_ids)):
-				# 			grad[i] /= (torch.norm(grad[i]) + 1e-10)
+				if 'norm' in noise_configs['noise_type']:
+					with torch.no_grad():
+						for i in range(len(src_ids)):
+							grad[i] /= (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.alpha * grad
 				with torch.no_grad():
 					for b in range(len(src_ids)):
@@ -263,6 +262,7 @@ class Trainer(object):
 							new_noise[b][i] /= (torch.norm(new_noise[b][i]) + 1e-10)
 				new_noise *= self.weight
 				pdb.set_trace()
+
 				# Second forward propagation-get loss
 				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
