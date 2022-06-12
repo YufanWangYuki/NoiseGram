@@ -102,19 +102,19 @@ class Trainer(object):
 			'noise_way':noise_way
 		}
 
-		self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
+		self.noise = None
 
 		if noise_type == 'Adversarial':
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
 		elif noise_type == 'Gaussian-adversarial' or noise_type == 'Gaussian-adversarial-norm':
 			self.noise = np.random.normal(mean, weight, [1, 1, embedding_dim])
-			self.noise = torch.tensor(self.noise).to(device=self.device)
-			self.noise = self.noise.expand([self.minibatch_size,seq_length,embedding_dim])
+			self.noise = torch.tensor(self.noise).to(device=self.device).expand([self.minibatch_size,seq_length,embedding_dim])
+			self.noise.requires_grad = True
 		elif noise_type == 'Gaussian-adversarial-diff':
 			self.noise = np.random.normal(1, weight, [self.minibatch_size, seq_length, embedding_dim])
 		# pdb.set_trace()
 		# self.noise = torch.tensor(self.noise).to(device=self.device)
-		self.noise.requires_grad = True
+		
 		self.weight = weight
 		self.alpha =  1000000 # 1000000
 		self.gamma = 0.5
@@ -276,6 +276,7 @@ class Trainer(object):
 				loss /= n_minibatch
 
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
+				pdb.set_trace()
 				if "norm" in noise_configs['noise_type']:
 					print("norm")
 					with torch.no_grad():
