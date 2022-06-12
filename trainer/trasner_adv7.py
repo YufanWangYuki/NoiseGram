@@ -272,7 +272,6 @@ class Trainer(object):
 			if "dversarial" in noise_configs['noise_type']:
 				model.eval()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
-				pdb.set_trace()
 				loss = outputs.loss
 				loss /= n_minibatch
 
