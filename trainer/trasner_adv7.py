@@ -116,7 +116,7 @@ class Trainer(object):
 		# self.noise = torch.tensor(self.noise).to(device=self.device)
 		
 		self.weight = weight
-		self.alpha =  1000000 # 1000000
+		self.alpha =  10000000 # 1000000
 		self.gamma = 0.5
 		self.total_noise_edits = 0
 		self.total_trans_edits = 0
