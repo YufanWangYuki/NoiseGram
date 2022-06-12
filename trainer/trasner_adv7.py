@@ -125,6 +125,7 @@ class Trainer(object):
 			self.alpha = weight
 		print(noise_type)
 		print(self.alpha)
+		pdb.set_trace()
 
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
