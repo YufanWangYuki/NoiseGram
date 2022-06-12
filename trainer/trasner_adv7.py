@@ -125,8 +125,6 @@ class Trainer(object):
 			self.alpha = weight
 		print(noise_type)
 		print(self.alpha)
-		pdb.set_trace()
-
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
 
@@ -276,6 +274,7 @@ class Trainer(object):
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
 				loss /= n_minibatch
+				pdb.set_trace()
 
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
 				
@@ -289,7 +288,6 @@ class Trainer(object):
 					for i in range(len(src_ids)):
 						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
 				new_noise *= self.weight
-				# pdb.set_trace()
 				
 
 				with torch.no_grad():
