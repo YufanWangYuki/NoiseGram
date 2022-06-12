@@ -105,7 +105,7 @@ class Trainer(object):
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
 			self.noise = torch.tensor(self.noise).to(device=self.device)
 			self.noise.requires_grad = True
-		elif noise_type == 'Gaussian-adversarial':
+		elif noise_type == 'Gaussian-adversarial' or noise_type == 'Gaussian-adversarial-norm':
 			self.noise = np.random.normal(mean, weight, [1, 1, embedding_dim])
 			self.noise = torch.tensor(self.noise).to(device=self.device).expand([self.minibatch_size,seq_length,embedding_dim])
 			# self.noise = self.noise.expand([self.minibatch_size,seq_length,embedding_dim])

@@ -75,7 +75,7 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
-ntype=Gaussian-adversarial-norm #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
+ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=add
 mean=0.0
 weight=100
