@@ -123,6 +123,7 @@ class Trainer(object):
 		self.final_pred = []
 		if 'norm' in noise_type:
 			self.alpha = weight
+		print(noise_type)
 		print(self.alpha)
 
 
