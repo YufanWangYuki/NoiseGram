@@ -111,7 +111,7 @@ class Trainer(object):
 			# self.noise = self.noise.expand([self.minibatch_size,seq_length,embedding_dim])
 			self.noise.requires_grad = True
 		self.weight = weight
-		self.alpha =  weight*weight # 1000000
+		self.alpha =  weight # 1000000
 		self.gamma = 0.5
 		# self.noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
 		print("Trainer Loaded")
@@ -252,7 +252,7 @@ class Trainer(object):
 				with torch.no_grad():
 					for i in range(len(src_ids)):
 						grad[i] /= (torch.norm(grad[i]) + 1e-10)
-				new_noise = self.noise + self.weight * grad
+				new_noise = self.noise + self.alpha * grad
 				with torch.no_grad():
 					for i in range(len(src_ids)):
 						new_noise[i] /= (torch.norm(new_noise[i]) + 1e-10)
