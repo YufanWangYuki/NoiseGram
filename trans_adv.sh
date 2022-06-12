@@ -79,12 +79,12 @@ ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversari
 nway=add
 mean=0.0
 weight=0.1
-savedir=models/v005/eval-clc-test-beam-1/temp/
+savedir=models/v005/eval-clc-test-beam-1/temp2/
 
 # ===================================================================================
-for ntype in Gaussian-adversarial
+for ntype in Gaussian-adversarial-norm
 do
-for weight in 0 0.1 1 10 100 1000
+for weight in 0.0 0.1 1.0 10.0 100.0 1000.0
 do
 savedir=models/v005/eval-clc-test-beam-1/temp/
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \

@@ -121,6 +121,9 @@ class Trainer(object):
 		self.total_noise_edits = 0
 		self.total_trans_edits = 0
 		self.final_pred = []
+		if 'norm' in noise_type:
+			self.alpha = weight
+		print(self.alpha)
 
 
 	def _print_hyp(self, out_count, tgt_seqs, preds):
@@ -273,9 +276,11 @@ class Trainer(object):
 				loss /= n_minibatch
 
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=False)[0]
-				# with torch.no_grad():
-				# 	for i in range(len(src_ids)):
-				# 		grad[i] /= (torch.norm(grad[i]) + 1e-10)
+				if "norm" in noise_configs['noise_type']:
+					print("norm")
+					with torch.no_grad():
+						for i in range(len(src_ids)):
+							grad[i] /= (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.alpha * grad
 				with torch.no_grad():
 					for i in range(len(src_ids)):
