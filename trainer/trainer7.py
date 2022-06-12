@@ -229,6 +229,7 @@ class Trainer(object):
 
 		# loss
 		resloss = 0
+		print("-"*20)
 
 		if "dversarial" in noise_configs['noise_type']:
 			noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
