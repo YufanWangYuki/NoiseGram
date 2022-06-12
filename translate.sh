@@ -5,8 +5,8 @@ echo $HOSTNAME
 unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
-export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-# export CUDA_VISIBLE_DEVICES=0
+# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -259,3 +259,6 @@ done
 #         --weight $weight \
 #         --word_keep $word_keep \
 #         --load $load_dir
+
+
+# qsub -cwd -j yes -o 'LOGs/combine.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' translate.sh 1 1

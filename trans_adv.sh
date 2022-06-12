@@ -86,7 +86,7 @@ for ntype in Gaussian-adversarial
 do
 for weight in 0.0 0.1 1.0 10.0 100.0 1000.0
 do
-for alpha in 
+for alpha in 100000000
 do
 savedir=models/v005/eval-clc-test-beam-1/temp/
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trans_adv.py \

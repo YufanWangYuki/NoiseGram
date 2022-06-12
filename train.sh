@@ -176,17 +176,17 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -o 'LOGs/v004/temp_adv_add_0.01.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
 
-#florence + 6198694 volta
+#florence cancel + 6198694 volta
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_10.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
 # 6198693 volta
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_100.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
-# 6198696 normal
+# 6198696 normal cancel
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
-# normal 6198698
+# normal 6198698 cancel
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' train.sh 1 1
 
-#volta 6198702
+# volta 6198702
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
