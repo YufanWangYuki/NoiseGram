@@ -107,10 +107,10 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 #     --delim ','
 
 
-exp=v003_volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-mkdir edit_dist_files/$exp
-mkdir edit_dist_files/$exp/attacks
-name=full_N1
+# exp=v003_volta_Gaussian-adversarial_mul_1.0_0.1_256_8
+# mkdir edit_dist_files/$exp
+# mkdir edit_dist_files/$exp/attacks
+# name=full_N1
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
 #     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
 #     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
@@ -192,9 +192,18 @@ name=full_N1
 #     --delim '.'
 
 
+# name=orig
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED prediction_files/$exp/combine_seed_1.pred \
+#     --OUT edit_dist_files/$exp/attacks/${name}_with_adv_not_removed.txt
+
+
 name=orig
+exp=Gaussian_mul_1.0_0.1_256_2_002
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED prediction_files/$exp/combine_seed_1.pred \
+    --PRED prediction_files/$exp/orig_combine_seed_1.pred \
     --OUT edit_dist_files/$exp/attacks/${name}_with_adv_not_removed.txt
