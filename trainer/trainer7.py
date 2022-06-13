@@ -175,7 +175,7 @@ class Trainer(object):
 				batch_src_att_mask = batch_items['src_att_mask'][0]
 				batch_tgt_ids = batch_items['tgt_ids'][0]
 				batch_tgt_seqs = batch_items['tgt_seqs']
-				pdb.set_trace()
+				
 
 				# separate into minibatch
 				batch_size = batch_src_ids.size(0)
@@ -226,6 +226,7 @@ class Trainer(object):
 		batch_src_ids = batch_items['src_ids'][0]
 		batch_src_att_mask = batch_items['src_att_mask'][0]
 		batch_tgt_ids = batch_items['tgt_ids'][0]
+		
 
 		# separate into minibatch
 		batch_size = batch_src_ids.size(0)
@@ -246,6 +247,7 @@ class Trainer(object):
 				src_ids = batch_src_ids[i_start:i_end]
 				src_att_mask = batch_src_att_mask[i_start:i_end]
 				tgt_ids = batch_tgt_ids[i_start:i_end]
+				pdb.set_trace()
 
 				# First forward propagation-get noise
 				model.eval()
@@ -260,12 +262,13 @@ class Trainer(object):
 						for i in range(len(src_ids)):
 							grad[i] /= (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.alpha * grad
+				# pdb.set_trace()
 				with torch.no_grad():
 					for b in range(len(src_ids)):
 						for i in range(len(new_noise[0])):
 							new_noise[b][i] /= (torch.norm(new_noise[b][i]) + 1e-10)
 				new_noise *= self.weight
-				# pdb.set_trace() 
+				pdb.set_trace() 
 
 				# Second forward propagation-get loss
 				model.train()
