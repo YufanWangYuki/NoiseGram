@@ -113,7 +113,7 @@ class Trainer(object):
 		self.alpha =  1000000000 # 1000000
 		self.gamma = 0.5
 		if 'norm' in noise_type:
-			self.alpha = weight
+			self.alpha = weight*weight
 		print(self.alpha)
 		print("Trainer Loaded")
 
