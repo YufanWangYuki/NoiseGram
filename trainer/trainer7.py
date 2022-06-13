@@ -244,7 +244,7 @@ class Trainer(object):
 				src_ids = batch_src_ids[i_start:i_end]
 				src_att_mask = batch_src_att_mask[i_start:i_end]
 				tgt_ids = batch_tgt_ids[i_start:i_end]
-				pdb.set_trace()
+				# pdb.set_trace()
 
 				# First forward propagation-get noise
 				model.eval()
@@ -265,7 +265,7 @@ class Trainer(object):
 						for i in range(len(new_noise[0])):
 							new_noise[b][i] /= (torch.norm(new_noise[b][i]) + 1e-10)
 				new_noise *= self.weight*self.weight
-				pdb.set_trace() 
+				# pdb.set_trace() 
 
 				# Second forward propagation-get loss
 				model.train()
