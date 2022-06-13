@@ -106,7 +106,10 @@ class Trainer(object):
 			self.noise = torch.tensor(self.noise).to(device=self.device)
 			self.noise.requires_grad = True
 		elif noise_type == 'Gaussian-adversarial' or noise_type == 'Gaussian-adversarial-norm':
-			self.noise = np.random.normal(mean, weight, [1, 1, embedding_dim])
+			if weight > 1000:
+				self.noise = np.random.normal(mean, 10, [1, 1, embedding_dim])
+			else:
+				self.noise = np.random.normal(mean, weight, [1, 1, embedding_dim])
 			self.noise = torch.tensor(self.noise).to(device=self.device).expand([self.minibatch_size,seq_length,embedding_dim])
 			self.noise.requires_grad = True
 		self.weight = weight
