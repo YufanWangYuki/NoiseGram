@@ -175,6 +175,7 @@ class Trainer(object):
 				batch_src_att_mask = batch_items['src_att_mask'][0]
 				batch_tgt_ids = batch_items['tgt_ids'][0]
 				batch_tgt_seqs = batch_items['tgt_seqs']
+				pdb.set_trace()
 
 				# separate into minibatch
 				batch_size = batch_src_ids.size(0)
