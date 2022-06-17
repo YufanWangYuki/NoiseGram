@@ -244,7 +244,6 @@ class Trainer(object):
 				src_ids = batch_src_ids[i_start:i_end]
 				src_att_mask = batch_src_att_mask[i_start:i_end]
 				tgt_ids = batch_tgt_ids[i_start:i_end]
-				# pdb.set_trace()
 
 				# First forward propagation-get noise
 				model.eval()

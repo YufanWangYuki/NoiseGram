@@ -153,10 +153,10 @@ fi
 
 # ------- Combine ---------------
 eval_mode=1
-model=models/v003
+model=models/v005
 fname=checkpoints
 mode='combine'
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
+for exp in volta_Gaussian-adversarial_add_0.0_1000_256_8 volta_Gaussian-adversarial_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_10_256_8 
 do
 combine_path=$model/$exp/checkpoints/
 outdir=$model/$exp/checkpoints-combine/combine/

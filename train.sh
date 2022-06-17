@@ -177,7 +177,9 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 
 #florence cancel + 6198694 volta cancel
-# qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_10.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# cacel qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_10.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# 6198726 volta
+# qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_10_norm.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
 # 6198693 volta
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_100.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
