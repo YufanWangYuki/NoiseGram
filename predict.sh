@@ -84,114 +84,117 @@ seed=1
 
 
 # exp=volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-checkpoint=combine
-outdir=prediction_files/v005
-mkdir $outdir
-for exp in volta_Gaussian-adversarial_add_0.0_1000_256_8 volta_Gaussian-adversarial_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_10_256_8 
-do
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine
-output=$outdir/${exp}_${checkpoint}_seed_${seed}
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 0
-done
+# checkpoint=combine
+# outdir=prediction_files/v005
+# mkdir $outdir
+# for exp in volta_Gaussian-adversarial_add_0.0_1000_256_8 volta_Gaussian-adversarial_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_10_256_8 
+# do
+# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine
+# output=$outdir/${exp}_${checkpoint}_seed_${seed}
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 0
+# done
 
 # ------------------------------------Attack
-# exp=volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/${exp}/checkpoints-combine/combine
-# mkdir prediction_files/v003_$exp
-# exp=v003_volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-# mkdir prediction_files/$exp/attacks
-# output=prediction_files/$exp/attacks/full_N1
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink' \
-#         --delim '.'
-# output=prediction_files/$exp/attacks/full_N2
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l' \
-#         --delim '.'
-# output=prediction_files/$exp/attacks/full_N3
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml' \
-#         --delim '.'
+for exp in volta_Gaussian-adversarial_add_0.0_1000_256_8 volta_Gaussian-adversarial_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_10_256_8 
+do
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine/combine
+mkdir prediction_files/v005/$exp
+mkdir prediction_files/v005/$exp/attacks
+outdir=prediction_files/v005/$exp/attacks
+output=$outdir/full_N1
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink' \
+        --delim '.'
 
-# output=prediction_files/$exp/attacks/full_N4
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml mv' \
-#         --delim '.'   
+output=$outdir/full_N2
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l' \
+        --delim '.'
+output=$outdir/full_N3
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml' \
+        --delim '.'
 
-# output=prediction_files/$exp/attacks/full_N5
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml mv sub' \
-#         --delim '.'    
+output=$outdir/full_N4
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv' \
+        --delim '.'   
 
-# output=prediction_files/$exp/attacks/full_N6
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml mv sub xu' \
-#         --delim '.'    
+output=$outdir/full_N5
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub' \
+        --delim '.'    
 
-# output=prediction_files/$exp/attacks/full_N7
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml mv sub xu bec' \
-#         --delim '.'   
+output=$outdir/full_N6
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu' \
+        --delim '.'    
 
-# output=prediction_files/$exp/attacks/full_N8
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml mv sub xu bec l' \
-#         --delim '.'   
+output=$outdir/full_N7
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu bec' \
+        --delim '.'   
 
-# output=prediction_files/$exp/attacks/full_N9
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml mv sub xu bec l sub' \
-#         --delim '.'     
+output=$outdir/full_N8
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu bec l' \
+        --delim '.'   
+
+output=$outdir/full_N9
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu bec l sub' \
+        --delim '.'     
+done
 
 
 
