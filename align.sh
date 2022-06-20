@@ -154,7 +154,7 @@ for exp in orig
 do
 mkdir $outdir/v005/${exp}
     checkpoint=combine
-    pred=$preddir/${exp}_${checkpoint}_seed_1.pred
+    pred=$preddir/orig.pred
     output=$outdir/v005/${exp}/${checkpoint}_seed_${seed}
     echo $pred
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
