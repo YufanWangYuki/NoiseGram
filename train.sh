@@ -116,7 +116,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--ntype $ntype \
 	--nway $nway \
 	--mean $mean \
-	--weight $weight
+	--weight $weight \
 	--alpha $alpha
 
 # Run below command to submit this script as an array job
@@ -200,3 +200,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000_norm.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_10000_norm.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+
+
+# qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000_v2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000_v2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
