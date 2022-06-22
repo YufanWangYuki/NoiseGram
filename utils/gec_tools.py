@@ -1,7 +1,7 @@
 import random
 import errant
 import pdb
-random.seed(10)
+random.seed(1)
 
 def get_sentences(data_path, num=-1):
     with open(data_path, 'r') as f:

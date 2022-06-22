@@ -49,7 +49,8 @@ class Trainer(object):
 		replace_map=None,
 		noise_way='mul',
 		seq_length=64,
-		embedding_dim=768
+		embedding_dim=768,
+		alpha=10000000
 		):
 
 		self.use_gpu = use_gpu
@@ -99,7 +100,8 @@ class Trainer(object):
 			'mean':mean,
 			'word_keep':word_keep,
 			'replace_map':replace_map,
-			'noise_way':noise_way
+			'noise_way':noise_way,
+			'alpha':alpha
 		}
 
 		self.noise = None
@@ -107,7 +109,7 @@ class Trainer(object):
 		if noise_type == 'Adversarial':
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
 		elif noise_type == 'Gaussian-adversarial' or noise_type == 'Gaussian-adversarial-norm':
-			self.noise = np.random.normal(mean, weight, [1, 1, embedding_dim])
+			self.noise = np.random.normal(mean, 15, [1, 1, embedding_dim])
 			self.noise = torch.tensor(self.noise).to(device=self.device).expand([self.minibatch_size,seq_length,embedding_dim])
 			self.noise.requires_grad = True
 		elif noise_type == 'Gaussian-adversarial-diff':
@@ -116,7 +118,7 @@ class Trainer(object):
 		# self.noise = torch.tensor(self.noise).to(device=self.device)
 		
 		self.weight = weight
-		self.alpha =  10000000 # 1000000
+		self.alpha =  alpha # 1000000
 		self.gamma = 0.5
 		self.total_noise_edits = 0
 		self.total_trans_edits = 0

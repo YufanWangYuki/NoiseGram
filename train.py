@@ -73,6 +73,8 @@ def load_arguments(parser):
 		help='word keep')
 	parser.add_argument('--replace_map', type=list, default=None,
 		help='replace map')
+	parser.add_argument('--alpha', type=float, default=10000000,
+		help='replace map')
 
 	return parser
 
@@ -124,7 +126,8 @@ def main():
 					weight=config['weight'],
 					mean=config['mean'],
 					word_keep=config['word_keep'],
-					noise_way=config['nway']
+					noise_way=config['nway'],
+					alpha=config['alpha']
 					)
 
 	# load train set

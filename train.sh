@@ -75,11 +75,12 @@ load_mode='null' # 'resume' | 'restart' | 'null'
 # print_every=2
 
 # ----------------------- [noise] ---------------------------
-ntype=Gaussian-adversarial-norm #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
+ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
 nway=add
 mean=0.0
-weight=10
-savedir=models/v005/volta_${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}/
+weight=1000
+alpha=10000000
+savedir=models/v005/volta_${ntype}_${nway}_${mean}_${weight}_${alpha}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
@@ -116,6 +117,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--nway $nway \
 	--mean $mean \
 	--weight $weight
+	--alpha $alpha
 
 # Run below command to submit this script as an array job
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/train.txt -t 1-5 -l not_host="air113|air116" train.sh 1
