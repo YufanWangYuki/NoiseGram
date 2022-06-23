@@ -74,7 +74,7 @@ def load_arguments(parser):
 	parser.add_argument('--replace_map', type=list, default=None,
 		help='replace map')
 	parser.add_argument('--alpha', type=float, default=10000000,
-		help='replace map')
+		help='alpha')
 
 	return parser
 
