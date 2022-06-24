@@ -112,10 +112,10 @@ class Trainer(object):
 			self.noise = torch.tensor(self.noise).to(device=self.device).expand([self.minibatch_size,seq_length,embedding_dim])
 			self.noise.requires_grad = True
 		self.weight = weight
-		self.alpha =  1000000000 # 1000000
+		self.alpha =  alpha # 1000000
 		self.gamma = 0.5
 		if 'norm' in noise_type:
-			self.alpha = weight*weight
+			self.alpha = weight
 		print(self.alpha)
 		print("Trainer Loaded")
 
@@ -265,7 +265,7 @@ class Trainer(object):
 					for b in range(len(src_ids)):
 						for i in range(len(new_noise[0])):
 							new_noise[b][i] /= (torch.norm(new_noise[b][i]) + 1e-10)
-				new_noise *= self.weight*self.weight
+				new_noise *= self.weight
 				# pdb.set_trace() 
 
 				# Second forward propagation-get loss
