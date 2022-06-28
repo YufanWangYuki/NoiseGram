@@ -16,7 +16,8 @@ from models.Seq2seq import Seq2seq
 # from trainer.trainer4 import Trainer
 # from trainer.trainer5 import Trainer
 # from trainer.trainer6 import Trainer
-from trainer.trainer7 import Trainer
+# from trainer.trainer7 import Trainer
+from trainer.trainer8 import Trainer
 
 def load_arguments(parser):
 

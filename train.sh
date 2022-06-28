@@ -80,7 +80,8 @@ nway=add
 mean=0.0
 weight=1000
 alpha=100000000
-savedir=models/v005/volta_${ntype}_${nway}_${mean}_${weight}_${alpha}_${batch_size}_${minibatch_split}/
+decay=0.1
+savedir=models/v005/volta_${ntype}_${nway}_${mean}_${weight}_${alpha}_${decay}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
@@ -204,3 +205,5 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000_v2.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000_norm.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+
+# qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000_decay_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
