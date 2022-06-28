@@ -502,6 +502,8 @@ class Trainer(object):
 							count_no_improve, count_num_rollback))
 						if count_no_improve > 2:
 							self.weight *= self.decay
+							log.info('weight is {}'.format(
+							self.weight))
 
 					sys.stdout.flush()
 
