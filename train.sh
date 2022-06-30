@@ -79,7 +79,7 @@ ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversari
 nway=mul
 mean=1.0
 weight=0.1
-alpha=100000000
+alpha=10000000
 decay=1
 savedir=models/v005/volta_${ntype}_${nway}_${mean}_${weight}_${alpha}_${decay}_${batch_size}_${minibatch_split}/
 
@@ -207,3 +207,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000_norm.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
 
 # qsub -cwd -j yes -o 'LOGs/v005/train_adv_add_1000_decay_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+
+
+# qsub -cwd -j yes -o 'LOGs/v005/train_adv_mul_0.1.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/v005/train_adv_mul_0.1_10000000.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='volta' -l osrel='*' train.sh 1 1
