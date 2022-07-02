@@ -147,7 +147,7 @@ seed=1
 
 outdir=prediction_files/m2/v005
 mkdir prediction_files/m2/v005
-for exp in orig
+for exp in volta_Gaussian-adversarial_add_0.0_1000_100000000_0.1_256_8 volta_Gaussian-adversarial_add_0.0_1000_100000000_0.1_4_2
 do
 checkpoint=combine
 dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/v005/$exp
