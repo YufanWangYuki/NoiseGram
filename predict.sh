@@ -34,19 +34,19 @@ seed=1
 #         --use_attack 0
 # done
 
-exp=orig
-model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/
-for checkpoint in combine
-do
-    output=$outdir/orig
-    mkdir output
-    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 0
-done
+# exp=orig
+# model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/
+# for checkpoint in combine
+# do
+#     output=$outdir/orig
+#     mkdir output
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 0
+# done
 
 # exp=Gaussian_mul_1.0_0.1_256_2_002
 # model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/$exp/checkpoints
@@ -84,21 +84,21 @@ done
 #         --use_attack 0
 
 
-# exp=volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-# checkpoint=combine
-# outdir=prediction_files/v005
-# mkdir $outdir
-# for exp in volta_Gaussian-adversarial_add_0.0_1000_256_8 volta_Gaussian-adversarial_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_10_256_8 
-# do
-# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine
-# output=$outdir/${exp}_${checkpoint}_seed_${seed}
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 0
-# done
+exp=volta_Gaussian-adversarial_mul_1.0_0.1_256_8
+checkpoint=combine
+outdir=prediction_files/v005
+mkdir $outdir
+for exp in volta_Gaussian-adversarial_add_0.0_1000_256_8 volta_Gaussian-adversarial_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_100_256_8 volta_Gaussian-adversarial-norm_add_0.0_10_256_8 
+do
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine
+output=$outdir/${exp}_${checkpoint}_seed_${seed}
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 0
+done
 
 # ------------------------------------Attack
 # for exp in orig
