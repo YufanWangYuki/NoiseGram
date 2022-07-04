@@ -88,7 +88,7 @@ exp=volta_Gaussian-adversarial_mul_1.0_0.1_256_8
 checkpoint=combine
 outdir=prediction_files/v005
 mkdir $outdir
-for exp in volta_Gaussian-adversarial_add_0.0_1000_100000000_0.1_256_8 volta_Gaussian-adversarial_add_0.0_1000_100000000_0.1_4_2
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_10000000_1_256_8
 do
 model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine
 output=$outdir/${exp}_${checkpoint}_seed_${seed}
