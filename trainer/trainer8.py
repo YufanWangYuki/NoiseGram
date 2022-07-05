@@ -261,7 +261,7 @@ class Trainer(object):
 						for i in range(len(src_ids)):
 							grad[i] /= (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.alpha * grad
-				# pdb.set_trace()
+				pdb.set_trace()
 				with torch.no_grad():
 					for b in range(len(src_ids)):
 						for i in range(len(new_noise[0])):
