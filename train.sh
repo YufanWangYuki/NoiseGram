@@ -79,7 +79,7 @@ ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversari
 nway=mul
 mean=1.0
 weight=0.1
-alpha=1000000
+alpha=1
 decay=1
 savedir=models/v005/volta_${ntype}_${nway}_${mean}_${weight}_${alpha}_${decay}_${batch_size}_${minibatch_split}/
 
