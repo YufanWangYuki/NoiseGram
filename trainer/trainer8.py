@@ -107,7 +107,7 @@ class Trainer(object):
 			self.noise = torch.tensor(self.noise).to(device=self.device)
 			self.noise.requires_grad = True
 		elif noise_type == 'Gaussian-adversarial' or noise_type == 'Gaussian-adversarial-norm':
-			self.noise = np.random.normal(mean, 15, [1, 1, embedding_dim])
+			self.noise = np.random.normal(mean, weight, [1, 1, embedding_dim])
 			# self.noise = np.random.normal(mean, weight, [1, 1, embedding_dim])
 			self.noise = torch.tensor(self.noise).to(device=self.device).expand([self.minibatch_size,seq_length,embedding_dim])
 			self.noise.requires_grad = True
@@ -269,7 +269,7 @@ class Trainer(object):
 							if self.noise_configs['noise_way'] == 'mul':
 								new_noise[b][i] += 1
 				new_noise *= self.weight
-				# pdb.set_trace() 
+				pdb.set_trace() 
 
 				# Second forward propagation-get loss
 				model.train()
