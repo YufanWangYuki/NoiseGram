@@ -5,8 +5,8 @@ echo $HOSTNAME
 unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
-export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-# export CUDA_VISIBLE_DEVICES=0
+# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -156,7 +156,7 @@ eval_mode=1
 model=models/v005
 fname=checkpoints
 mode='combine'
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_10000000_1_256_8
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1000000_1_256_8
 do
 combine_path=$model/$exp/checkpoints/
 outdir=$model/$exp/checkpoints-combine/combine/
