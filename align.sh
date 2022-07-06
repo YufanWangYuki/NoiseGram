@@ -150,7 +150,7 @@ seed=1
 
 preddir=prediction_files/v005
 # mkdir $outdir/orig
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_10000000_1_256_8
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1000000_1_256_8
 do
 mkdir $outdir/v005/${exp}
     checkpoint=combine
