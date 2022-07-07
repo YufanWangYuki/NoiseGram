@@ -120,7 +120,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train_orig.py \
 	--nway $nway \
 	--mean $mean \
 	--weight $weight \
-	--alpha $alpha
+	# --alpha $alpha
 
 # Run below command to submit this script as an array job
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/train.txt -t 1-5 -l not_host="air113|air116" train.sh 1
