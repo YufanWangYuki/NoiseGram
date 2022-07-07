@@ -284,7 +284,7 @@ class Trainer(object):
 				# 	for i in range(len(src_ids)):
 				# 		new_noise[i] /= (torch.sum(src_att_mask[i]))
 				noise_bar += torch.sum(new_noise, dim=(0,1))
-				print(noise_bar)
+				# print(noise_bar)
 				resloss += loss.item()
 		else:
 			for bidx in range(n_minibatch):
@@ -312,7 +312,7 @@ class Trainer(object):
 		noise_bar /= batch_size
 		with torch.no_grad():
 			self.noise = self.gamma * self.noise + (1 - self.gamma) * noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
-		# pdb.set_trace()
+		pdb.set_trace()
 		# print(torch.var(self.noise))
 		
 		
