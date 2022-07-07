@@ -83,10 +83,10 @@ mean=1.0
 weight=0.1
 # alpha=1
 # decay=1
-savedir=models/orig/volta_${ntype}_${nway}_${mean}_${weight}_${alpha}_${decay}_${batch_size}_${minibatch_split}/
+savedir=models/orig/volta_${ntype}_${nway}_${mean}_${weight}_${decay}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train_orig.py \
 	--train_path_src $train_path_src \
 	--train_path_tgt $train_path_tgt \
 	--dev_path_src $dev_path_src \
@@ -120,7 +120,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--nway $nway \
 	--mean $mean \
 	--weight $weight \
-	# --alpha $alpha
+	--alpha $alpha
 
 # Run below command to submit this script as an array job
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/train.txt -t 1-5 -l not_host="air113|air116" train.sh 1

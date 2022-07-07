@@ -12,12 +12,12 @@ from utils.dataset import Dataset
 from models.Seq2seq import Seq2seq
 # from trainer.trainer import Trainer
 # from trainer.trainer2 import Trainer
-# from trainer.trainer3 import Trainer
+from trainer.trainer3 import Trainer
 # from trainer.trainer4 import Trainer
 # from trainer.trainer5 import Trainer
 # from trainer.trainer6 import Trainer
 # from trainer.trainer7 import Trainer
-from trainer.trainer8 import Trainer
+# from trainer.trainer8 import Trainer
 
 def load_arguments(parser):
 
@@ -74,8 +74,6 @@ def load_arguments(parser):
 		help='word keep')
 	parser.add_argument('--replace_map', type=list, default=None,
 		help='replace map')
-	parser.add_argument('--alpha', type=float, default=10000000,
-		help='alpha')
 
 	return parser
 
@@ -127,8 +125,7 @@ def main():
 					weight=config['weight'],
 					mean=config['mean'],
 					word_keep=config['word_keep'],
-					noise_way=config['nway'],
-					alpha=config['alpha']
+					noise_way=config['nway']
 					)
 
 	# load train set
