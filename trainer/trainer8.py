@@ -312,7 +312,7 @@ class Trainer(object):
 		with torch.no_grad():
 			self.noise = self.gamma * self.noise + (1 - self.gamma) * noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		# pdb.set_trace()
-		# print(torch.var(self.noise))
+		print(torch.var(self.noise))
 		
 		
 		# time.sleep(1)
