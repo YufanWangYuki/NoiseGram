@@ -86,7 +86,7 @@ weight=0.1
 savedir=models/temp/volta_${ntype}_${nway}_${mean}_${weight}_${decay}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train_orig.py \
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--train_path_src $train_path_src \
 	--train_path_tgt $train_path_tgt \
 	--dev_path_src $dev_path_src \
