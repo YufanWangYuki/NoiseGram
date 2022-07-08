@@ -4,7 +4,7 @@ from transformers import GPT2LMHeadModel, GPT2TokenizerFast
 import sys
 import os
 import argparse
-from gec_tools import get_sentences
+from utils.gec_tools import get_sentences
 from eval_residue_detector import get_best_f_score
 from sklearn.metrics import precision_recall_curve
 # from statistics import mean
