@@ -193,7 +193,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --use_attack 1 \
 #         --phrase 'ink l xml mv sub xu bec l sub' \
 #         --delim '.'     
-# done
+done
 
 
 
