@@ -18,6 +18,7 @@ from perplexity import perplexity
 from statistics import mean
 from transformers import GPT2LMHeadModel, GPT2TokenizerFast
 import copy
+from modules.checkpoint import Checkpoint
 
 def is_perp_less_than_thresh(sentences, attack_phrase, thresh):
     '''
@@ -64,10 +65,15 @@ if __name__ == "__main__":
     set_seeds(args.seed)
 
     # Load Model
-    model = Seq2seq()
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    model.load_state_dict(copy.deepcopy(torch.load(args.MODEL,device)))
+    # model = Seq2seq()
+    # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # model.load_state_dict(copy.deepcopy(torch.load(args.MODEL,device)))
+
     # model.load_state_dict(torch.load(args.MODEL, map_location=torch.device('cpu')))
+    device = torch.device('cpu')
+    latest_checkpoint_path = args.MODEL
+    resume_checkpoint = Checkpoint.load(latest_checkpoint_path)
+    model = resume_checkpoint.model.to(device)
     model.eval()
 
     # Load input sentences
