@@ -8,7 +8,7 @@ import sys
 import os
 import argparse
 import torch
-from gec_tools import get_sentences, correct, count_edits
+from utils.gec_tools import get_sentences, correct, count_edits
 from Seq2seq import Seq2seq
 from eval_uni_attack import set_seeds
 import json
