@@ -14,7 +14,7 @@ import sys
 import os
 import argparse
 import torch
-from gec_tools import get_sentences, correct, return_edits
+from utils.gec_tools import get_sentences, correct, return_edits
 from statistics import mean, stdev
 # import matplotlib.pyplot as plt
 from collections import defaultdict
