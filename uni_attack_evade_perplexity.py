@@ -72,7 +72,7 @@ if __name__ == "__main__":
     # model.load_state_dict(copy.deepcopy(torch.load(args.MODEL,device)))
 
     # model.load_state_dict(torch.load(args.MODEL, map_location=torch.device('cpu')))
-    device = torch.device('cpu')
+    device = torch.device('cuda:0')
     latest_checkpoint_path = args.MODEL
     resume_checkpoint = Checkpoint.load(latest_checkpoint_path)
     model = resume_checkpoint.model.to(device)
@@ -89,7 +89,10 @@ if __name__ == "__main__":
 
     # Keep only selected batch of words
     start_index = args.start*args.search_size
-    test_words = test_words[start_index:start_index+args.search_size]
+    if start_index >= len(test_words):
+        sys.exit()
+    end = min(start_index+args.search_size,len(test_words))
+    test_words = test_words[start_index:end]
 
     # Add blank word at beginning of list
     # test_words = ['']+test_words
