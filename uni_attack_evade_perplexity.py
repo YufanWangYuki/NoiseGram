@@ -20,6 +20,7 @@ from transformers import GPT2LMHeadModel, GPT2TokenizerFast
 import copy
 from modules.checkpoint import Checkpoint
 import pdb
+from tqdm import tqdm
 
 def is_perp_less_than_thresh(sentences, attack_phrase, thresh):
     '''
@@ -85,6 +86,7 @@ if __name__ == "__main__":
         test_words = json.loads(f.read())
     test_words = [str(word).lower() for word in test_words]
     print(len(test_words))
+
     # Keep only selected batch of words
     start_index = args.start*args.search_size
     test_words = test_words[start_index:start_index+args.search_size]
@@ -98,7 +100,7 @@ if __name__ == "__main__":
 
     best = ('none', 1000)
     
-    for word in test_words:
+    for word in tqdm(test_words):
         attack_phrase = args.prev_attack + ' ' + word + '.'
         if not is_perp_less_than_thresh(sentences, attack_phrase, args.perp_thresh):
             continue
