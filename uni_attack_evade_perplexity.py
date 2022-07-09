@@ -19,6 +19,7 @@ from statistics import mean
 from transformers import GPT2LMHeadModel, GPT2TokenizerFast
 import copy
 from modules.checkpoint import Checkpoint
+import pdb
 
 def is_perp_less_than_thresh(sentences, attack_phrase, thresh):
     '''
@@ -96,6 +97,7 @@ if __name__ == "__main__":
         f.write("Logged on "+ str(date.today()))
 
     best = ('none', 1000)
+    pdb.set_trace()
     for word in test_words:
         attack_phrase = args.prev_attack + ' ' + word + '.'
         if not is_perp_less_than_thresh(sentences, attack_phrase, args.perp_thresh):
