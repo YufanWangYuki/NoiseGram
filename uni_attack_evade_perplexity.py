@@ -84,7 +84,7 @@ if __name__ == "__main__":
     with open(args.VOCAB, 'r') as f:
         test_words = json.loads(f.read())
     test_words = [str(word).lower() for word in test_words]
-
+    print(len(test_words))
     # Keep only selected batch of words
     start_index = args.start*args.search_size
     test_words = test_words[start_index:start_index+args.search_size]
@@ -97,7 +97,7 @@ if __name__ == "__main__":
         f.write("Logged on "+ str(date.today()))
 
     best = ('none', 1000)
-    pdb.set_trace()
+    
     for word in test_words:
         attack_phrase = args.prev_attack + ' ' + word + '.'
         if not is_perp_less_than_thresh(sentences, attack_phrase, args.perp_thresh):
