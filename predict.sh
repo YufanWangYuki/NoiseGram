@@ -83,27 +83,12 @@ seed=1
 #         --seed $seed \
 #         --use_attack 0
 
-# checkpoint=combine
-# outdir=prediction_files/v005
-# mkdir $outdir
-# for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1000000_1_256_8
-# do
-# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine
-# output=$outdir/${exp}_${checkpoint}_seed_${seed}
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 0
-# done
-
 checkpoint=combine
-outdir=prediction_files/orig
+outdir=prediction_files/v005
 mkdir $outdir
-for exp in volta_Gaussian_mul_1.0_0.0__256_8
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1_1_256_8
 do
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/orig/volta_Gaussian_mul_1.0_0.0__256_8/checkpoints-combine/
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine
 output=$outdir/${exp}_${checkpoint}_seed_${seed}
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
@@ -112,6 +97,21 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --seed $seed \
         --use_attack 0
 done
+
+# checkpoint=combine
+# outdir=prediction_files/orig
+# mkdir $outdir
+# for exp in volta_Gaussian_mul_1.0_0.0__256_8
+# do
+# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/orig/volta_Gaussian_mul_1.0_0.0__256_8/checkpoints-combine/
+# output=$outdir/${exp}_${checkpoint}_seed_${seed}
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 0
+# done
 
 # # ------------------------------------Attack
 # for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1000000_1_256_8
