@@ -148,9 +148,26 @@ seed=1
 # done
 # done
 
+preddir=prediction_files/orig
+# mkdir $outdir/orig
+for exp in volta_Gaussian_mul_1.0_0.0__256_8
+do
+mkdir $outdir/orig/${exp}
+    checkpoint=combine
+    pred=$preddir/${exp}_combine_seed_1.pred
+    output=$outdir/orig/${exp}/${checkpoint}_seed_${seed}
+    echo $pred
+    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
+        --INC $input \
+        --PRED $pred \
+        --CORR $corr \
+        --BASE $output \
+        --seed $seed
+done
+
 preddir=prediction_files/v005
 # mkdir $outdir/orig
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1000000_1_256_8
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1_1_256_8
 do
 mkdir $outdir/v005/${exp}
     checkpoint=combine
