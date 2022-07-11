@@ -148,24 +148,24 @@ seed=1
 # done
 # done
 
-preddir=prediction_files/orig
-# mkdir $outdir/orig
-for exp in volta_Gaussian_mul_1.0_0.0__256_8
-do
-mkdir $outdir/orig/${exp}
-for checkpoint in 2022_07_07_21_19_25 2022_07_08_01_27_30 2022_07_08_17_37_21
-do
-    pred=$preddir/${exp}_${checkpoint}_seed_1.pred
-    output=$outdir/orig/${exp}/${checkpoint}_seed_${seed}
-    echo $pred
-    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
-        --INC $input \
-        --PRED $pred \
-        --CORR $corr \
-        --BASE $output \
-        --seed $seed
-done
-done
+# preddir=prediction_files/orig
+# # mkdir $outdir/orig
+# for exp in volta_Gaussian_mul_1.0_0.0__256_8
+# do
+# mkdir $outdir/orig/${exp}
+# for checkpoint in 2022_07_07_21_19_25 2022_07_08_01_27_30 2022_07_08_17_37_21
+# do
+#     pred=$preddir/${exp}_${checkpoint}_seed_1.pred
+#     output=$outdir/orig/${exp}/${checkpoint}_seed_${seed}
+#     echo $pred
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
+#         --INC $input \
+#         --PRED $pred \
+#         --CORR $corr \
+#         --BASE $output \
+#         --seed $seed
+# done
+# done
 
 # preddir=prediction_files/v005
 # # mkdir $outdir/orig
