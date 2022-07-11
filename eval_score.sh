@@ -145,9 +145,25 @@ seed=1
 # done
 # done
 
+outdir=prediction_files/m2/orig
+mkdir prediction_files/m2/orig
+for exp in volta_Gaussian_mul_1.0_0.0__256_8
+do
+checkpoint=combine
+dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/orig/$exp
+input=$dir/combine_seed_1.inc
+pred=$dir/combine_seed_1.pred
+corr=$dir/combine_seed_1.corr
+errant_parallel -orig $input -cor $pred -out $outdir/${exp}_combine_edits-pred.m2
+errant_parallel -orig $input -cor $corr -out $outdir/${exp}_combine_edits-corr.m2
+    echo ${exp}_${checkpoint} >> results/Fscore/v005_Fscore.txt
+    errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/v005_Fscore.txt
+    echo ${exp}_${checkpoint}
+done
+
 outdir=prediction_files/m2/v005
 mkdir prediction_files/m2/v005
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1000000_1_256_8
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1_1_256_8
 do
 checkpoint=combine
 dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/v005/$exp
