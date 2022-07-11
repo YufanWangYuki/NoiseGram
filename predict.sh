@@ -49,7 +49,7 @@ seed=1
 # done
 
 exp=volta_Gaussian_mul_1.0_0.0__256_8
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/orig/volta_Gaussian_mul_1.0_0.0__256_8
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/orig/volta_Gaussian_mul_1.0_0.0__256_8/checkpoints
 outdir=prediction_files/orig
 for checkpoint in 2022_07_07_21_19_25 2022_07_08_01_27_30 2022_07_08_17_37_21
 do
