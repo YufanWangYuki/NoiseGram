@@ -85,7 +85,7 @@ if __name__ == "__main__":
     with open(args.VOCAB, 'r') as f:
         test_words = json.loads(f.read())
     test_words = [str(word).lower() for word in test_words]
-    pdb.set_trace()
+    # pdb.set_trace()
     print(len(test_words))
 
     # Keep only selected batch of words
