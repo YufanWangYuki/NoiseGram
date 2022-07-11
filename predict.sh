@@ -98,13 +98,28 @@ seed=1
 #         --use_attack 0
 # done
 
-# ------------------------------------Attack
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1000000_1_256_8
+checkpoint=combine
+outdir=prediction_files/orig
+mkdir $outdir
+for exp in volta_Gaussian_mul_1.0_0.0__256_8
 do
-model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine/
-mkdir prediction_files/v005/$exp
-mkdir prediction_files/v005/$exp/attacks
-outdir=prediction_files/v005/$exp/attacks
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/orig/volta_Gaussian_mul_1.0_0.0__256_8/checkpoints-combine/
+output=$outdir/${exp}_${checkpoint}_seed_${seed}
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 0
+done
+
+# # ------------------------------------Attack
+# for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1000000_1_256_8
+# do
+# model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine/
+# mkdir prediction_files/v005/$exp
+# mkdir prediction_files/v005/$exp/attacks
+# outdir=prediction_files/v005/$exp/attacks
 # output=$outdir/full_N1
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --IN $input \
@@ -134,15 +149,15 @@ outdir=prediction_files/v005/$exp/attacks
 #         --phrase 'ink l xml' \
 #         --delim '.'
 
-output=$outdir/full_N4
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'ink l xml mv' \
-        --delim '.'   
+# output=$outdir/full_N4
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'ink l xml mv' \
+#         --delim '.'   
 
 # output=$outdir/full_N5
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
@@ -193,7 +208,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --use_attack 1 \
 #         --phrase 'ink l xml mv sub xu bec l sub' \
 #         --delim '.'     
-done
+# done
 
 
 
