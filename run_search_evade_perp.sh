@@ -18,7 +18,7 @@ export MKL_NUM_THREADS=1 # export MKL_NUM_THREADS=1
 export VECLIB_MAXIMUM_THREADS=1 # export VECLIB_MAXIMUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1 # export NUMEXPR_NUM_THREADS=1
 
-SGE_TASK_ID=3
+SGE_TASK_ID=4
 
 # 44928 10000*5
 
@@ -31,3 +31,7 @@ python /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/uni_attack_evade_perplexit
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/run-array-evade/run-array-evade_perp_orig_v3.txt -t 50-224 -l not_host="air113|air112" run_search_evade_perp.sh
 
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/run-array-evade/run-array-evade_perp_V003.txt -t 1-224 -l not_host="air113|air116" run_search_evade_perp.sh
+
+
+# 0-9 *1000 = 10000 million
+# 0-9 *1000 = 10000 million
