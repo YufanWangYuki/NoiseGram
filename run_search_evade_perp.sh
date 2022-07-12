@@ -4,7 +4,8 @@
 
 # export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 source ~/.bashrc
-source activate /home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37
+# conda activate /home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37
+conda activate gec37
 # export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/python3
 # export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/"
 
@@ -29,4 +30,4 @@ python /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/uni_attack_evade_perplexit
 # Run below command to submit this script as an array job
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/run-array-evade/run-array-evade_perp_orig_v3.txt -t 50-224 -l not_host="air113|air112" run_search_evade_perp.sh
 
-# qsub -cwd -j yes -P esol -l qp=low -o LOGs/run-array-evade/run-array-evade_perp_orig_v3.txt -t 50-224 -l not_host="*" run_search_evade_perp.sh
+# qsub -cwd -j yes -P esol -l qp=low -o LOGs/run-array-evade/run-array-evade_perp_orig_v3.txt -t 50-224 -l not_host="air116" run_search_evade_perp.sh
