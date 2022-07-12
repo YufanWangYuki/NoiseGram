@@ -22,12 +22,13 @@ from modules.checkpoint import Checkpoint
 import pdb
 from tqdm import tqdm
 
+perp_tokenizer = GPT2TokenizerFast.from_pretrained('distilgpt2')
+perp_model = GPT2LMHeadModel.from_pretrained('distilgpt2')
+
 def is_perp_less_than_thresh(sentences, attack_phrase, thresh):
     '''
         Return True if the average dataset perplexity is less than threshold
     '''
-    perp_tokenizer = GPT2TokenizerFast.from_pretrained('distilgpt2')
-    perp_model = GPT2LMHeadModel.from_pretrained('distilgpt2')
     perps = []
     for sent in sentences:
         sent = sent + ' ' + attack_phrase
