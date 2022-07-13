@@ -61,8 +61,8 @@ if __name__ == "__main__":
             val = float(items[1])
             if best.check_word_to_be_added(abs(val)):
                 best.add_word(word, abs(val))
-    pdb.set_trace()
-    print(best.words)
+    # pdb.set_trace()
+    print(best.words[:100])
 
     # Write words to output file
     with open(output_file, 'w+') as f:
