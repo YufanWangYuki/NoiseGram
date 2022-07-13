@@ -49,10 +49,9 @@ if __name__ == "__main__":
 
     # Get list of files in directory
     files = [f.name for f in scandir.scandir(words_dir)]
-    pdb.set_trace()
-    
+
     for curr_file in files:
-        #print("Processing " + curr_file)
+        print("Processing " + curr_file)
         curr_path = words_dir+"/"+curr_file
         with open(curr_path, 'r') as f:
             lines = f.readlines()
@@ -62,7 +61,7 @@ if __name__ == "__main__":
             val = float(items[1])
             if best.check_word_to_be_added(abs(val)):
                 best.add_word(word, abs(val))
-
+    pdb.set_trace()
     print(best.words)
 
     # Write words to output file
