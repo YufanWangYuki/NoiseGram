@@ -115,7 +115,7 @@ seed=1
 # done
 
 # # ------------------------------------Attack
-for exp in volta_Gaussian-adversarial_add_0.0_100_256_8
+for exp in volta_Gaussian-adversarial-norm_add_0.0_10_256_8
 do
 model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine/combine/
 mkdir prediction_files/v005/$exp
