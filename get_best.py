@@ -64,7 +64,7 @@ if __name__ == "__main__":
     print(best.words)
 
     # Write words to output file
-    with open(output_file, 'w') as f:
+    with open(output_file, 'w+') as f:
         f.write('')
     for item in best.words:
         word = item[0]
