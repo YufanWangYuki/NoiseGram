@@ -309,3 +309,4 @@ done
 #     --PRED prediction_files/v005/${exp}_combine_seed_1.pred \
 #     --OUT edit_dist_files/v005/$exp/attacks/${name}_with_adv_not_removed.txt
 # done
+# qsub -cwd -j yes -o 'LOGs/count_err.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' eval_error.sh 1 1
