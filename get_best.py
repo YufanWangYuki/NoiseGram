@@ -7,6 +7,7 @@ import argparse
 import sys
 import os
 import scandir
+import pdb
 
 class best_words:
     def __init__(self, num_words):
@@ -48,7 +49,8 @@ if __name__ == "__main__":
 
     # Get list of files in directory
     files = [f.name for f in scandir.scandir(words_dir)]
-
+    pdb.set_trace()
+    
     for curr_file in files:
         #print("Processing " + curr_file)
         curr_path = words_dir+"/"+curr_file
