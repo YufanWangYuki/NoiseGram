@@ -18,5 +18,5 @@ for num in 1
 do
 $PYTHONBIN get_best.py \
     /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/universal_attack_logs/v003best/evade_perp_beam1/k${num}/ \
-    /home/alta/BLTSpeaking/exp-yw575/GEC/AttackGram/LOGs/best_words/best_words_${num}.txt
+    /home/alta/BLTSpeaking/exp-yw575/GEC/NttackGram/LOGs/best_words/best_words_${num}.txt
 done

@@ -70,7 +70,7 @@ if __name__ == "__main__":
     with open(output_file, 'w+') as f:
         for item in best.words:
             word = item[0]
-            pdb.set_trace()
+            # pdb.set_trace()
             if word == 'none':
                 break
             f.write('\n'+word+":"+str(item))
