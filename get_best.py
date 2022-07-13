@@ -62,7 +62,7 @@ if __name__ == "__main__":
             if best.check_word_to_be_added(abs(val)):
                 best.add_word(word, abs(val))
     # pdb.set_trace()
-    print(best.words[:100])
+    print(best.words[:200])
 
     # Write words to output file
     # with open(output_file, 'w+') as f:
