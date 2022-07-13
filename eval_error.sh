@@ -199,7 +199,8 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
     --PRED prediction_files/v005/${exp}_combine_seed_1.pred \
-    --OUT ${outdir}/${name}_with_adv_not_removed.txt \
+    --OUT ${outdir}/${name}_with_adv_not_removed.txt
+    
 done
 
 # name=orig
