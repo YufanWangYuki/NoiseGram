@@ -115,9 +115,9 @@ seed=1
 # done
 
 # # ------------------------------------Attack
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1_1_256_8
+for exp in volta_Gaussian-adversarial_add_0.0_100_256_8
 do
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/volta_Gaussian-adversarial_mul_1.0_0.1_1_1_256_8/checkpoints-combine/combine/
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine/combine/
 mkdir prediction_files/v005/$exp
 mkdir prediction_files/v005/$exp/attacks
 outdir=prediction_files/v005/$exp/attacks
@@ -140,6 +140,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --use_attack 1 \
         --phrase 'ink l' \
         --delim '.'
+
 output=$outdir/full_N3
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
@@ -211,11 +212,9 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --delim '.'     
 done
 
-
 # ------------------------------------Perp Attack
 # for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
 # do
-# # model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine/combine/
 # model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/checkpoints-combine/combine/
 # mkdir prediction_files/v003/$exp
 # mkdir prediction_files/v003/$exp/attacks_perp
