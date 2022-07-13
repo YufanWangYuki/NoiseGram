@@ -107,7 +107,7 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 #     --delim ','
 
 mkdir edit_dist_files/v005
-for exp in volta_Gaussian-adversarial-norm_add_0.0_10_256_8
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1_1_256_8
 do
 mkdir edit_dist_files/v005/$exp
 mkdir edit_dist_files/v005/$exp/attacks_new
