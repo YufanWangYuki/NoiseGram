@@ -248,14 +248,14 @@ mkdir edit_dist_files/v003/$exp/attacks_perp
 #     --phrase 'chutzpah ii bibb' \
 #     --delim '.'
 
-# name=full_N4
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-#     --phrase 'ink l xml mv' \
-#     --delim '.'
+name=full_N4
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+    --phrase 'chutzpah ii bibb en' \
+    --delim '.'
 
 # name=full_N5
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
@@ -302,12 +302,12 @@ mkdir edit_dist_files/v003/$exp/attacks_perp
 #     --phrase 'ink l xml mv sub xu bec l sub' \
 #     --delim '.'
 
-name=orig
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED prediction_files/$exp/orig_combine_seed_1.pred \
-    --OUT edit_dist_files/$exp/attacks/${name}_with_adv_not_removed.txt
+# name=orig
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED prediction_files/$exp/orig_combine_seed_1.pred \
+#     --OUT edit_dist_files/$exp/attacks/${name}_with_adv_not_removed.txt
 done
 
 # name=orig
