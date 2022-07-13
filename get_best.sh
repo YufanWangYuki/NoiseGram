@@ -14,7 +14,7 @@ source activate /home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37
 export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/python3
 export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/"
 
-for num in 2
+for num in 3
 do
 $PYTHONBIN get_best.py \
     /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/universal_attack_logs/v003best/evade_perp_beam1/k${num}/ \
