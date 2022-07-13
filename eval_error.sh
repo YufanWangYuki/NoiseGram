@@ -107,7 +107,7 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 #     --delim ','
 
 mkdir edit_dist_files/v005
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1_1_256_8
+for exp in volta_Gaussian-adversarial_add_0.0_100_256_8
 do
 mkdir edit_dist_files/v005/$exp
 mkdir edit_dist_files/v005/$exp/attacks_new
@@ -311,3 +311,4 @@ done
 #     --OUT edit_dist_files/v005/$exp/attacks/${name}_with_adv_not_removed.txt
 # done
 # qsub -cwd -j yes -o 'LOGs/count_err.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' eval_error.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/count_err_mul.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' eval_error.sh 1 1
