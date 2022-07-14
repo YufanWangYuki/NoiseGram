@@ -66,15 +66,15 @@ loaddir='None'
 load_mode='null' # 'resume' | 'restart' | 'null'
 
 # ----------------------- [debug] ---------------------------
-train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
-train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
-dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
-dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
-# # num_epochs=2
-minibatch_split=2
-batch_size=4
-checkpoint_every=100
-print_every=2
+# train_path_src=$orig_path/lib/gec-train-bpe-written/prep/dev.src
+# train_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/dev.tgt
+# dev_path_src=$orig_path/lib/gec-train-bpe-written/prep/toy.src
+# dev_path_tgt=$orig_path/lib/gec-train-bpe-written/prep/toy.tgt
+# # # num_epochs=2
+# minibatch_split=2
+# batch_size=4
+# checkpoint_every=100
+# print_every=2
 
 # ----------------------- [noise] ---------------------------
 ntype=Gaussian-adversarial #Gaussian, Bernoulli, Gaussian-adversarial, Adversarial
@@ -83,7 +83,7 @@ mean=1.0
 weight=0.1
 alpha=1000000
 # decay=1
-savedir=models/temp/volta_${ntype}_${nway}_${mean}_${weight}_${decay}_${batch_size}_${minibatch_split}/
+savedir=models/v008/${ntype}_${nway}_${mean}_${weight}_${decay}_${batch_size}_${minibatch_split}/
 
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
@@ -119,8 +119,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/train.py \
 	--ntype $ntype \
 	--nway $nway \
 	--mean $mean \
-	--weight $weight \
-	--alpha $alpha
+	--weight $weight
 
 # Run below command to submit this script as an array job
 # qsub -cwd -j yes -P esol -l qp=low -o LOGs/train.txt -t 1-5 -l not_host="air113|air116" train.sh 1
