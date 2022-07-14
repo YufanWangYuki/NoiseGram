@@ -62,8 +62,11 @@ if __name__ == "__main__":
             if best.check_word_to_be_added(abs(val)):
                 best.add_word(word, abs(val))
     # pdb.set_trace()
-    print(best.words[:300])
-
+    # print(best.words[:300])
+    for idx, item in enumerate(best.words):
+        if item[0] == 'none':
+            break
+    print(best.words[:idx])
     # Write words to output file
     # with open(output_file, 'w+') as f:
     #     f.write('')
