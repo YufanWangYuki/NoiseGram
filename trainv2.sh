@@ -84,7 +84,6 @@ weight=0.1
 alpha=1000000
 # decay=1
 savedir=models/v008/${ntype}_${nway}_${mean}_${weight}_${batch_size}_${minibatch_split}_v2/
-num_epochs=2
 # ===================================================================================
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/trainv2.py \
 	--train_path_src $train_path_src \
