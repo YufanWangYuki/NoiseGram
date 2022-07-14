@@ -255,9 +255,9 @@ class Trainer(object):
 				for i in range(len(src_ids)):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.weight * norm_grad
-				if self.pointer == 85:
-					pdb.set_trace()
-				save_tf[i_start:i_end] = new_noise[:i_end-i_start+1]
+				# if self.pointer == 85:
+				# 	pdb.set_trace()
+				save_tf[i_start:i_end] = new_noise[:len(save_tf[i_start:i_end])]
 
 				model.train()
 				
