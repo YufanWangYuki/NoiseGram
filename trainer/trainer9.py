@@ -259,6 +259,7 @@ class Trainer(object):
 					
 				torch.cuda.empty_cache()
 				model.train()
+				print(new_noise)
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
 				loss = outputs.loss
 				loss /= n_minibatch
@@ -280,7 +281,7 @@ class Trainer(object):
 		noise_bar /= batch_size
 		with torch.no_grad():
 			self.noise = self.gamma * self.noise + (1 - self.gamma) * noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
-		print(self.noise)
+		# print(self.noise)
 		self.noise.requires_grad = True
 		return resloss
 
