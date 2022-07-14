@@ -229,8 +229,7 @@ class Trainer(object):
 
 		# loss
 		resloss = 0
-		pdb.set_trace()
-		save_tf = torch.tensor(np.zeros([[batch_size, self.seq_length, self.embedding_dim]])).to(device=self.device)
+		save_tf = torch.tensor(np.zeros([batch_size, self.seq_length, self.embedding_dim])).to(device=self.device)
 
 
 		if "dversarial" in noise_configs['noise_type']:
