@@ -256,7 +256,7 @@ class Trainer(object):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.weight * norm_grad
 
-				save_tf[i_start:i_end] = new_noise
+				save_tf[i_start:i_end] = new_noise[:i_end-i_start+1]
 
 				model.train()
 				
