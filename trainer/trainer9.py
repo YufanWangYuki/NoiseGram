@@ -260,6 +260,7 @@ class Trainer(object):
 					
 				torch.cuda.empty_cache()
 				model.train()
+				pdb.set_trace()
 				print(min(new_noise))
 				print(max(new_noise))
 				print(new_noise.mean())
