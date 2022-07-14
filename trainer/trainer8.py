@@ -270,7 +270,7 @@ class Trainer(object):
 				if self.noise_configs['noise_way'] == 'mul':
 					new_noise += 1
 				
-				# pdb.set_trace()
+				pdb.set_trace()
 
 				# Second forward propagation-get loss
 				model.train()
