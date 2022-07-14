@@ -252,11 +252,9 @@ class Trainer(object):
 				for i in range(len(src_ids)):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.weight * norm_grad
-				
+				pdb.set_trace()
 				model.train()
-				print(new_noise.max())
-				print(new_noise.min())
-				print(new_noise.mean())
+				
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
 				loss = outputs.loss
 				loss /= n_minibatch
