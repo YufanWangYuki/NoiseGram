@@ -257,6 +257,7 @@ class Trainer(object):
 				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
 				print(new_noise)
+				pdb.set_trace()
 				time.sleep(1)
 				loss = outputs.loss
 				loss /= n_minibatch
