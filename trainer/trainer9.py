@@ -117,6 +117,7 @@ class Trainer(object):
 			outline = 'GEN: {}\n'.format(preds[0]).encode('utf-8')
 			sys.stdout.buffer.write(outref)
 			sys.stdout.buffer.write(outline)
+			sys.stdout.buffer.write(self.noise)
 			out_count += 1
 		return out_count
 
@@ -259,7 +260,7 @@ class Trainer(object):
 					
 				torch.cuda.empty_cache()
 				model.train()
-				print(new_noise)
+				# print(new_noise)
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
 				loss = outputs.loss
 				loss /= n_minibatch
