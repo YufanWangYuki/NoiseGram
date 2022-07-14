@@ -127,8 +127,8 @@ def main():
 					weight=config['weight'],
 					mean=config['mean'],
 					word_keep=config['word_keep'],
-					noise_way=config['nway'],
-					alpha=config['alpha']
+					noise_way=config['nway']
+					# alpha=config['alpha']
 					)
 
 	# load train set
