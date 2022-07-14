@@ -266,7 +266,7 @@ class Trainer(object):
 				loss = outputs.loss
 				loss /= n_minibatch
 
-				noise_bar += torch.sum(new_noise, dim=(0,1))/len(new_noise[0])
+				noise_bar += torch.sum(new_noise, dim=(0,1))
 
 			else:
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
