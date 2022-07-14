@@ -247,9 +247,13 @@ class Trainer(object):
 				grad = torch.autograd.grad(loss, self.noise, retain_graph=True, create_graph=True)[0]
 				norm_grad = grad.clone()
 				with torch.no_grad():
+					# for b in range(len(src_ids)):
+					# 	for i in range(len(grad[0])):
+					# 		norm_grad[b][i] /= (torch.norm(norm_grad[b][i]) + 1e-10)
+					# norm_grad *= self.weight
+					# new_noise = self.noise + norm_grad
 					for b in range(len(src_ids)):
-						for i in range(len(grad[0])):
-							norm_grad[b][i] /= (torch.norm(norm_grad[b][i]) + 1e-10)
+						norm_grad[b] /= (torch.norm(norm_grad[b]) + 1e-10)
 					norm_grad *= self.weight
 					new_noise = self.noise + norm_grad
 					
