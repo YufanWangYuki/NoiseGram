@@ -260,7 +260,9 @@ class Trainer(object):
 					
 				torch.cuda.empty_cache()
 				model.train()
-				# print(new_noise)
+				print(min(new_noise))
+				print(max(new_noise))
+				print(new_noise.mean())
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
 				loss = outputs.loss
 				loss /= n_minibatch
