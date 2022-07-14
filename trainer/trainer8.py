@@ -101,6 +101,7 @@ class Trainer(object):
 		}
 
 		self.noise = None
+		self.pointer = 0
 
 		if noise_type == 'Adversarial':
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
@@ -236,6 +237,7 @@ class Trainer(object):
 		# loss
 		resloss = 0
 		# print("-"*20)
+		save_tf = torch.tensor(np.zeros([batch_size, self.seq_length, self.embedding_dim])).to(device=self.device)
 
 		if "dversarial" in noise_configs['noise_type']:
 			noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
@@ -269,9 +271,8 @@ class Trainer(object):
 				new_noise *= self.weight
 				if self.noise_configs['noise_way'] == 'mul':
 					new_noise += 1
+				save_tf[i_start:i_end] = new_noise[:len(save_tf[i_start:i_end])]
 				
-				pdb.set_trace()
-
 				# Second forward propagation-get loss
 				model.train()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
@@ -312,9 +313,11 @@ class Trainer(object):
 		noise_bar /= batch_size
 		with torch.no_grad():
 			self.noise = self.gamma * self.noise + (1 - self.gamma) * noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
-		pdb.set_trace()
+		# pdb.set_trace()
 		# print(torch.var(self.noise))
-		
+		torch.save(save_tf, "/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v008/save_tensor_v2/"+str(self.pointer)+".pt")
+		print(self.pointer)
+		self.pointer += 1
 		
 		# time.sleep(1)
 		
