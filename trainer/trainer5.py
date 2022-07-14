@@ -229,7 +229,7 @@ class Trainer(object):
 
 		# loss
 		resloss = 0
-
+		pdb.set_trace()
 		save_tf = torch.tensor(np.zeros([[batch_size, self.seq_length, self.embedding_dim]])).to(device=self.device)
 
 
@@ -293,7 +293,9 @@ class Trainer(object):
 		model.zero_grad()
 		with torch.no_grad():
 			self.noise += acc_norm_gra/n_minibatch
+
 		torch.save(save_tf, "/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v008/save_tensor/"+str(self.pointer)+".pt")
+		print(self.pointer)
 		self.pointer += 1
 		return resloss
 
