@@ -225,6 +225,7 @@ class Trainer(object):
 		resloss = 0
 		# if noise_configs['noise_type'] == 'Gaussian-adversarial':
 		# 	# pdb.set_trace()
+		noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
 		for bidx in range(n_minibatch):
 			# debug
 			# import pdb; pdb.set_trace()
@@ -238,7 +239,6 @@ class Trainer(object):
 
 			# Forward propagation
 			if "dversarial" in noise_configs['noise_type']:
-				noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
 				model.eval()
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
 				loss = outputs.loss
