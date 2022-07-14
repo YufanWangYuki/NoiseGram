@@ -152,7 +152,7 @@ mkdir outdir
 output=$outdir/full_N5_BEA
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
-        --MODEL $model \
+        --MODEL $model/$checkpoint \
         --OUT_BASE $output \
         --seed $seed \
         --use_attack 1 \
@@ -162,7 +162,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 output=$outdir/perp_N5_BEA
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
-        --MODEL $model \
+        --MODEL $model/$checkpoint \
         --OUT_BASE $output \
         --seed $seed \
         --use_attack 1 \
