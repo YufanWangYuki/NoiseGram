@@ -251,7 +251,7 @@ class Trainer(object):
 				norm_grad = grad.clone()
 				for i in range(len(src_ids)):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
-				new_noise = self.noise+self.weight * norm_grad
+				new_noise = self.noise + self.weight * norm_grad
 				
 				model.train()
 				print(new_noise.max())
@@ -263,7 +263,7 @@ class Trainer(object):
 
 				loss.backward()
 				resloss += loss
-				acc_norm_gra += norm_grad
+				acc_norm_gra += norm_grad*self.weight
 		else:
 			for bidx in range(n_minibatch):
 				# load data
