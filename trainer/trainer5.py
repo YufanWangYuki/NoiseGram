@@ -252,7 +252,6 @@ class Trainer(object):
 				for i in range(len(src_ids)):
 					norm_grad[i] = grad[i] / (torch.norm(grad[i]) + 1e-10)
 				new_noise = self.noise + self.weight * norm_grad
-				pdb.set_trace()
 				model.train()
 				
 				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
@@ -261,7 +260,7 @@ class Trainer(object):
 
 				loss.backward()
 				resloss += loss
-				acc_norm_gra += norm_grad*self.weight
+				acc_norm_gra += norm_grad
 		else:
 			for bidx in range(n_minibatch):
 				# load data
