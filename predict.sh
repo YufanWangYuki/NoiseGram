@@ -115,12 +115,12 @@ seed=1
 # done
 
 # # ------------------------------------Attack
-# for exp in volta_Gaussian-adversarial-norm_add_0.0_10_256_8
-# do
-# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine/combine/
-# mkdir prediction_files/v005/$exp
-# mkdir prediction_files/v005/$exp/attacks
-# outdir=prediction_files/v005/$exp/attacks
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_1_1_256_8 volta_Gaussian-adversarial_add_0.0_100_256_8
+do
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/${exp}/checkpoints-combine/combine/
+mkdir prediction_files/v005/$exp
+mkdir prediction_files/v005/$exp/attacks
+outdir=prediction_files/v005/$exp/attacks
 # output=$outdir/full_N1
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --IN $input \
@@ -191,34 +191,34 @@ seed=1
 #         --phrase 'ink l xml mv sub xu bec' \
 #         --delim '.'   
 
-# output=$outdir/full_N8
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml mv sub xu bec l' \
-#         --delim '.'   
+output=$outdir/full_N8
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu bec l' \
+        --delim '.'   
 
-# output=$outdir/full_N9
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml mv sub xu bec l sub' \
-#         --delim '.'     
-# done
+output=$outdir/full_N9
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub xu bec l sub' \
+        --delim '.'     
+done
 
 # ------------------------------------Perp Attack
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-do
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/checkpoints-combine/combine/
-mkdir prediction_files/v003/$exp
-mkdir prediction_files/v003/$exp/attacks_perp
-outdir=prediction_files/v003/$exp/attacks_perp
+# for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
+# do
+# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/checkpoints-combine/combine/
+# mkdir prediction_files/v003/$exp
+# mkdir prediction_files/v003/$exp/attacks_perp
+# outdir=prediction_files/v003/$exp/attacks_perp
 # output=$outdir/full_N1
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --IN $input \
@@ -248,15 +248,15 @@ outdir=prediction_files/v003/$exp/attacks_perp
 #         --phrase 'chutzpah ii bibb' \
 #         --delim '.'
 
-output=$outdir/full_N4
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'chutzpah ii bibb en' \
-        --delim '.'   
+# output=$outdir/full_N4
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'chutzpah ii bibb en' \
+#         --delim '.'   
 
 # output=$outdir/full_N5
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
@@ -307,7 +307,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --use_attack 1 \
 #         --phrase 'ink l xml mv sub xu bec l sub' \
 #         --delim '.'     
-done
+# done
 
 
 
