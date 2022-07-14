@@ -67,6 +67,7 @@ if __name__ == "__main__":
         if item[0] == 'none':
             break
     print(best.words[:idx])
+    print(idx)
     # Write words to output file
     # with open(output_file, 'w+') as f:
     #     f.write('')
