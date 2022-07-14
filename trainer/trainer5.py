@@ -286,7 +286,6 @@ class Trainer(object):
 		# update weights
 		self.optimizer.step()
 		model.zero_grad()
-		pdb.set_trace()
 		with torch.no_grad():
 			self.noise += acc_norm_gra/n_minibatch
 		return resloss
