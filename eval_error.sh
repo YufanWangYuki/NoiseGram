@@ -5,8 +5,8 @@ echo $HOSTNAME
 unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
-export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-# export CUDA_VISIBLE_DEVICES=0
+# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -215,12 +215,12 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 # mkdir edit_dist_files/v003
 
 # # /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/attacks_perp/
-# for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-# do
-# pred_dir=prediction_files/v003/$exp/attacks_perp
-# out_dir=edit_dist_files/v003/$exp/attacks_perp
-# mkdir edit_dist_files/v003/$exp
-# mkdir edit_dist_files/v003/$exp/attacks_perp
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
+do
+pred_dir=prediction_files/v003/$exp/attacks_perp
+out_dir=edit_dist_files/v003/$exp/attacks_perp
+mkdir edit_dist_files/v003/$exp
+mkdir edit_dist_files/v003/$exp/attacks_perp
 # name=full_N1
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
 #     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
@@ -263,7 +263,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'ink l xml mv sub' \
+    --phrase 'chutzpah ii bibb en fyi' \
     --delim '.'
 
 # name=full_N6
@@ -308,86 +308,86 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
 #     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
 #     --PRED prediction_files/$exp/orig_combine_seed_1.pred \
 #     --OUT edit_dist_files/$exp/attacks/${name}_with_adv_not_removed.txt
-# done
+done
 
 
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-do
-pred_dir=prediction_files/v003/$exp/attacks_perp_old
-out_dir=edit_dist_files/v003/$exp/attacks_perp_old
-mkdir edit_dist_files/v003/$exp
-mkdir edit_dist_files/v003/$exp/attacks_perp_old
-name=full_N1
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'trifecta' \
-    --delim '.'
+# for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
+# do
+# pred_dir=prediction_files/v003/$exp/attacks_perp_old
+# out_dir=edit_dist_files/v003/$exp/attacks_perp_old
+# mkdir edit_dist_files/v003/$exp
+# mkdir edit_dist_files/v003/$exp/attacks_perp_old
+# name=full_N1
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+#     --phrase 'trifecta' \
+#     --delim '.'
 
-name=full_N2
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-   --phrase 'trifecta haiku' \
-    --delim '.'
+# name=full_N2
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+#    --phrase 'trifecta haiku' \
+#     --delim '.'
 
-name=full_N3
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'trifecta haiku utah' \
-    --delim '.'
+# name=full_N3
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+#     --phrase 'trifecta haiku utah' \
+#     --delim '.'
 
-name=full_N4
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'trifecta haiku utah intransigent' \
-    --delim '.'
+# name=full_N4
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+#     --phrase 'trifecta haiku utah intransigent' \
+#     --delim '.'
 
-name=full_N5
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'trifecta haiku utah intransigent penicillin' \
-    --delim '.'
+# name=full_N5
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+#     --phrase 'trifecta haiku utah intransigent penicillin' \
+#     --delim '.'
 
-name=full_N6
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'trifecta haiku utah intransigent penicillin baseline' \
-    --delim '.'
+# name=full_N6
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+#     --phrase 'trifecta haiku utah intransigent penicillin baseline' \
+#     --delim '.'
 
-name=full_N7
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'trifecta haiku utah intransigent penicillin baseline exploratory' \
-    --delim '.'
+# name=full_N7
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+#     --phrase 'trifecta haiku utah intransigent penicillin baseline exploratory' \
+#     --delim '.'
 
-name=full_N8
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'trifecta haiku utah intransigent penicillin baseline exploratory bioengineering' \
-    --delim '.'
+# name=full_N8
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+#     --phrase 'trifecta haiku utah intransigent penicillin baseline exploratory bioengineering' \
+#     --delim '.'
 
 # name=full_N9
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
