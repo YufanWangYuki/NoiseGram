@@ -105,17 +105,17 @@ do
 
 model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/orig/volta_Gaussian_mul_1.0_0.0__256_8/checkpoints-combine/
 
-outdir=prediction_files/orig
-input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
-output=$outdir/CoNLL_${exp}_${checkpoint}_seed_${seed}
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 0
+# outdir=prediction_files/orig
+# input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
+# output=$outdir/CoNLL_${exp}_${checkpoint}_seed_${seed}
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 0
 
-outdir=prediction_files/v003/$exp/attacks_others
+outdir=prediction_files/orig/attacks_others
 mkdir outdir       
 output=$outdir/full_N5_CoNLL
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
@@ -149,25 +149,25 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 
 # outdir=prediction_files/v003/$exp/attacks_others
 # mkdir outdir       
-# output=$outdir/full_N5_BEA
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'ink l xml mv sub' \
-#         --delim '.' 
+output=$outdir/full_N5_BEA
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'ink l xml mv sub' \
+        --delim '.' 
 
-# output=$outdir/perp_N5_BEA
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'trifecta haiku utah intransigent penicillin' \
-#         --delim '.' 
+output=$outdir/perp_N5_BEA
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'trifecta haiku utah intransigent penicillin' \
+        --delim '.' 
 done
 
 # # ------------------------------------Attack
@@ -581,4 +581,4 @@ done
 #         --use_attack 0
 # done
 
-# qsub -cwd -j yes -o 'LOGs/pred.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/pred_conll.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
