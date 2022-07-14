@@ -285,6 +285,7 @@ class Trainer(object):
 		model.zero_grad()
 		with torch.no_grad():
 			self.noise += acc_norm_gra/n_minibatch
+		pdb.set_trace()
 		return resloss
 
 
