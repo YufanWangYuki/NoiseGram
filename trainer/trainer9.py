@@ -117,7 +117,7 @@ class Trainer(object):
 			outline = 'GEN: {}\n'.format(preds[0]).encode('utf-8')
 			sys.stdout.buffer.write(outref)
 			sys.stdout.buffer.write(outline)
-			sys.stdout.buffer.write(self.noise)
+			print(self.noise)
 			out_count += 1
 		return out_count
 
