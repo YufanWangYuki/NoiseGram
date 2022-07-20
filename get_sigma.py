@@ -36,7 +36,7 @@ for id in tqdm(final_idx[1000:]):
     data_v2 = torch.load(file_dir_v2+str(id)+".pt")-1
     matrix = data_v1 / data_v2*0.1
     value = float(torch.mean(matrix).float())
-    if value is None:
+    if value == float('nan'):
         pdb.set_trace()
     elif value == float('inf'):
         # pdb.set_trace()
