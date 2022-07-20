@@ -39,7 +39,8 @@ for id in tqdm(final_idx[1000:]):
     if value is None:
         pdb.set_trace()
     elif value == float('inf'):
-        pdb.set_trace()
+        # pdb.set_trace()
+        continue
     else:
         mean_sigma.append(value)
 
