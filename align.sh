@@ -193,6 +193,7 @@ do
     checkpoint=combine
     pred=$preddir/${exp}_combine_seed_1.pred
     output=$outdir/$exp/${checkpoint}_seed_${seed}
+    corr=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/official-2014.combined.m2
     echo $pred
     input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
@@ -203,21 +204,21 @@ do
         --seed $seed
 done
 
-for exp in BEA_orig BEA_volta_Gaussian_mul_1.0_0.0__256_8 
-do
-    outdir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/orig
-    preddir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig
-    mkdir $outdir/$exp
-    checkpoint=combine
-    pred=$preddir/${exp}_combine_seed_1.pred
-    output=$outdir/$exp/${checkpoint}_seed_${seed}
-    echo $pred
-    input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
-    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
-        --INC $input \
-        --PRED $pred \
-        --CORR $corr \
-        --BASE $output \
-        --seed $seed
-done
+# for exp in BEA_orig BEA_volta_Gaussian_mul_1.0_0.0__256_8 
+# do
+#     outdir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/orig
+#     preddir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig
+#     mkdir $outdir/$exp
+#     checkpoint=combine
+#     pred=$preddir/${exp}_combine_seed_1.pred
+#     output=$outdir/$exp/${checkpoint}_seed_${seed}
+#     echo $pred
+#     input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
+#         --INC $input \
+#         --PRED $pred \
+#         --CORR $corr \
+#         --BASE $output \
+#         --seed $seed
+# done
 

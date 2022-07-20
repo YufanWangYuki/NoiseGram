@@ -23,3 +23,5 @@ do
     errant_parallel -orig ${dir}/conlltest.inc -cor ${dir}/${exp}.pred -out ${dir}/${exp}.m2
     errant_compare -hyp ${dir}/${exp}.m2 -ref ${dir}/official-2014.combined.m2 >> results/Fscore/v003_conll.txt
 done
+
+errant_compare -hyp edits-pred.m2 -ref /home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/official-2014.combined.m2
