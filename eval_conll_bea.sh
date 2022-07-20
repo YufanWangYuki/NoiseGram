@@ -20,6 +20,6 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 for exp in CoNLL_orig_combine_seed_1 CoNLL_volta_Gaussian_mul_1.0_0.0__256_8_combine_seed_1
 do
     dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig
-    errant_parallel -orig ${dir}/conlltest.inc -cor ${exp}.pred -out ${exp}.m2
-    errant_compare -hyp ${exp}.m2 -ref official-2014.combined.m2
+    errant_parallel -orig ${dir}/conlltest.inc -cor ${dir}/${exp}.pred -out ${dir}/${exp}.m2
+    errant_compare -hyp ${dir}/${exp}.m2 -ref ${dir}/official-2014.combined.m2
 done
