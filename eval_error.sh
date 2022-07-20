@@ -245,7 +245,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'chutzpah ii bibb' \
+    --phrase 'chutzpah vb ditka' \
     --delim '.'
 
 # name=full_N4
