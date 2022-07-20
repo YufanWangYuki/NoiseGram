@@ -52,7 +52,7 @@ while None in mean_sigma_clean:
 	mean_sigma_clean.remove(None)
 # pdb.set_trace()
 data = np.array(mean_sigma_clean)
-
+print(len(data))
 fig, ax = plt.subplots()
 # pdb.set_trace()
 hist = ax.hist(data, bins=3000, alpha=0.5, histtype='stepfilled', color='steelblue', edgecolor='none')
