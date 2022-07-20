@@ -151,12 +151,12 @@ for exp in volta_Gaussian_mul_1.0_0.0__256_8
 do
 for checkpoint in 2022_07_07_21_19_25 2022_07_08_01_27_30 2022_07_08_17_37_21
 do
-dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/orig/$exp
-input=$dir/${checkpoint}_seed_1.inc
-pred=$dir/${checkpoint}_seed_1.pred
-corr=$dir/${checkpoint}_seed_1.corr
-errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
-errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
+    dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/orig/$exp
+    input=$dir/${checkpoint}_seed_1.inc
+    pred=$dir/${checkpoint}_seed_1.pred
+    corr=$dir/${checkpoint}_seed_1.corr
+    errant_parallel -orig $input -cor $pred -out $outdir/${exp}_${checkpoint}_edits-pred.m2
+    errant_parallel -orig $input -cor $corr -out $outdir/${exp}_${checkpoint}_edits-corr.m2
     echo ${exp}_${checkpoint} >> results/Fscore/v005_Fscore.txt
     errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore/v005_Fscore.txt
     echo ${exp}_${checkpoint}
