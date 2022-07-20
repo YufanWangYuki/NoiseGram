@@ -45,14 +45,9 @@ for id in tqdm(final_idx[1000:]):
         mean_sigma.append(value)
 
 
+mean_sigma_clean=[elem if not np.isnan(elem) else None for elem in mean_sigma]
 # pdb.set_trace()
-data = np.array(mean_sigma)
-# # plt.hist(data)
-# plt.hist(data, bins=3000, alpha=0.5,
-#          histtype='stepfilled', color='steelblue',
-#          edgecolor='none')
-# plt.xlim([-10,20])
-# plt.show()
+data = np.array(mean_sigma_clean)
 
 fig, ax = plt.subplots()
 pdb.set_trace()
@@ -60,7 +55,6 @@ hist = ax.hist(data, bins=3000, alpha=0.5, histtype='stepfilled', color='steelbl
 # pdb.set_trace()
 
 for i in range(len(hist[0])):
-        #  xy 即为在图上的坐标  text 为内容
         if hist[0][i] == max(hist[0]):
             plt.annotate(text=hist[1][i], xy=(hist[1][i] + 0.1 / 3, hist[0][i]))
 plt.xlim([-10,20])
