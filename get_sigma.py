@@ -61,6 +61,8 @@ for i in range(len(hist[0])):
         if hist[0][i] == max(hist[0]):
             plt.annotate(text=hist[1][i], xy=(hist[1][i] + 0.1 / 3, hist[0][i]))
 plt.xlim([-10,20])
+plt.xlabel("sigma")
+plt.ylabel("frequency")
 plt.savefig("sigma.png")
 plt.show()
 
