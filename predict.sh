@@ -5,8 +5,8 @@ echo $HOSTNAME
 unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
-export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-# export CUDA_VISIBLE_DEVICES=0
+# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -268,12 +268,12 @@ seed=1
 # done
 
 # ------------------------------------Perp Attack
-# for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-# do
-# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/checkpoints-combine/combine/
-# mkdir prediction_files/v003/$exp
-# mkdir prediction_files/v003/$exp/attacks_perp
-# outdir=prediction_files/v003/$exp/attacks_perp
+for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
+do
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/checkpoints-combine/combine/
+mkdir prediction_files/v003/$exp
+mkdir prediction_files/v003/$exp/attacks_perp
+outdir=prediction_files/v003/$exp/attacks_perp
 # # output=$outdir/full_N1
 # # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 # #         --IN $input \
@@ -294,15 +294,15 @@ seed=1
 #         --phrase 'chutzpah vb' \
 #         --delim '.'
 
-# output=$outdir/full_N3
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'chutzpah ii bibb' \
-#         --delim '.'
+output=$outdir/full_N3
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'chutzpah vb ditka' \
+        --delim '.'
 
 # output=$outdir/full_N4
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
@@ -363,7 +363,7 @@ seed=1
 #         --use_attack 1 \
 #         --phrase 'ink l xml mv sub xu bec l sub' \
 #         --delim '.'     
-# done
+done
 
 # ------------------------------------Perp Attack
 # for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
