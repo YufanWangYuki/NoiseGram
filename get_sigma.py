@@ -46,6 +46,8 @@ for id in tqdm(final_idx[1000:]):
 
 
 mean_sigma_clean=[elem if not np.isnan(elem) else None for elem in mean_sigma]
+while None in mean_sigma_clean:
+	mean_sigma_clean.remove(None)
 # pdb.set_trace()
 data = np.array(mean_sigma_clean)
 
