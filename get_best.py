@@ -66,7 +66,7 @@ if __name__ == "__main__":
     for idx, item in enumerate(best.words):
         if item[0] == 'none':
             break
-    print(best.words[:idx])
+    print(sorted(best.words[:idx], reverse = False, key = lambda x: x[1]))
     print(idx)
     # Write words to output file
     # with open(output_file, 'w+') as f:
