@@ -217,10 +217,10 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 # # /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/attacks_perp/
 for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
 do
-pred_dir=prediction_files/v003/$exp/attacks_perp
-out_dir=edit_dist_files/v003/$exp/attacks_perp
-mkdir edit_dist_files/v003/$exp
-mkdir edit_dist_files/v003/$exp/attacks_perp
+    pred_dir=prediction_files/v003/$exp/attacks_perp
+    out_dir=edit_dist_files/v003/$exp/attacks_perp
+    mkdir edit_dist_files/v003/$exp
+    mkdir edit_dist_files/v003/$exp/attacks_perp
 # name=full_N1
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
 #     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
@@ -404,7 +404,7 @@ done
 #     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
 #     --PRED prediction_files/$exp/orig_combine_seed_1.pred \
 #     --OUT edit_dist_files/$exp/attacks/${name}_with_adv_not_removed.txt
-done
+# done
 
 # name=orig
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
