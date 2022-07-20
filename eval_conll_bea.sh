@@ -21,6 +21,7 @@ for exp in CoNLL_orig_combine_seed_1 CoNLL_volta_Gaussian_mul_1.0_0.0__256_8_com
 do
     dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig
     errant_parallel -orig ${dir}/conlltest.inc -cor ${dir}/clean_${exp}.pred -out ${dir}/${exp}.m2
+    echo $exp >> results/Fscore/v003_conll.txt
     errant_compare -hyp ${dir}/${exp}.m2 -ref ${dir}/official-2014.combined.m2 >> results/Fscore/v003_conll.txt
 done
 
