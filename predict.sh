@@ -148,25 +148,25 @@ output=$outdir/BEA_${exp}_${checkpoint}_seed_${seed}
 
 outdir=prediction_files/orig/attacks
 mkdir outdir       
-output=$outdir/${exp}_full_N5_BEA
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'ink l xml mv sub' \
-        --delim '.' 
+# output=$outdir/${exp}_full_N5_BEA
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'ink l xml mv sub' \
+#         --delim '.' 
 
-output=$outdir/${exp}_perp_N5_BEA
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'trifecta haiku utah intransigent penicillin' \
-        --delim '.' 
+# output=$outdir/${exp}_perp_N5_BEA
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'trifecta haiku utah intransigent penicillin' \
+#         --delim '.' 
 done
 
 # # ------------------------------------Attack
@@ -583,3 +583,4 @@ done
 
 # qsub -cwd -j yes -o 'LOGs/pred_conll.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/pred_perp.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/pred_new_conll.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
