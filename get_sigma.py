@@ -48,6 +48,7 @@ data = np.array(mean_sigma)
 # plt.show()
 
 fig, ax = plt.subplots()
+pdb.set_trace()
 hist = ax.hist(data, bins=3000, alpha=0.5,
          histtype='stepfilled', color='steelblue',
          edgecolor='none')
