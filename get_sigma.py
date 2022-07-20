@@ -41,6 +41,8 @@ for id in tqdm(final_idx[1000:]):
     elif value == float('inf') or value == float('-inf'):
         # pdb.set_trace()
         continue
+    elif value > 1000 or value < -1000:
+        continue
     else:
         mean_sigma.append(value)
 
@@ -54,7 +56,6 @@ data = np.array(mean_sigma_clean)
 fig, ax = plt.subplots()
 # pdb.set_trace()
 hist = ax.hist(data, bins=3000, alpha=0.5, histtype='stepfilled', color='steelblue', edgecolor='none')
-# pdb.set_trace()
 
 for i in range(len(hist[0])):
         if hist[0][i] == max(hist[0]):
