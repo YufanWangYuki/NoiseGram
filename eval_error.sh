@@ -215,12 +215,12 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 # mkdir edit_dist_files/v003
 
 # # /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/attacks_perp/
-for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
-do
-    pred_dir=prediction_files/v003/$exp/attacks_perp
-    out_dir=edit_dist_files/v003/$exp/attacks_perp
-    mkdir edit_dist_files/v003/$exp
-    mkdir edit_dist_files/v003/$exp/attacks_perp
+# for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
+# do
+#     pred_dir=prediction_files/v003/$exp/attacks_perp
+#     out_dir=edit_dist_files/v003/$exp/attacks_perp
+#     mkdir edit_dist_files/v003/$exp
+#     mkdir edit_dist_files/v003/$exp/attacks_perp
 # name=full_N1
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
 #     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
@@ -239,14 +239,14 @@ do
 #     --phrase 'chutzpah vb' \
 #     --delim '.'
 
-name=full_N3
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
-    --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
-    --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
-    --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
-    --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
-    --phrase 'chutzpah vb ditka' \
-    --delim '.'
+# name=full_N3
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+#     --SOURCE /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.inc \
+#     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
+#     --PRED ${pred_dir}/${name}_with_adv_not_removed.pred \
+#     --OUT ${out_dir}/${name}_with_adv_not_removed.txt \
+#     --phrase 'chutzpah vb ditka' \
+#     --delim '.'
 
 # name=full_N4
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
@@ -308,7 +308,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
 #     --REF /home/alta/CLC/LNRC/exams/FCEsplit-public/v3/fce-public.test.corr \
 #     --PRED prediction_files/$exp/orig_combine_seed_1.pred \
 #     --OUT edit_dist_files/$exp/attacks/${name}_with_adv_not_removed.txt
-done
+# done
 
 
 # for exp in volta_Gaussian-adversarial_mul_1.0_0.1_256_8
@@ -416,3 +416,26 @@ done
 # qsub -cwd -j yes -o 'LOGs/count_err.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' eval_error.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/count_err_mul.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' eval_error.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/count_err_add_100.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' eval_error.sh 1 1
+
+
+
+mkdir edit_dist_files/orig
+for exp in CoNLL_orig_combine_seed_1 CoNLL_volta_Gaussian_mul_1.0_0.0__256_8_combine_seed_1
+do
+    dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig
+    input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
+    mkdir edit_dist_files/orig/$exp
+    outdir=edit_dist_files/orig/$exp
+    
+    name=full_N6
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
+    --SOURCE  $input\
+    --REF ${dir}/clean_${exp}.pred\
+    --PRED ${dir}/clean_${exp}.pred \
+    --OUT ${outdir}/${name}_with_adv_not_removed.txt \
+    --phrase 'ink l xml mv sub xu' \
+    --delim '.'
+
+
+    
+done
