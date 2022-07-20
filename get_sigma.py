@@ -29,7 +29,7 @@ for i in idx_list_v2:
         final_idx.append(i)
 
 mean_sigma = []
-for id in tqdm(final_idx):
+for id in tqdm(final_idx[:20]):
     # data_v1 = torch.load(file_dir_v1+str(id)+".pt",map_location=torch.device('cpu'))-1
     # data_v2 = torch.load(file_dir_v2+str(id)+".pt",map_location=torch.device('cpu'))-1
     data_v1 = torch.load(file_dir_v1+str(id)+".pt")-1
