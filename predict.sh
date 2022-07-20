@@ -100,11 +100,10 @@ seed=1
 # done
 
 checkpoint=combine
-for exp in orig
+for exp in volta_Gaussian_mul_1.0_0.0__256_8
 do
-
-model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine
-
+# model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/orig/volta_Gaussian_mul_1.0_0.0__256_8/checkpoints-combine 
 outdir=prediction_files/orig
 input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
 output=$outdir/CoNLL_${exp}_${checkpoint}_seed_${seed}
@@ -117,7 +116,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 
 outdir=prediction_files/orig/attacks
 mkdir outdir       
-output=$outdir/full_N5_CoNLL
+output=$outdir/${exp}_full_N5_CoNLL
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -127,7 +126,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --phrase 'ink l xml mv sub' \
         --delim '.' 
 
-output=$outdir/perp_N5_CoNLL
+output=$outdir/${exp}_perp_N5_CoNLL
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -149,7 +148,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 
 outdir=prediction_files/orig/attacks
 mkdir outdir       
-output=$outdir/full_N5_BEA
+output=$outdir/${exp}_full_N5_BEA
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -159,7 +158,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --phrase 'ink l xml mv sub' \
         --delim '.' 
 
-output=$outdir/perp_N5_BEA
+output=$outdir/${exp}_perp_N5_BEA
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
