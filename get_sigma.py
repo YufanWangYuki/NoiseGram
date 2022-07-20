@@ -38,7 +38,7 @@ for id in tqdm(final_idx[1000:]):
     value = float(torch.mean(matrix).float())
     if value == float('nan'):
         pdb.set_trace()
-    elif value == float('inf'):
+    elif value == float('inf') or value == float('-inf'):
         # pdb.set_trace()
         continue
     else:
