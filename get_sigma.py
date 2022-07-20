@@ -35,7 +35,12 @@ for id in tqdm(final_idx[1000:]):
     data_v1 = torch.load(file_dir_v1+str(id)+".pt")-1
     data_v2 = torch.load(file_dir_v2+str(id)+".pt")-1
     matrix = data_v1 / data_v2*0.1
-    mean_sigma.append(float(torch.mean(matrix).float()))
+    value = float(torch.mean(matrix).float())
+    if value is None:
+        pdb.set_trace()
+    elif value == float('inf'):
+        pdb.set_trace()
+    mean_sigma.append()
 
 
 # pdb.set_trace()
@@ -49,9 +54,7 @@ data = np.array(mean_sigma)
 
 fig, ax = plt.subplots()
 pdb.set_trace()
-hist = ax.hist(data, bins=3000, alpha=0.5,
-         histtype='stepfilled', color='steelblue',
-         edgecolor='none')
+hist = ax.hist(data, bins=3000, alpha=0.5, histtype='stepfilled', color='steelblue', edgecolor='none')
 # pdb.set_trace()
 
 for i in range(len(hist[0])):
