@@ -20,6 +20,7 @@ from collections import defaultdict
 from utils.align_preds import align_data_pred, get_sentences_dict
 from utils.uni_attack import concatenate
 from statistics import mean, stdev
+import pdb 
 
 def update_edit_types(ref_edits, pred_edits, ref_count, pred_total, pred_correct, pred_insert, pred_del):
     '''
@@ -111,6 +112,7 @@ if __name__ == "__main__":
         if args.phrase != '':
             attack_phrase = args.phrase + '.'
             s_with_attack = concatenate(s, attack_phrase, delim=args.delim)
+        pdb.set_trace()
         pred_edits = return_edits(s_with_attack, p)
         # import pdb; pdb.set_trace()
         if len(pred_edits) == 0:
