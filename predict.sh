@@ -5,8 +5,8 @@ echo $HOSTNAME
 unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
-export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-# export CUDA_VISIBLE_DEVICES=0
+# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -301,7 +301,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --OUT_BASE $output \
         --seed $seed \
         --use_attack 1 \
-        --phrase 'chutzpah vb ditka' \
+        --phrase 'chutzpah vb clap' \
         --delim '.'
 
 # output=$outdir/full_N4

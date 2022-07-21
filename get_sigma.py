@@ -4,8 +4,9 @@ import pdb
 from tqdm import tqdm 
 import matplotlib.pyplot as plt
 import numpy as np
+import time
 
-file_dir_v1 = '/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v008/save_tensor/'
+file_dir_v1 = '/Users/yufanwang/Desktop/Study/Project/Data/backup/save_tensor/'
 file_list = sorted(os.listdir(file_dir_v1))
 idx_list_v1 = []
 for file in file_list:
@@ -14,7 +15,7 @@ for file in file_list:
     idx_list_v1.append(int(file[:-3]))
 # print(sorted(idx_list_v1))
 
-file_dir_v2 = '/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v008/save_tensor_v2/'
+file_dir_v2 = '/Users/yufanwang/Desktop/Study/Project/Data/backup/save_tensor_v2/'
 file_list = sorted(os.listdir(file_dir_v2))
 idx_list_v2 = []
 for file in file_list:
@@ -29,12 +30,29 @@ for i in idx_list_v2:
         final_idx.append(i)
 
 mean_sigma = []
+mean_rate_v1 = 0
+mean_rate_v2 = 0
+cnt = 0
 for id in tqdm(final_idx[1000:]):
-    # data_v1 = torch.load(file_dir_v1+str(id)+".pt",map_location=torch.device('cpu'))-1
-    # data_v2 = torch.load(file_dir_v2+str(id)+".pt",map_location=torch.device('cpu'))-1
-    data_v1 = torch.load(file_dir_v1+str(id)+".pt")-1
-    data_v2 = torch.load(file_dir_v2+str(id)+".pt")-1
+    cnt += 1
+    data_v1 = torch.load(file_dir_v1+str(id)+".pt",map_location=torch.device('cpu'))-1
+    data_v2 = torch.load(file_dir_v2+str(id)+".pt",map_location=torch.device('cpu'))-1
+    # data_v1 = torch.load(file_dir_v1+str(id)+".pt")-1
+    # data_v2 = torch.load(file_dir_v2+str(id)+".pt")-1
+    
+    test_v1 = data_v1
+    test_v1[test_v1 < 0] = 0
+    test_v1[test_v1 > 0] = 1
+    print(torch.norm(test_v1,p=1)/196608)
+    mean_rate_v1 += torch.norm(test_v1,p=1)/196608
+    test_v2 = data_v2
+    test_v2[test_v2 < 0] = 0
+    test_v2[test_v2 > 0] = 1
+    print(torch.norm(test_v2,p=1)/196608)
+    mean_rate_v2 += torch.norm(test_v2,p=1)/196608
+    # pdb.set_trace()
     matrix = data_v1 / data_v2*0.1
+    
     value = float(torch.mean(matrix).float())
     if value == float('nan'):
         pdb.set_trace()
@@ -46,6 +64,9 @@ for id in tqdm(final_idx[1000:]):
     else:
         mean_sigma.append(value)
 
+print(mean_rate_v1/cnt)
+print(mean_rate_v2/cnt)
+time.sleep(10)
 
 mean_sigma_clean=[elem if not np.isnan(elem) else None for elem in mean_sigma]
 while None in mean_sigma_clean:
