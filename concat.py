@@ -21,7 +21,7 @@ for file in files:
         word = line.strip().split(":")[0]
         words.append(word)
     
-    print(len(word))
+    print(len(words))
 
 set_word = set(words)
 print(len(set_word))
