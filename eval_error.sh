@@ -423,7 +423,8 @@ mkdir edit_dist_files/orig
 for exp in CoNLL_volta_Gaussian_mul_1.0_0.0__256_8_combine_seed_1
 do
     dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig/attacks
-    input=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig/conlltest.inc
+    # input=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig/conlltest.inc
+    input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
     
     mkdir edit_dist_files/orig/$exp
     outdir=edit_dist_files/orig/$exp
