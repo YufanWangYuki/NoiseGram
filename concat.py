@@ -20,10 +20,12 @@ for file in files:
     for line in lines[2:]:
         word = line.strip().split(":")[0]
         words.append(word)
-    pdb.set_trace()
+    
     print(len(word))
 
 set_word = set(words)
+print(len(set_word))
+pdb.set_trace()
 with open(output_file, 'w+') as f:
     for item in set_word:
         f.write('\n'+item)
