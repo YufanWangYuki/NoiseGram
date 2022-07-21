@@ -18,9 +18,9 @@ for file in files:
     with open(curr_path, 'r') as f:
         lines = f.readlines()
     for line in lines[2:]:
-        pdb.set_trace()
-        word = line.strip()
+        word = line.strip().split(":")[0]
         words.append(word)
+    pdb.set_trace()
     print(len(word))
 
 set_word = set(words)
