@@ -430,7 +430,7 @@ do
     # volta_Gaussian_mul_1.0_0.0__256_8_perp_N5_CoNLL_with_adv_removed.pred
 
     name=full_N5
-    ref=$dir/volta_Gaussian_mul_1.0_0.0__256_8_full_N5_CoNLL_with_adv_not_removed.pred
+    ref=$dir/clean_volta_Gaussian_mul_1.0_0.0__256_8_full_N5_CoNLL_with_adv_not_removed.pred
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
     --SOURCE $input\
     --REF $ref\
