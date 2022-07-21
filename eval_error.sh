@@ -420,22 +420,23 @@ export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/
 
 
 mkdir edit_dist_files/orig
-for exp in CoNLL_orig_combine_seed_1 CoNLL_volta_Gaussian_mul_1.0_0.0__256_8_combine_seed_1
+for exp in CoNLL_volta_Gaussian_mul_1.0_0.0__256_8_combine_seed_1
 do
-    dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig
+    dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig/attacks
     input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
+    
     mkdir edit_dist_files/orig/$exp
     outdir=edit_dist_files/orig/$exp
-    
-    name=full_N6
+    # volta_Gaussian_mul_1.0_0.0__256_8_perp_N5_CoNLL_with_adv_removed.pred
+
+    name=full_N5
+    ref=$dir/clean_volta_Gaussian_mul_1.0_0.0__256_8_full_N5_CoNLL_with_adv_not_removed.pred
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
     --SOURCE  $input\
-    --REF ${dir}/clean_${exp}.pred\
-    --PRED ${dir}/clean_${exp}.pred \
+    --REF $ref\
+    --PRED $ref \
     --OUT ${outdir}/${name}_with_adv_not_removed.txt \
     --phrase 'ink l xml mv sub xu' \
     --delim '.'
 
-
-    
 done
