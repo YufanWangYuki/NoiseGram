@@ -112,7 +112,7 @@ if __name__ == "__main__":
         if args.phrase != '':
             attack_phrase = args.phrase + '.'
             s_with_attack = concatenate(s, attack_phrase, delim=args.delim)
-        pdb.set_trace()
+        # pdb.set_trace()
         pred_edits = return_edits(s_with_attack, p)
         # import pdb; pdb.set_trace()
         if len(pred_edits) == 0:
