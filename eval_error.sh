@@ -437,7 +437,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/eval_error.py \
     --REF $ref\
     --PRED $ref \
     --OUT ${outdir}/${name}_with_adv_not_removed.txt \
-    --phrase 'ink l xml mv sub xu' \
+    --phrase 'ink l xml mv sub' \
     --delim '.'
 
 done
