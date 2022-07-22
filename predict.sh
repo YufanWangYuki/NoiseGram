@@ -311,7 +311,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --OUT_BASE $output \
         --seed $seed \
         --use_attack 1 \
-        --phrase 'chutzpah ii clap rk' \
+        --phrase 'chutzpah vb clap rk' \
         --delim '.'   
 
 # output=$outdir/full_N5
