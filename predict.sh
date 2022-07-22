@@ -294,25 +294,25 @@ outdir=prediction_files/v003/$exp/attacks_perp
 #         --phrase 'chutzpah vb' \
 #         --delim '.'
 
-output=$outdir/full_N3
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'chutzpah vb clap' \
-        --delim '.'
-
-# output=$outdir/full_N4
+# output=$outdir/full_N3
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --IN $input \
 #         --MODEL $model \
 #         --OUT_BASE $output \
 #         --seed $seed \
 #         --use_attack 1 \
-#         --phrase 'chutzpah ii bibb en' \
-#         --delim '.'   
+#         --phrase 'chutzpah vb clap' \
+#         --delim '.'
+
+output=$outdir/full_N4
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'chutzpah ii clap rk' \
+        --delim '.'   
 
 # output=$outdir/full_N5
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
