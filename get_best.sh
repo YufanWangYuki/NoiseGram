@@ -15,7 +15,7 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/"
 # /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/universal_attack_logs/v003best/evade_perp_beam1/k${num}/ \
 # /home/alta/BLTSpeaking/exp-vr313/GEC/TunedGramformerAttack/universal_attack_logs/evade_perp_beam1/k${num}/
-for num in 4
+for num in 5
 do
 $PYTHONBIN get_best.py \
     /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/universal_attack_logs/v003best/evade_perp_beam1/k${num}/ \
