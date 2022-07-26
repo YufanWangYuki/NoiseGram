@@ -380,7 +380,7 @@ class Seq2seq(nn.Module):
             top_p=0.95, 
             early_stopping=True,
             num_return_sequences=max_candidates)
-		pdb.set_trace()
+		# pdb.set_trace()
 		
 		corrected = set()
 		for pred in preds:  
