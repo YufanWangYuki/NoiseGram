@@ -250,7 +250,7 @@ class Trainer(object):
 					# np.ones([self.minibatch_size, self.seq_length, self.embedding_dim])
 					# incre_noise = torch.tensor(incre_noise).to(device=self.device)
 					# self.noise.requires_grad = True
-					self.noise += incre_noise
+					new_noise += incre_noise
 				# pdb.set_trace()
 
 			# Backward propagation: accumulate gradient
