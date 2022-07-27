@@ -334,15 +334,15 @@ outdir=prediction_files/v003/$exp/attacks_perp
 #         --phrase 'chutzpah vb clap shu wring tangy' \
 #         --delim '.'    
 
-output=$outdir/full_N7
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'chutzpah vb clap shu wring tangy lopsided' \
-        --delim '.'   
+# output=$outdir/full_N7
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'chutzpah vb clap shu wring tangy lopsided' \
+#         --delim '.'   
 
 # output=$outdir/full_N8
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
