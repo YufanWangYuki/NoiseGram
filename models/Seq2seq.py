@@ -75,7 +75,7 @@ class Seq2seq(nn.Module):
 		elif noise_config['noise_way'] == 'add':
 			# print("Add"*20)
 			new_embeds = inputs_embeds + noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
-		torch.save(new_embeds, "/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v008/save_embeds/"+noise_config['noise_way']+pointer+".pt")
+		torch.save(new_embeds, "/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v008/save_embeds/"+noise_config['noise_way']+str(pointer)+".pt")
 		# print("Finish adding")
 		outputs = self.model(
 			# input_ids=src_ids,

@@ -589,4 +589,4 @@ done
 # qsub -cwd -j yes -o 'LOGs/k3.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/k7.log' -P esol -l hostname='*' -l not_host='air209' -l qp=cuda-low -l gpuclass='*' -l osrel='*' eval_error.sh 1 1
 
-# qsub -cwd -j yes -o 'LOGs/conll.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/conll_1.5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
