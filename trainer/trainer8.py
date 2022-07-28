@@ -102,6 +102,7 @@ class Trainer(object):
 
 		self.noise = None
 		self.pointer = 0
+		self.pointer2 = 0
 
 		if noise_type == 'Adversarial':
 			self.noise = np.ones([self.minibatch_size, seq_length, embedding_dim])
@@ -276,7 +277,8 @@ class Trainer(object):
 				
 				# Second forward propagation-get loss
 				model.train()
-				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise)
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, new_noise,self.pointer2)
+				self.pointer2 += 1
 				loss = outputs.loss
 				loss /= n_minibatch
 				loss.backward()
