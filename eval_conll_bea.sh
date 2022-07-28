@@ -17,13 +17,13 @@ export PYTHONBIN=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/envs/gec37/bin/p
 export PYTHONPATH="${PYTHONPATH}:/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/"
 
 
-for exp in v003
+for exp in v002
 do
     dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig
-    pred=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/conll/v003/
-    errant_parallel -orig ${dir}/conlltest.inc -cor ${pred}/clean_combine_seed_1.pred -out ${pred}/clean_${exp}.m2
-    echo clean_$exp >> results/Fscore/v003_conll.txt
-    errant_compare -hyp ${pred}/clean_${exp}.m2 -ref ${dir}/official-2014.combined.m2 >> results/Fscore/v003_conll.txt
+    pred=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/conll/$exp
+    errant_parallel -orig ${dir}/conlltest.inc -cor ${pred}/clean_CoNLL_Gaussian_0.1.pred -out ${pred}/clean_${exp}_0.1.m2
+    echo clean_${exp}_0.1 >> results/Fscore/v002_conll.txt
+    errant_compare -hyp ${pred}/clean_${exp}_0.1.m2 -ref ${dir}/official-2014.combined.m2 >> results/Fscore/v002_conll.txt
 done
 
 # errant_compare -hyp edits-pred.m2 -ref /home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/official-2014.combined.m2
