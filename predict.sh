@@ -100,44 +100,45 @@ seed=1
 # done
 
 checkpoint=combine
-for exp in v003
+for exp in v002
 do
 # model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/checkpoints-combine
-outdir=prediction_files/conll
-# input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
-# output=$outdir/CoNLL_${exp}_${checkpoint}_seed_${seed}
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 0
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_0.1_256_2_002/checkpoints-combine
+outdir=prediction_files/conll/$exp
+mkdir outdir
+input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
+output=$outdir/CoNLL_Gaussian_0.1
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 0
 
 # outdir=prediction_files/orig/attacks
 # mkdir outdir       
 # output=$outdir/${exp}_full_N5_CoNLL
-# # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-# #         --IN $input \
-# #         --MODEL $model/$checkpoint \
-# #         --OUT_BASE $output \
-# #         --seed $seed \
-# #         --use_attack 1 \
-# #         --phrase 'ink l xml mv sub' \
-# #         --delim '.' 
-
-# output=$outdir/${exp}_perp_N5_CoNLL
 # $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --IN $input \
 #         --MODEL $model/$checkpoint \
 #         --OUT_BASE $output \
 #         --seed $seed \
 #         --use_attack 1 \
-#         --phrase 'trifecta haiku utah intransigent penicillin' \
+#         --phrase 'ink l xml mv sub' \
 #         --delim '.' 
 
+output=$outdir/CoNLL_Gaussian_0.1_perp_N5
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'trifecta haiku utah intransigent penicillin' \
+        --delim '.' 
+
 input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/BEA2019/bea2019test.txt
-output=$outdir/BEA_${exp}_${checkpoint}_seed_${seed}
+output=$outdir/BEA_Gaussian_0.1
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -157,15 +158,15 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --phrase 'ink l xml mv sub' \
 #         --delim '.' 
 
-# output=$outdir/${exp}_perp_N5_BEA
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 1 \
-#         --phrase 'trifecta haiku utah intransigent penicillin' \
-#         --delim '.' 
+output=$outdir/BEA_Gaussian_0.1_perp_N5
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'trifecta haiku utah intransigent penicillin' \
+        --delim '.' 
 done
 
 # # ------------------------------------Attack
