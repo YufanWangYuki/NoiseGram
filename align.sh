@@ -191,8 +191,8 @@ do
     preddir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/conll/$exp
     mkdir $outdir
     checkpoint=combine
-    pred=$preddir/CoNLL_GramAdvMean_add_10.pred
-    output=$outdir/CoNLL_GramAdvMean_add_10
+    pred=$preddir/CoNLL_GramAdvMean_add_100.pred
+    output=$outdir/CoNLL_GramAdvMean_add_100
     echo $pred
     input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
     corr=$input
