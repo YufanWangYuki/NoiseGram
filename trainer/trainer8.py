@@ -237,7 +237,8 @@ class Trainer(object):
 		# loss
 		resloss = 0
 		# print("-"*20)
-		save_tf = torch.tensor(np.zeros([batch_size, self.seq_length, self.embedding_dim])).to(device=self.device)
+		save_noise = torch.tensor(np.zeros([batch_size, self.seq_length, self.embedding_dim])).to(device=self.device)
+		
 
 		if "dversarial" in noise_configs['noise_type']:
 			noise_bar = torch.tensor(np.zeros(self.embedding_dim)).to(device=self.device)
@@ -271,7 +272,7 @@ class Trainer(object):
 				new_noise *= self.weight
 				if self.noise_configs['noise_way'] == 'mul':
 					new_noise += 1
-				save_tf[i_start:i_end] = new_noise[:len(save_tf[i_start:i_end])]
+				save_noise[i_start:i_end] = new_noise[:len(save_noise[i_start:i_end])]
 				
 				# Second forward propagation-get loss
 				model.train()
@@ -297,7 +298,7 @@ class Trainer(object):
 				tgt_ids = batch_tgt_ids[i_start:i_end]
 
 				model.train()
-				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise)
+				outputs = model.forward_train(src_ids, src_att_mask, tgt_ids, noise_configs, self.noise,self.pointer)
 				# pdb.set_trace()
 				loss = outputs.loss
 				loss /= n_minibatch
@@ -315,7 +316,7 @@ class Trainer(object):
 			self.noise = self.gamma * self.noise + (1 - self.gamma) * noise_bar.expand([self.minibatch_size,self.seq_length,self.embedding_dim])
 		# pdb.set_trace()
 		# print(torch.var(self.noise))
-		torch.save(save_tf, "/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v008/save_tensor_v2/"+str(self.pointer)+".pt")
+		torch.save(save_noise, "/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v008/save_noise/"+self.noise_configs['noise_way']+str(self.pointer)+".pt")
 		print(self.pointer)
 		self.pointer += 1
 		

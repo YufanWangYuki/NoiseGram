@@ -38,7 +38,7 @@ class Seq2seq(nn.Module):
 		self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name) #T5ForConditionalGeneration
 
 
-	def forward_train(self, src_ids, src_att_mask, tgt_ids, noise_config, grad_noise=None):
+	def forward_train(self, src_ids, src_att_mask, tgt_ids, noise_config, grad_noise=None,pointer=0):
 
 		"""
 			for training
@@ -75,6 +75,7 @@ class Seq2seq(nn.Module):
 		elif noise_config['noise_way'] == 'add':
 			# print("Add"*20)
 			new_embeds = inputs_embeds + noise[:len(inputs_embeds),:len(inputs_embeds[0]),:]
+		torch.save(new_embeds, "/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v008/save_embeds/"+noise_config['noise_way']+pointer+".pt")
 		# print("Finish adding")
 		outputs = self.model(
 			# input_ids=src_ids,
