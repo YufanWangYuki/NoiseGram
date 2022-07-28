@@ -100,11 +100,11 @@ seed=1
 # done
 
 checkpoint=combine
-exp=v003
-for name in GramAdvMean_add_100
+exp=v005
+for name in GramAdvMean_mul_0.1
 do
 # model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/volta_Gaussian-adversarial-norm_add_0.0_100_256_8/checkpoints-combine
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/volta_Gaussian-adversarial_mul_1.0_0.1_1_1_256_8/checkpoints-combine
 outdir=prediction_files/conll/$exp
 mkdir $outdir
 input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
@@ -592,3 +592,4 @@ done
 
 # qsub -cwd -j yes -o 'LOGs/conll_1.5.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/conll_v003_add_10.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
+# qsub -cwd -j yes -o 'LOGs/conll_v003_add_100.log' -P esol -l hostname='*' -l qp=cuda-low -l not_host=air209 -l gpuclass='*' -l osrel='*' predict.sh 1 1
