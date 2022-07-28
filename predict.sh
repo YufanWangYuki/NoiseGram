@@ -5,8 +5,8 @@ echo $HOSTNAME
 unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
-export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-# export CUDA_VISIBLE_DEVICES=0
+# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+export CUDA_VISIBLE_DEVICES=2
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -103,16 +103,16 @@ checkpoint=combine
 for exp in v003
 do
 # model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/checkpoints-combine
-outdir=prediction_files/conll
-input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
-output=$outdir/CoNLL_${exp}_${checkpoint}_seed_${seed}
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 0
+# model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v003/volta_Gaussian-adversarial_mul_1.0_0.1_256_8/checkpoints-combine
+# outdir=prediction_files/conll
+# input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
+# output=$outdir/CoNLL_${exp}_${checkpoint}_seed_${seed}
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 0
 
 # outdir=prediction_files/orig/attacks
 # mkdir outdir       
@@ -126,24 +126,24 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 # #         --phrase 'ink l xml mv sub' \
 # #         --delim '.' 
 
-output=$outdir/${exp}_perp_N5_CoNLL
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'trifecta haiku utah intransigent penicillin' \
-        --delim '.' 
+# output=$outdir/${exp}_perp_N5_CoNLL
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'trifecta haiku utah intransigent penicillin' \
+#         --delim '.' 
 
-input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/BEA2019/bea2019test.txt
-output=$outdir/BEA_${exp}_${checkpoint}_seed_${seed}
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 0
+# input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/BEA2019/bea2019test.txt
+# output=$outdir/BEA_${exp}_${checkpoint}_seed_${seed}
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 0
 
 # outdir=prediction_files/orig/attacks
 # mkdir outdir       
@@ -587,3 +587,5 @@ done
 # qsub -cwd -j yes -o 'LOGs/pred_new_bea.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/k3.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
 # qsub -cwd -j yes -o 'LOGs/k7.log' -P esol -l hostname='*' -l not_host='air209' -l qp=cuda-low -l gpuclass='*' -l osrel='*' eval_error.sh 1 1
+
+# qsub -cwd -j yes -o 'LOGs/conll.log' -P esol -l hostname='*' -l qp=cuda-low -l gpuclass='*' -l osrel='*' predict.sh 1 1
