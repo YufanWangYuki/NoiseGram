@@ -5,8 +5,8 @@ echo $HOSTNAME
 unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
-export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-# export CUDA_VISIBLE_DEVICES=2
+# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -100,14 +100,14 @@ seed=1
 # done
 
 checkpoint=combine
-for exp in v002
+for exp in generate
 do
 # model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v002/Gaussian_mul_1.0_1.5_256_2_002/checkpoints-combine
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/AttackGram/models/generate/old_256_8_v2_full/checkpoints-combine
 outdir=prediction_files/conll/$exp
 mkdir $outdir
 input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
-output=$outdir/CoNLL_Gaussian_1.5
+output=$outdir/CoNLL_$exp
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -127,7 +127,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --phrase 'ink l xml mv sub' \
 #         --delim '.' 
 
-output=$outdir/CoNLL_Gaussian_1.5_perp_N5
+output=$outdir/CoNLL_${exp}_perp_N5
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -138,7 +138,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --delim '.' 
 
 input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/BEA2019/bea2019test.txt
-output=$outdir/BEA_Gaussian_1.5
+output=$outdir/BEA_${exp}
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -158,7 +158,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --phrase 'ink l xml mv sub' \
 #         --delim '.' 
 
-output=$outdir/BEA_Gaussian_1.5_perp_N5
+output=$outdir/BEA_${exp}_perp_N5
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
