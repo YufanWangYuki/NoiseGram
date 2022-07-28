@@ -185,14 +185,14 @@ seed=1
 # done
 
 # mkdir $outdir/orig
-for exp in v002
+for exp in generate
 do
     outdir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/conll/$exp
     preddir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/conll/$exp
     mkdir $outdir
     checkpoint=combine
-    pred=$preddir/CoNLL_Gaussian_1.5.pred
-    output=$outdir/CoNLL_Gaussian_1.5.pred
+    pred=$preddir/CoNLL_generate.pred
+    output=$outdir/CoNLL_generate
     echo $pred
     input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
     corr=$input
