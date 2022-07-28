@@ -5,8 +5,8 @@ echo $HOSTNAME
 unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
-# export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
+# export CUDA_VISIBLE_DEVICES=0
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -100,14 +100,15 @@ seed=1
 # done
 
 checkpoint=combine
-for exp in generate
+exp=v003
+for name in GramAdvMean_add_10
 do
 # model=/home/alta/BLTSpeaking/exp-ytl28/projects/gec-pretrained/exp-t5-written/models/v001/checkpoints-combine
-model=/home/alta/BLTSpeaking/exp-yw575/GEC/AttackGram/models/generate/old_256_8_v2_full/checkpoints-combine
+model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/v005/volta_Gaussian-adversarial-norm_add_0.0_10_256_8/checkpoints-combine
 outdir=prediction_files/conll/$exp
 mkdir $outdir
 input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
-output=$outdir/CoNLL_$exp
+output=$outdir/CoNLL_${name}
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -127,7 +128,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --phrase 'ink l xml mv sub' \
 #         --delim '.' 
 
-output=$outdir/CoNLL_${exp}_perp_N5
+output=$outdir/CoNLL_${name}_perp_N5
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -138,7 +139,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --delim '.' 
 
 input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/BEA2019/bea2019test.txt
-output=$outdir/BEA_${exp}
+output=$outdir/BEA_${name}
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
@@ -158,7 +159,7 @@ $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
 #         --phrase 'ink l xml mv sub' \
 #         --delim '.' 
 
-output=$outdir/BEA_${exp}_perp_N5
+output=$outdir/BEA_${name}_perp_N5
 $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
         --IN $input \
         --MODEL $model/$checkpoint \
