@@ -6,7 +6,7 @@ unset LD_PRELOAD
 echo export PATH=/home/alta/BLTSpeaking/exp-yw575/env/anaconda3/bin/:$PATH
 
 # export CUDA_VISIBLE_DEVICES=$X_SGE_CUDA_DEVICE
-export CUDA_VISIBLE_DEVICES=2
+export CUDA_VISIBLE_DEVICES=3
 echo $CUDA_VISIBLE_DEVICES
 
 # python 3.7
@@ -137,13 +137,13 @@ outdir=prediction_files/conll
 #         --delim '.' 
 
 input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/BEA2019/bea2019test.txt
-# output=$outdir/BEA_${exp}_${checkpoint}_seed_${seed}
-# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-#         --IN $input \
-#         --MODEL $model/$checkpoint \
-#         --OUT_BASE $output \
-#         --seed $seed \
-#         --use_attack 0
+output=$outdir/BEA_${exp}_${checkpoint}_seed_${seed}
+$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 0
 
 # outdir=prediction_files/orig/attacks
 # mkdir outdir       
@@ -157,15 +157,15 @@ input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/BEA2019/bea2019test.txt
 #         --phrase 'ink l xml mv sub' \
 #         --delim '.' 
 
-output=$outdir/${exp}_perp_N5_BEA
-$PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
-        --IN $input \
-        --MODEL $model/$checkpoint \
-        --OUT_BASE $output \
-        --seed $seed \
-        --use_attack 1 \
-        --phrase 'trifecta haiku utah intransigent penicillin' \
-        --delim '.' 
+# output=$outdir/${exp}_perp_N5_BEA
+# $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/predict.py \
+#         --IN $input \
+#         --MODEL $model/$checkpoint \
+#         --OUT_BASE $output \
+#         --seed $seed \
+#         --use_attack 1 \
+#         --phrase 'trifecta haiku utah intransigent penicillin' \
+#         --delim '.' 
 done
 
 # # ------------------------------------Attack
