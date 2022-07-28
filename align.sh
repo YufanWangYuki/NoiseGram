@@ -191,7 +191,7 @@ do
     preddir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/conll
     mkdir $outdir/$exp
     checkpoint=combine
-    pred=$preddir/clean_CoNLL_v003_combine_seed_1.pred
+    pred=$preddir/CoNLL_v003_combine_seed_1.pred
     output=$outdir/$exp/${checkpoint}_seed_${seed}
     
     echo $pred
