@@ -22,7 +22,7 @@ do
     dir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/orig
     pred=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/conll/$exp
     errant_parallel -orig ${dir}/conlltest.inc -cor ${pred}/clean_CoNLL_GramAdvMean_add_100.pred -out ${pred}/clean_${exp}_GramAdvMean_add_100.m2
-    echo clean_${exp}_GramAdvMean_add_10 >> results/Fscore/v002_conll.txt
+    echo clean_${exp}_GramAdvMean_add_100 >> results/Fscore/v002_conll.txt
     errant_compare -hyp ${pred}/clean_${exp}_GramAdvMean_add_100.m2 -ref ${dir}/official-2014.combined.m2 >> results/Fscore/v002_conll.txt
 done
 
