@@ -6,6 +6,7 @@ random.seed(1)
 def get_sentences(data_path, num=-1):
     with open(data_path, 'r') as f:
         lines = f.readlines()
+    pdb.set_trace()
     if num > 0:
         print("Here Type ", type(num))
         random.shuffle(lines)
