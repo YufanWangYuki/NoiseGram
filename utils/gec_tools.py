@@ -6,18 +6,21 @@ random.seed(1)
 def get_sentences(data_path, num=-1):
     with open(data_path, 'r') as f:
         lines = f.readlines()
-    pdb.set_trace()
     if num > 0:
         print("Here Type ", type(num))
         random.shuffle(lines)
         lines = lines[:num]
     pdb.set_trace()
-    texts = [' '.join(l.rstrip('\n').split()[1:]) for l in lines]
-    ids = [l.rstrip('\n').split()[0] for l in lines]
+    if 'fce' in data_path:
+        texts = [' '.join(l.rstrip('\n').split()[:]) for l in lines]
+        ids = [str(id) for id in range(len(lines))]
+    else:
+        texts = [' '.join(l.rstrip('\n').split()[1:]) for l in lines]
+        ids = [l.rstrip('\n').split()[0] for l in lines]
 
     # Remove space before full stops at end
     texts = [t[:-2]+'.' if t[-2:]==' .' else t for t in texts]
-
+    pdb.set_trace()
     return ids, texts
 
 def correct(model, sentence):
