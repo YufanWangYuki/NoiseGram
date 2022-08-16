@@ -93,10 +93,12 @@ if __name__ == "__main__":
         file1 = f'{args.OUT_BASE}_with_adv_not_removed.pred'
         with open(file2, 'w') as f:
             for id, sentence in zip(identifiers, corrections_adv_removed):
-                f.write(f'{id} {sentence}\n')
+                # f.write(f'{id} {sentence}\n')
+                f.write(f'{sentence}\n')
     else:
         file1 = f'{args.OUT_BASE}.pred'
 
     with open(file1, 'w') as f:
         for id, sentence in zip(identifiers, corrections):
-            f.write(f'{id} {sentence}\n')
+            # f.write(f'{id} {sentence}\n')
+            f.write(f'{sentence}\n')

@@ -10,7 +10,7 @@ def get_sentences(data_path, num=-1):
         print("Here Type ", type(num))
         random.shuffle(lines)
         lines = lines[:num]
-    pdb.set_trace()
+    # pdb.set_trace()
     if 'fce' in data_path:
         texts = [' '.join(l.rstrip('\n').split()[:]) for l in lines]
         ids = [str(id) for id in range(len(lines))]
@@ -20,7 +20,7 @@ def get_sentences(data_path, num=-1):
 
     # Remove space before full stops at end
     texts = [t[:-2]+'.' if t[-2:]==' .' else t for t in texts]
-    pdb.set_trace()
+    # pdb.set_trace()
     return ids, texts
 
 def correct(model, sentence):
