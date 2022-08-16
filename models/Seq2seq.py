@@ -2,8 +2,8 @@ import random
 import os
 import numpy as np
 import sys
-sys.path.append(r"/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/")
-
+# sys.path.append(r"/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/")
+sys.path.append(r"/home/mifs/yw575/NoiseGram/models/")
 import torch
 torch.cuda.empty_cache()
 import torch.nn as nn
