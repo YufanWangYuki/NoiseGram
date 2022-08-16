@@ -26,7 +26,7 @@ def get_sentences(data_path, num=-1):
 
     # Remove space before full stops at end
     texts = [t[:-2]+'.' if t[-2:]==' .' else t for t in texts]
-    pdb.set_trace()
+    # pdb.set_trace()
     return ids, texts
 
 def correct(model, sentence):
