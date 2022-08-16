@@ -35,7 +35,7 @@ def get_sentences_dict(data_path, remove_punct=False):
     id2text = {}
     for l in lines:
         parts = l.split()
-        if len(parts) < 2:
+        if len(parts) < 1:
             pdb.set_trace()
         id = parts[0]
         text = ' '.join(parts[1:])
