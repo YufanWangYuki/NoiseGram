@@ -21,10 +21,13 @@ outdir=prediction_files
 seed=1
 
 exp=orig
-model=/home/mifs/yw575/models/Gaussian_mul_1.0_0.1_256_2_002/checkpoints-combine/
+
+for exp in GramGau GramAdv GramMeanAdv_1 GramMeanAdv_2 GramMeanAdv_3
+do
 for checkpoint in combine
 do
-    output=$outdir/GramGau
+    output=$outdir/$exp
+    model=/home/mifs/yw575/models/$exp/checkpoints-combine/
     mkdir output
     $PYTHONBIN /home/mifs/yw575/NoiseGram/predict.py \
         --IN $input \
@@ -32,4 +35,15 @@ do
         --OUT_BASE $output \
         --seed $seed \
         --use_attack 0
+    
+    output=$outdir/${exp}_perp_N5
+    $PYTHONBIN /home/mifs/yw575/NoiseGram/predict.py \
+        --IN $input \
+        --MODEL $model/$checkpoint \
+        --OUT_BASE $output \
+        --seed $seed \
+        --use_attack 1 \
+        --phrase 'trifecta haiku utah intransigent penicillin' \
+        --delim '.' 
+done
 done
