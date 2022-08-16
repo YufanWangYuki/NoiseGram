@@ -21,7 +21,6 @@ outdir=prediction_files/m2
 seed=1
 
 exp=GramGau
-model=/home/mifs/yw575/models/Gaussian_mul_1.0_0.1_256_2_002/checkpoints-combine/
 for checkpoint in combine
 do 
     input=$preddir/${exp}_${checkpoint}_seed_${seed}.inc

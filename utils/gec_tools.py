@@ -17,15 +17,16 @@ def get_sentences(data_path, num=-1):
     # else:
     texts = []
     ids = []
-    for l in lines:
+    for idx, l in enumerate(lines):
         if len(l.rstrip('\n').split()) < 1:
+            print(idx)
             continue
         texts.append(' '.join(l.rstrip('\n').split()[1:]))
         ids.append(l.rstrip('\n').split()[0])
 
     # Remove space before full stops at end
     texts = [t[:-2]+'.' if t[-2:]==' .' else t for t in texts]
-    # pdb.set_trace()
+    pdb.set_trace()
     return ids, texts
 
 def correct(model, sentence):
