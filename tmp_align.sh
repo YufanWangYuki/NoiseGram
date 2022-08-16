@@ -37,7 +37,7 @@ do
         --PRED $pred \
         --CORR $corr \
         --BASE $output \
-        --seed $seed \
-        --remove_punct yes
+        --seed $seed
+        # --remove_punct yes
 done
 
