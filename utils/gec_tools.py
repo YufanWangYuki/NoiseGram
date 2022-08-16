@@ -18,7 +18,7 @@ def get_sentences(data_path, num=-1):
     texts = []
     ids = []
     for l in lines:
-        if len(l) < 1:
+        if len(l.rstrip('\n').split()) < 1:
             continue
         texts.append(' '.join(l.rstrip('\n').split()[1:]))
         ids.append(l.rstrip('\n').split()[0])
