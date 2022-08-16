@@ -25,6 +25,7 @@ import sys
 import os
 import argparse
 import string
+import pdb
 
 def get_sentences_dict(data_path, remove_punct=False):
     with open(data_path, 'r') as f:
@@ -34,6 +35,8 @@ def get_sentences_dict(data_path, remove_punct=False):
     id2text = {}
     for l in lines:
         parts = l.split()
+        if len(parts) < 2:
+            pdb.set_trace()
         id = parts[0]
         text = ' '.join(parts[1:])
         # remove space before full stop
