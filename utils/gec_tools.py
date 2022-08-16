@@ -11,12 +11,17 @@ def get_sentences(data_path, num=-1):
         random.shuffle(lines)
         lines = lines[:num]
     # pdb.set_trace()
-    if 'fce' in data_path:
-        texts = [' '.join(l.rstrip('\n').split()[:]) for l in lines]
-        ids = [str(id) for id in range(len(lines))]
-    else:
-        texts = [' '.join(l.rstrip('\n').split()[1:]) for l in lines]
-        ids = [l.rstrip('\n').split()[0] for l in lines]
+    # if 'fce' in data_path:
+    #     texts = [' '.join(l.rstrip('\n').split()[:]) for l in lines]
+    #     ids = [str(id) for id in range(len(lines))]
+    # else:
+    texts = []
+    ids = []
+    for l in lines:
+        if len(l) < 1:
+            continue
+        texts.append(' '.join(l.rstrip('\n').split()[1:]))
+        ids.append(l.rstrip('\n').split()[0])
 
     # Remove space before full stops at end
     texts = [t[:-2]+'.' if t[-2:]==' .' else t for t in texts]
