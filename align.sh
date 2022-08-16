@@ -23,6 +23,9 @@ preddir=prediction_files
 outdir=prediction_files/for_errant
 seed=1
 
+
+
+
 # ------ [Generation for reranker eval set] ----------
 # exp=Adversarial_mul_1.0_0.1_2_001
 # model=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/models/$exp/checkpoints
@@ -185,24 +188,24 @@ seed=1
 # done
 
 # mkdir $outdir/orig
-for exp in v003
-do
-    outdir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/conll/v005
-    preddir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/conll/$exp
-    mkdir $outdir
-    checkpoint=combine
-    pred=$preddir/CoNLL_GramAdvMean_add_100.pred
-    output=$outdir/CoNLL_GramAdvMean_add_100
-    echo $pred
-    input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
-    corr=$input
-    $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
-        --INC $input \
-        --PRED $pred \
-        --CORR $corr \
-        --BASE $output \
-        --seed $seed
-done
+# for exp in v003
+# do
+#     outdir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/for_errant/conll/v005
+#     preddir=/home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/prediction_files/conll/$exp
+#     mkdir $outdir
+#     checkpoint=combine
+#     pred=$preddir/CoNLL_GramAdvMean_add_100.pred
+#     output=$outdir/CoNLL_GramAdvMean_add_100
+#     echo $pred
+#     input=/home/alta/BLTSpeaking/exp-vr313/GEC/data/CoNLL-14/conll14st-test-data/noalt/input_sentences.txt
+#     corr=$input
+#     $PYTHONBIN /home/alta/BLTSpeaking/exp-yw575/GEC/NoiseGram/utils/align_preds.py \
+#         --INC $input \
+#         --PRED $pred \
+#         --CORR $corr \
+#         --BASE $output \
+#         --seed $seed
+# done
 
 # for exp in BEA_orig BEA_volta_Gaussian_mul_1.0_0.0__256_8 
 # do
