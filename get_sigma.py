@@ -33,6 +33,7 @@ mean_sigma = []
 mean_rate_v1 = 0
 mean_rate_v2 = 0
 cnt = 0
+final_idx = sorted(final_idx)
 for id in tqdm(final_idx[1000:]):
     cnt += 1
     data_v1 = torch.load(file_dir_v1+str(id)+".pt",map_location=torch.device('cpu'))-1
@@ -66,7 +67,8 @@ for id in tqdm(final_idx[1000:]):
 
 print(mean_rate_v1/cnt)
 print(mean_rate_v2/cnt)
-time.sleep(10)
+# time.sleep(10)
+pdb.set_trace()
 
 mean_sigma_clean=[elem if not np.isnan(elem) else None for elem in mean_sigma]
 while None in mean_sigma_clean:
@@ -82,8 +84,8 @@ for i in range(len(hist[0])):
         if hist[0][i] == max(hist[0]):
             plt.annotate(text=hist[1][i], xy=(hist[1][i] + 0.1 / 3, hist[0][i]))
 plt.xlim([-10,20])
-plt.xlabel("sigma")
-plt.ylabel("frequency")
+plt.xlabel("$\sigma'$")
+plt.ylabel("Frequency")
 plt.savefig("sigma.png")
 plt.show()
 
