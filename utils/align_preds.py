@@ -36,7 +36,7 @@ def get_sentences_dict(data_path, remove_punct=False):
     for l in lines:
         parts = l.split()
         if len(parts) < 1:
-            pdb.set_trace()
+            continue
         id = parts[0]
         text = ' '.join(parts[1:])
         # remove space before full stop
