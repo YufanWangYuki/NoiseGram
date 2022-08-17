@@ -16,8 +16,8 @@ export PYTHONBIN=/home/mifs/yw575/env/anaconda3/envs/gec37/bin/python3
 export PYTHONPATH="${PYTHONPATH}:/home/mifs/yw575/NoiseGram/"
 
 # ===================================================================================
-input=/home/mifs/yw575/dataset/test_id.src 
-outdir=prediction_files
+input=/home/mifs/yw575/dataset/bea_id.txt
+outdir=prediction_files/bea
 seed=1
 
 exp=orig
