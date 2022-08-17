@@ -26,7 +26,8 @@ seed=1
 # ------ [Generation for reranker eval set] ----------
 exp=GramGau
 model=/home/mifs/yw575/models/Gaussian_mul_1.0_0.1_256_2_002/checkpoints-combine/
-# Adversarial_mul_1.0_0.1_2_001_2022_05_17_01_52_19_seed_1.pred
+for exp in GramGau GramAdv GramMeanAdv_1 GramMeanAdv_2 GramMeanAdv_3
+do
 for checkpoint in combine
 do 
     pred=$preddir/${exp}.pred
@@ -39,5 +40,6 @@ do
         --BASE $output \
         --seed $seed
         # --remove_punct yes
+done
 done
 

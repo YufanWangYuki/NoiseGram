@@ -21,6 +21,8 @@ outdir=prediction_files/m2
 seed=1
 
 exp=GramGau
+for exp in GramGau GramAdv GramMeanAdv_1 GramMeanAdv_2 GramMeanAdv_3
+do
 for checkpoint in combine
 do 
     input=$preddir/${exp}_${checkpoint}_seed_${seed}.inc
@@ -32,6 +34,7 @@ do
     echo ${exp}_${checkpoint} >> results/Fscore.txt
     errant_compare -hyp $outdir/${exp}_${checkpoint}_edits-pred.m2 -ref $outdir/${exp}_${checkpoint}_edits-corr.m2 >> results/Fscore.txt
     echo ${exp}_${checkpoint}
+done
 done
 
 
